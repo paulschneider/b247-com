@@ -2,7 +2,7 @@
 
 @section('content')
 
-<div id="login-container" class="col-md-4 col-md-offset-3">
+<div id="login-container" class="col-md-4 col-md-offset-4">
 
 	{{ Form::open([ 'url' => 'login.auth', 'class' => 'form' ]) }}
 

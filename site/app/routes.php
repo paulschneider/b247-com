@@ -11,4 +11,11 @@
 |
 */
 
-Route::get('/', 'HomeController@showHomePage');
+Route::group(array('before' => 'auth'), function()
+{
+    Route::get('/', 'HomeController@showHomePage');
+});
+
+Route::post('login.auth', 'SessionsController@authenticate');
+Route::get('logout', [ 'as' => 'logout', 'uses' => 'SessionsController@logUserOut' ]);
+Route::get('login', [ 'as' => 'login', 'uses' => 'SessionsController@showLogIn' ]);

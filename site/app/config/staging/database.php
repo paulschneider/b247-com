@@ -3,9 +3,9 @@
 return [
 	'connections' => [
 		'mysql' => [
-			'database' => 'b247-site',
+			'database' => 'wfstage_b247_com',
 			'username' => 'root',
-			'password' => ''
+			'password' => 'r]upoyJmL)2t'
 		]
 	]
 ];

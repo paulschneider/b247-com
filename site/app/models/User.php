@@ -14,7 +14,7 @@ class User extends Eloquent implements UserInterface, RemindableInterface {
 	 *
 	 * @var string
 	 */
-	protected $table = 'users';
+	protected $table = 'user';
 
 	/**
 	 * The attributes excluded from the model's JSON form.
@@ -23,4 +23,23 @@ class User extends Eloquent implements UserInterface, RemindableInterface {
 	 */
 	protected $hidden = array('password', 'remember_token');
 
+	/**
+	 * The attributes that can be written to in the database
+	 *
+	 * @var array
+	 */
+	protected $fillable = [
+		'firstname', 'lastname', 'email', 'password'
+	];
+
+	public function createUser()
+	{
+		$user = static::create([
+			'firstname' => 'David'
+			,'lastname' => 'Woodall'
+			,'email' => 'david.woodall@wildfirecomms.co.uk'
+			,'password' => Hash::make('password')
+			,'is_active' => true
+		]);
+	}
 }

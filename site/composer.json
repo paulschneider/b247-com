@@ -21,7 +21,7 @@
 			"app/helpers.php"
 		],
 		"psr-4": {
-				"Bristol247\\" : "app/bristol247"
+				"Bristol247\\" : "app/Bristol247"
 		}
 	},
 	

@@ -4,7 +4,9 @@
 	"keywords": ["framework", "laravel"],
 	"license": "MIT",
 	"require": {
-		"laravel/framework": "4.2.*"
+		"laravel/framework": "4.2.*",
+		"guzzlehttp/guzzle": "~4.0",
+		"nesbot/Carbon": "*"
 	},
 	"autoload": {
 		"classmap": [
@@ -14,11 +16,15 @@
 			"app/database/migrations",
 			"app/database/seeds",
 			"app/tests/TestCase.php"
-		]
+		],
+		"files" : [
+			"app/helpers.php"
+		],
+		"psr-4": {
+				"Bristol247\\" : "app/bristol247"
+		}
 	},
-	"files" : [
-		"app/helpers.php"
-	],
+	
 	"scripts": {
 		"post-install-cmd": [
 			"php artisan clear-compiled",

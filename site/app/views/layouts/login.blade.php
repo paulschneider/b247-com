@@ -3,7 +3,7 @@
     <head>
         <meta charset="utf-8">
         <link href="//netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap.min.css" rel="stylesheet">
-        <link href="css/content.css" rel="stylesheet">
+        <link href="c/content.css" rel="stylesheet">
     </head>
 
     <body>

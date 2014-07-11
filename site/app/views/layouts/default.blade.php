@@ -61,6 +61,7 @@
     
 <!-- Files -->
     <link rel="stylesheet" href="{{ assetPath() }}c/live.css">
+    <link rel="stylesheet" href="{{ assetPath() }}c/content.css">
     <!--[if lt IE 9]><script src="{{ assetPath() }}j/vendor/html5shiv-printshiv.js"></script><![endif]-->
 
   </head>

@@ -14,6 +14,8 @@
 Route::group(array('before' => 'auth'), function()
 {
     Route::get('/', 'HomeController@showHomePage');
+
+    Route::get('map', 'MapController@index');
 });
 
 Route::post('login.auth', 'SessionsController@authenticate');

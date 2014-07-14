@@ -1,14 +1,23 @@
 <?php
 
-function getCategoryFromChannel($channel, $categorySefName)
+function getCategoryPath($channel)
 {
-	foreach($channel['subChannels'][0]['categories'] AS $category)
-	{
-		if( $category['sefName'] == $categorySefName )
-		{
-			return $category['name'];
-		}
-	}
+	return $channel['subChannels'][0]['categories'][0]['path'];
+}
+
+function getCategoryName($channel)
+{
+	return $channel['subChannels'][0]['categories'][0]['name'];
+}
+
+function getSubChannelName($channel)
+{
+	return $channel['subChannels'][0]['name'];
+}
+
+function getSubChannelPath($channel)
+{
+	return $channel['subChannels'][0]['path'];
 }
 
 function getChannelName($channel)

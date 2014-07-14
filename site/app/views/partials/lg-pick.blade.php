@@ -1,4 +1,4 @@
-<div class="articleListItem themeWhats column artCol-1-3">
+<div class="articleListItem themeWhats column artCol-2-3 <?php echo $counter == 0 ? 'artColFirst' : '' ?>">
 	<div class="articleListStandOut">
 		<div class="articleListImage">
 			<div class="articleListStandOutContent">

@@ -89,7 +89,8 @@
    			<div class="articleList">
    				<div class="artColRow">
 
-	   			<?php $counter = 1; ?>
+	   			<?php $counter = 0; ?>
+
 	   			@foreach ( $picks AS $pick )
 	  				@if ( $pick['isAdvert'] )
 	  					<?php $ad = $pick ?>
@@ -103,11 +104,11 @@
 	    				@endif
 	    			@endif	    			
 
-		      		@if( $counter == 4 )
+	    			<?php $counter = $counter + $pick['displayStyle'] ?> 
+
+		      		@if( $counter == 3 )
 		          		</div><div class="artColRow">
-		          		<?php $counter = 1 ?>
-		          	@else
-		          		<?php $counter++ ?>
+		          		<?php $counter = 0 ?>
 		          	@endif
 		          @endforeach
 		        </div>

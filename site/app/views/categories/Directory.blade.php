@@ -20,7 +20,7 @@
 
 		var mapOptions = {
 			center: centre,
-			zoom: 13
+			zoom: 12
 		};
 
 		var map = new google.maps.Map(document.getElementById("map"), mapOptions);
@@ -77,10 +77,10 @@
 <section class="pageSection">
 	<div class="grid">
 		<header class="artCol-3-3 artColFirst">
-			<h1 class="primaryHeader"><span class="subPrimaryHeader">{{ getChannelName($channel) }}:</span> {{ getCategoryFromChannel($channel, $category) }}</h1>
+			<h1 class="primaryHeader"><span class="subPrimaryHeader">{{ getChannelName($channel) }}:</span> {{ getCategoryName($channel) }}</h1>
 		</header>
 
-		<p class="backTo column col-5-20 colFirst tabCol-9-20 tabColFirst mobCol-18-20 mobColFirst">Back to: <a href="#">Guide</a></p>
+		<p class="backTo column col-5-20 colFirst tabCol-9-20 tabColFirst mobCol-18-20 mobColFirst">Back to: <a href="{{ getSubChannelPath($channel) }}">{{ getSubChannelName($channel) }}</a></p>
 		<p class="backTo column col-6-20 tabCol-9-20 totalResults mobCol-18-20 mobColFirst">Your search returned <span class="highlight">{{ $totalArticles }} results</span></p>
 		<p class="backTo column col-5-20 showResults"><a href="#">Show results near me</a></p>
 	</div>
@@ -108,7 +108,7 @@
 					<?php $counter = 0; ?>
 						@foreach( $articles AS $article )
 
-							<div class="articleListItem themeCulture column <?php echo $counter == 0 ? 'artColFirst' : ''?> artCol-1-3">
+							<div class="articleListItem themeCulture column <?php echo $counter == 0 || $counter == 3 ? 'artColFirst' : ''?> artCol-1-3">
 								<div class="articleListSynopsis">
 									<div class="articleListImage">
 										<a href="{{ $article['path'] }}">

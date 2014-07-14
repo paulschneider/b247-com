@@ -1,4 +1,4 @@
-<div class="articleListItem themeWhats column artCol-2-3 artColFirst">
+<div class="articleListItem themeWhats column artCol-2-3 <?php echo $counter == 0 ? 'artColFirst' : '' ?>">
 	<div class="articleListBlockAdvert advert">
 		<figure>
 			<a href="{{ $ad['url'] }}">

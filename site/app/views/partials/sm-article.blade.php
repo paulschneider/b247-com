@@ -1,4 +1,4 @@
-<div class="articleListItem themeCulture column col-3-12">
+<div class="articleListItem themeCulture column col-1-12 <?php echo $counter == 0 ? 'artColFirst' : '' ?>">
 	<a href="{{ $article['assignment']['subChannel']['path'] }}" class="articleListSubChannel">{{ $article['assignment']['subChannel']['name'] }}</a>
 	<div class="articleListSynopsis">
 		<div class="articleListImage">

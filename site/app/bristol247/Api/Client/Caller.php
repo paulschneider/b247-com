@@ -1,6 +1,10 @@
 <?php namespace Bristol247\Api\Client;
 
+//http://api.guzzlephp.org/class-Guzzle.Http.Message.Request.html
+
 use GuzzleHttp\Exception\ClientException;
+use GuzzleHttp\Stream;
+use Guzzle\Http\Message;
 
 Class Caller {
 
@@ -16,15 +20,18 @@ Class Caller {
 	{
 		$this->endpoint = $endpoint;
 
-		Caller::setQueryString($params);
-
 		$request = $this->client->createRequest('GET', $this->endpoint, [
-			'headers' => $headers
+			'headers' => $headers,
+			'query' => $params
 		]);
+
+		// getStatusCode()
+		// getReasonPhrase()
+		// getBody()
 
 		try {
 		   $response = $this->client->send($request)->json();
-		   
+
 		   if( isset($response['success']) )
 		   {
 		   		return $response['success']['data'];	

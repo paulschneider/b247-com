@@ -1,5 +1,36 @@
 <?php
 
+function getCategoryFromChannel($channel, $categorySefName)
+{
+	foreach($channel['subChannels'][0]['categories'] AS $category)
+	{
+		if( $category['sefName'] == $categorySefName )
+		{
+			return $category['name'];
+		}
+	}
+}
+
+function getChannelName($channel)
+{
+	return $channel['name'];
+}
+
+function getChannelType($channel)
+{
+	return $channel['subChannels'][0]['displayType']['type'];
+}
+
+function getApplicationNav()
+{
+	if ( ! Session::has('nav') )
+	{
+		Session::put('nav', Api::get("app/nav"));		
+	}
+
+	return Session::get('nav');
+}
+
 function getFeatureCategories($features)
 {
 	$response = [];

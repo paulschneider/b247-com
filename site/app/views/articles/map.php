@@ -1,12 +1,4 @@
-@extends('layouts.default')
-
-@include('layouts.header')
-
-@section('content')
-
-<script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?key={{ $apiKey }}">
-	
-</script>
+<script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?key={{ $apiKey }}"></script>
 
 <script type="text/javascript">
 
@@ -44,8 +36,6 @@
 		{
 			var position = new google.maps.LatLng(mapItems[i].lat, mapItems[i].lon);
 
-			
-
 			var marker = new google.maps.Marker({
 				position: position,
 				map: map,
@@ -65,11 +55,6 @@
 
 </script>
 
-
 <section class="featureArea grid">
 	<div id="map"/>
 </section>
-
-@endsection
-
-@include('layouts.footer')

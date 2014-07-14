@@ -1,17 +1,17 @@
-<div class="articleListItem column col-6-12">
+<div class="articleListItem themeWhats column artCol-1-3">
 	<div class="articleListStandOut">
 		<div class="articleListImage">
 			<div class="articleListStandOutContent">
-					<a href="{{ $pick['assignment']['subChannel']['path'] }}" class="articleListSubChannel">{{ $pick['assignment']['subChannel']['name'] }}</a>
-					<a href="#" class="articleListTitle">{{ $pick['title'] }}</a>
-					<p class="articleListSummary">{{ $pick['subHeading'] }}</p>
-					<a href="{{ $pick['assignment']['category']['path'] }}" class="articleListCategories">{{ $pick['assignment']['category']['name'] }}</a>
+				<a href="{{ $pick['assignment']['subChannel']['path'] }}" class="articleListSubChannel">{{ $pick['assignment']['subChannel']['name'] }}</a>
+				<a href="#" class="articleListTitle">{{ $pick['title'] }}</a>
+				<p class="articleListSummary">{{ $pick['subHeading'] }}</p>
+				<a href="{{ $pick['assignment']['category']['path'] }}" class="articleListCategories">{{ $pick['assignment']['category']['name'] }}</a>
 			</div>
 			<div class="articleListStandOutImage">
-					<a href="{{ $pick['path'] }}">
-					<img alt="{{ $pick['media']['alt'] }}" src="{{ $pick['media']['filepath'] }}" />
-					</a>
-					<a href="#" class="articleListCategories">Category</a>
+				<a href="{{ $pick['path'] }}">
+				<img alt="{{ $pick['media']['alt'] }}" src="{{ $pick['media']['filepath'] }}" />
+				</a>
+				<a href="#" class="articleListCategories">Category</a>
 			</div>
 		</div>
 	</div>

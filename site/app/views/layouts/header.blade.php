@@ -6,13 +6,13 @@
     <a id="logo" href="/"><img alt="Bristol 24/7" src="{{ assetPath() }}i/layout/bristol-24-7.png"></a>      
     <a class="toggleMenuOn" href="#">Show menu<span class="icoMenu"></span></a>        
     <nav class="primaryNav" role="navigation">
-      <ul>
-      @foreach( $nav AS $item )
-		<li class="{{ themeClass($item['sefName']) }}">
-			<a href="{{ $item['sefName'] }}">{{ $item['name'] }}</a>
-		</li>
-      @endforeach
-      </ul>
+        <ul>
+        @foreach( $nav AS $item )
+		    <li class="{{ themeClass($item['sefName']) }}">
+		      <a href="/{{ $item['sefName'] }}">{{ $item['name'] }}</a>
+		    </li>
+        @endforeach
+        </ul>
     </nav>
     
     <ul class="toolsNav">

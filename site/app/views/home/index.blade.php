@@ -7,7 +7,7 @@
 <section class="featureArea grid">
 	<div class="carouselFeatureContainer">
 		<div class="carouselFeatureList">              
-			<div class="featureList col-12-12">
+			<div class="featureList col-16-20 tabCol-20-20 colFirst colLast">
 
               <?php $counter = 1 ?>
               @foreach( $features AS $feature )
@@ -73,42 +73,45 @@
 			<img alt="{{ $adverts[0]['media']['alt'] }}" src="{{ $adverts[0]['media']['filepath'] }}" width="100%">
 		</a>
 		<figcaption>
-		Advertising
+			Advertising
 		</figcaption>
 	</figure>
 </div>
           
 <section class="pageSection grid">
 
-	<header class="col-12-12">
+	<header class="artCol-3-3 artColFirst artColLast">
 		<h1 class="secondaryHeader">Picks</h1>
 	</header>
 
 	<div class="carouselDoubleContainer">
   		<div class="carouselDoubleList">
    			<div class="articleList">
+   				<div class="artColRow">
 
-   			<?php $counter = 1; ?>
-   			@foreach ( $picks AS $pick )
-  				@if ( $pick['isAdvert'] )
-  					<?php $ad = $pick ?>
-    				@include( 'partials.advert' )
-    			@else
-    				<?php $article = $pick ?>
-    				@if ( $pick['displayStyle'] == 1 )        				
-    					@include( 'partials.sm-article' )
-    				@elseif ( $pick['displayStyle'] == 2 )
-    					@include( 'partials.lg-pick' )
-    				@endif
-    			@endif	    			
+	   			<?php $counter = 1; ?>
+	   			@foreach ( $picks AS $pick )
+	  				@if ( $pick['isAdvert'] )
+	  					<?php $ad = $pick ?>
+	    				@include( 'partials.advert' )
+	    			@else
+	    				<?php $article = $pick ?>
+	    				@if ( $pick['displayStyle'] == 1 )        				
+	    					@include( 'partials.sm-article' )
+	    				@elseif ( $pick['displayStyle'] == 2 )
+	    					@include( 'partials.lg-pick' )
+	    				@endif
+	    			@endif	    			
 
-	      		@if( $counter == 4 )
-	          		</div><div class="articleList">
-	          		<?php $counter = 1 ?>
-	          	@else
-	          		<?php $counter++ ?>
-	          	@endif
-	          @endforeach
+		      		@if( $counter == 4 )
+		          		</div><div class="artColRow">
+		          		<?php $counter = 1 ?>
+		          	@else
+		          		<?php $counter++ ?>
+		          	@endif
+		          @endforeach
+		        </div>
+		    </div>
       	</div>
     </div>
 

@@ -25,9 +25,9 @@
                         @endif
                          
                     @endforeach
-                </div>
-                </div> 
-                <a class="carouselViewAll col-3-12" href="#">See full listings</a>
+            </div>
+        </div> 
+        <a class="carouselViewAll col-3-12" href="{{ $feed['path'] }}">See full listings</a>
             @else
                 <p>There are currently no articles to display</p>
         @endif

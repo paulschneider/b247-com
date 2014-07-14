@@ -13,9 +13,11 @@
 
 Route::group(array('before' => 'auth'), function()
 {
-    Route::get('/', 'HomeController@showHomePage');
-
-    Route::get('map', 'MapController@index');
+	Route::get('{channel}', 'ChannelController@showChannel');
+	Route::get('{channel}/{subChannel}', 'ChannelController@showSubChannel');
+	Route::get('{channel}/{subChannel}/{category}', 'CategoryController@show');
+	Route::get('{channel}/{subChannel}/{category}/{article}', 'ArticleController@show');
+    Route::get('/', 'HomeController@showHomePage');    
 });
 
 Route::post('login.auth', 'SessionsController@authenticate');

@@ -6,5 +6,4 @@ class BaseController extends Controller {
 	{
 		
 	}
-
 }

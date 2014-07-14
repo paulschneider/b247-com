@@ -1,4 +1,4 @@
-<div class="articleListItem column col-6-12">
+<div class="articleListItem themeWhats column artCol-2-3 artColFirst">
 	<div class="articleListBlockAdvert advert">
 		<figure>
 			<a href="{{ $ad['url'] }}">

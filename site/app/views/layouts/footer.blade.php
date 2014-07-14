@@ -2,7 +2,7 @@
 
 <footer id="bottom">
   <div class="grid">          
-    <nav class="footerNav">
+    <nav class="footerNav column col-4-20 colFirst tabCol-6-20 tabColFirst mobCol-18-20 mobColFirst">
       <ul>
       	<li>
           <a href="#" class="footerHome">Home</a>
@@ -15,7 +15,7 @@
       </ul>
     </nav>
     
-    <div class="footerSubNav">
+    <div class="footerSubNav column col-8-20 tabCol-12-20 tabColLast mobCol-18-20 mobColFirst">
       <nav>
         <ul>
           <li>
@@ -63,7 +63,7 @@
       </ul>
     </div>
 
-    <div class="footerTerms">
+    <div class="footerTerms column col-4-20 colLast tabCol-12-20 tabColLast mobCol-18-20 mobColFirst">
       <ul>
         <li>
           <a href="#">Terms &amp; conditions</a>

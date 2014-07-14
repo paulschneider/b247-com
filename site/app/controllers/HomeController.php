@@ -4,7 +4,12 @@ class HomeController extends BaseController {
 
 	public function showHomePage()
 	{
-		$data = Api::get("/", [], [ 'X-accessKey' => 'pjs123456' ]);
+		$data = Api::get("/");
+
+		if (! Session::has('nav') )
+		{
+		    Session::put('nav', $data['channels']);
+		}
 
 		$viewData = [
 			'nav' => $data['channels'],
@@ -13,8 +18,6 @@ class HomeController extends BaseController {
 			'picks' => $data['picks'],
 			'channelFeed' => $data['channelFeed'],
 		];
-
-		//sd($viewData['features']);
 		
 		return View::make('home.index', $viewData);
 	}

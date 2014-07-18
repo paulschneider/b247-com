@@ -1,5 +1,5 @@
 <?php
 
 return [
-	'ApiKey' => 'AIzaSyAFSu-7Tw9QUTtknEfJW5QlCiTnpwJsVQQ'
+	'ApiKey' => 'AIzaSyDCxI1zC59DcR_rO5gKkpr_g7aT-1luIeA'
 ];

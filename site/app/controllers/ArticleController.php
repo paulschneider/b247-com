@@ -30,14 +30,14 @@ Class ArticleController extends BaseController {
 		$channelType = Input::get('type');
 
 		// create a response array to return to the caller
-		$data = [
+		$response = [
 			'success' => [
 				'data' => [
-					'html' => View::make("partials.tpl{$channelType}Article", $data)->render()
+					'html' => View::make("partials.tplDefaultArticle", $data)->render()
 				]
 			]
 		];
 
-		return Response::json($data);
+		return Response::json($response);
 	}
 }

@@ -1,3 +1,4 @@
+          <div class="mobView-content">
           <div class="advert">
             <figure>
               <a href="#">

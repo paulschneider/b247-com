@@ -1,5 +1,10 @@
 <?php
 
+function dateFormat($date)
+{
+	return date('Y-m-d', strtotime($date));
+}
+
 function getCategoryPath($channel)
 {
 	return $channel['subChannels'][0]['categories'][0]['path'];
@@ -37,7 +42,7 @@ function getApplicationNav()
 		Session::put('nav', Api::get("app/nav"));		
 	}
 
-	return Session::get('nav');
+	return Session::get('nav')['channels'];
 }
 
 function getFeatureCategories($features)

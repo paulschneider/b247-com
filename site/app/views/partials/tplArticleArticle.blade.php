@@ -12,7 +12,7 @@
 <article class="pageSection cmsContent">
     <div class="grid">
         <header class="col-16-20 colFirst tabCol-18-20 tabColFirst mobCol-18-20 mobColFirst">
-            <h1 class="primaryHeader">{{ $article['title'] }}</h1>
+            <h1 class="primaryHeader">Heading</h1>
         </header>
     </div>
 
@@ -49,9 +49,9 @@
 </aside>
                 
             <div class="fr col-75 mobCol-18-20 mobColLast">
-                <h2>{{ $article['subHeading'] }}</h2>
-                <p class="author">Author, {{ dateFormat($article['published']) }}</p>
-                <p>{{ $article['body'] }}</p>
+                <h2>Sub Heading</h2>
+                <p class="author">Author, 2014-07-21</p>
+                <p>Some text here</p>
             </div>
                 
                 <div class="fr col-75 mobCol-18-20 mobColLast cmsSecondaryContent">

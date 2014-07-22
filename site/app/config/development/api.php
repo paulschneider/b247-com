@@ -1,5 +1,5 @@
 <?php
 
 return [
-	"baseUrl" => "http://api.wf-cycle.co.uk"
+	"baseUrl" => "http://local.b247-api/"
 ];

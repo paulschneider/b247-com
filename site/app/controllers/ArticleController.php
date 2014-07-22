@@ -4,7 +4,7 @@ Class ArticleController extends BaseController {
 
 	public function show($channel, $subChannel, $category, $article)
 	{
-		$data = Api::get("articles", [ 'channel' => $subChannel, 'category' => $category, 'article' => $article, 'dataOnly' => true ]);
+		$data = Api::get("articles", [ 'subchannel' => $subChannel, 'category' => $category, 'article' => $article, 'dataOnly' => true ]);
 
 		// Push the apps nav into the data array which we'll pass to the view
 		$data['nav'] = getApplicationNav();
@@ -18,6 +18,10 @@ Class ArticleController extends BaseController {
 		return View::make("articles.template", $data);
 	}	
 
+	/**
+	* Function called by the API to retrieve the template file, populate it with the supplied data and return it
+	*
+	*/
 	public function getAppArticle()
 	{
 		$data = Input::get('data');

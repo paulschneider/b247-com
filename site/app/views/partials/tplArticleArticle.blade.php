@@ -1,60 +1,58 @@
-   
+<div class="advert">
+    <figure>
+        <a href="{{ $adverts[0]['url'] }}">
+            <img alt="{{ $adverts[0]['media']['alt'] }}" src="{{ $adverts[0]['media']['filepath'] }}" width="100%">
+        </a>
+        <figcaption>
+            Advertising
+        </figcaption>
+    </figure>
+</div>
           
-          <div class="advert">
-            <figure>
-              <a href="#">
-                <img alt="Kodak" src="/a/i/adverts/advert-728-90-placeholder.jpg" width="100%">
-              </a>
-              <figcaption>
-                Advertising
-              </figcaption>
-            </figure>
-          </div> <!-- /.advert -->
-          
-          <article class="pageSection cmsContent">
-            <div class="grid">
-              <header class="col-16-20 colFirst tabCol-18-20 tabColFirst mobCol-18-20 mobColFirst">
-                <h1 class="primaryHeader">H1: Pageheader</h1>
-              </header>
-            </div>
-            <hr>
-            <div class="grid">
-              <div class="col-12-20 colFirst tabCol-18-20 tabColFirst mobCol-20-20">
-                <div class="fr col-75 mobCol-20-20 carouselContainer">
-                  <div class="galleryLarge">
-                    <div class="carouselSingleGallery">
-                      <div class="gallerySlides">
-                        <div>
-                          <img alt="" src="/a/i/gallery/large.jpg">
-                        </div>
-                      </div>
-                      <div class="gallerySlides">
-                        <div>
-                          <img alt="" src="/a/i/gallery/large.jpg">
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-                
-                <aside class="column col-25 mobCol-18-20 mobColFirst">
-                  <h4>H4: Cras sed neque quam</h4>
-                  <h5>H5: Bibendum</h5>
-                  <p>Nulla urna: Ut congue <a href="#">Massa Cursus</a></p>
-                  <h5>H5: Condimentum</h5>
-                  <p>Facilisis auctor volutpat: <a href="#">Morbi condimentum</a></p>
-                  <p>At eros faucibus:</p>
-                  <p><a href="#">Rutrum Velit Et</a></p>
-                  <input type="button" value="Share" class="primaryButton">
-                </aside>
-                
-                <div class="fr col-75 mobCol-18-20 mobColLast">
-                 
-                  <h2>H2: Suspendisse pellentesque tincidunt dolor adipiscing magna.</h2>
-                  <p class="author">Author, 00.00.00</p>
+<article class="pageSection cmsContent">
+    <div class="grid">
+        <header class="col-16-20 colFirst tabCol-18-20 tabColFirst mobCol-18-20 mobColFirst">
+            <h1 class="primaryHeader">{{ $article['title'] }}</h1>
+        </header>
+    </div>
 
-                  <p>Body copy: Maecenas nulla erat, auctor id luctus quis, rhoncus eget eros. Sed nulla nibh, lacinia placerat est in, <a href="#">Link: ellentesque faucibus</a> tellus. Suspendisse potenti. Integer suscipit est nunc, et posuere nunc volutpat non. Ut tincidunt nibh elementum convallis auctor. Interdum et malesuada fames ac ante ipsum primis in faucibus.</p>
+    <hr>
+
+    <div class="grid">
+        <div class="col-12-20 colFirst tabCol-18-20 tabColFirst mobCol-20-20">
+            <div class="fr col-75 mobCol-20-20 carouselContainer">
+                <div class="galleryLarge">
+                    <div class="carouselSingleGallery">
+                        <div class="gallerySlides">
+                            <div>                            
+                                <img alt="" src="/a/i/gallery/large.jpg">
+                            </div>
+                        </div>
+                        <div class="gallerySlides">
+                            <div>
+                                <img alt="" src="/a/i/gallery/large.jpg">
+                            </div>
+                        </div>
+                    </div>
                 </div>
+            </div>
+                
+<aside class="column col-25 mobCol-18-20 mobColFirst">
+    <h4>H4: Cras sed neque quam</h4>
+    <h5>H5: Bibendum</h5>
+    <p>Nulla urna: Ut congue <a href="#">Massa Cursus</a></p>
+    <h5>H5: Condimentum</h5>
+    <p>Facilisis auctor volutpat: <a href="#">Morbi condimentum</a></p>
+    <p>At eros faucibus:</p>
+    <p><a href="#">Rutrum Velit Et</a></p>
+    <input type="button" value="Share" class="primaryButton">
+</aside>
+                
+            <div class="fr col-75 mobCol-18-20 mobColLast">
+                <h2>{{ $article['subHeading'] }}</h2>
+                <p class="author">Author, {{ dateFormat($article['published']) }}</p>
+                <p>{{ $article['body'] }}</p>
+            </div>
                 
                 <div class="fr col-75 mobCol-18-20 mobColLast cmsSecondaryContent">
                   <div class="videoContainer">

@@ -11,7 +11,7 @@
 |
 */
 
-Route::get('app/article', 'ArticleController@getAppArticle');
+Route::post('app/article', 'ArticleController@getAppArticle');
 
 Route::group(array('before' => 'auth'), function()
 {

@@ -20,6 +20,25 @@ function getSubChannelName($channel)
 	return $channel['subChannels'][0]['name'];
 }
 
+function getArticleSubChannel($article)
+{
+	$data = new stdClass();
+
+	$data->name = $article['assignment']['subChannel']['name'];
+	$data->path = $article['assignment']['subChannel']['path'];
+	
+	return $data;
+}
+
+function getArticleCategory($article)
+{
+	$data = new stdClass();
+	$data->name = $article['assignment']['category']['name'];
+	$data->path = $article['assignment']['category']['path'];
+	
+	return $data;
+}
+
 function getSubChannelPath($channel)
 {
 	return $channel['subChannels'][0]['path'];
@@ -42,7 +61,7 @@ function getApplicationNav()
 		Session::put('nav', Api::get("app/nav"));		
 	}
 
-	return Session::get('nav')['channels'];
+	return Session::get('nav');
 }
 
 function getFeatureCategories($features)

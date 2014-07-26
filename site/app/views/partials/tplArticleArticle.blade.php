@@ -11,24 +11,8 @@
           
 <article class="pageSection cmsContent">
     <!-- Header -->
-
     @if (! $isMobile) <!-- only show for the web version -->
-
-        <div class="grid">
-            <header class="col-12-20 colFirst tabCol-18-20 tabColFirst mobCol-18-20 mobColFirst">
-                <h1 class="primaryHeader">{{ $article['title'] }}</h1>
-                <p class="backTo">
-                    <span class="fr">
-                        <a href="{{ isset($navigation['previous']['article']['path']) ? $navigation['previous']['article']['path'] : '/no-where' }}">< previous article</a>
-                        &nbsp; | &nbsp;
-                        <a href="{{ isset($navigation['next']['article']['path']) ? $navigation['next']['article']['path'] : '/no-where' }}">next article ></a>
-                    </span>
-                </p>
-            </header>
-        </div>
-        
-        <hr>
-
+        @include('articles.partials.header')
     @endif
     
     <div class="grid">
@@ -63,9 +47,11 @@
          
         <!-- Main Content Area -->       
         <div class="fr col-75 mobCol-18-20 mobColLast cmsSecondaryContent">
-            <div class="videoContainer">
-                <iframe src="//www.youtube.com/embed/_FxsDywrADA" frameborder="0" allowfullscreen></iframe>
-            </div>
+            @if ( isset($article['video']) )
+                <div class="videoContainer">
+                    {{ $article['video']['embed'] }}
+                </div>
+            @endif
 
             {{ $article['bodyContinued'] }}
         </div>

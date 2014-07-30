@@ -13,6 +13,10 @@
 
 Route::post('app/article', 'ArticleController@getAppArticle');
 
+Route::post('login.auth', 'SessionsController@authenticate');
+Route::get('logout', [ 'as' => 'logout', 'uses' => 'SessionsController@logUserOut' ]);
+Route::get('login', [ 'as' => 'login', 'uses' => 'SessionsController@showLogIn' ]);
+
 Route::group(array('before' => 'auth'), function()
 {
 	Route::get('{channel}', 'ChannelController@showChannel');
@@ -21,7 +25,3 @@ Route::group(array('before' => 'auth'), function()
 	Route::get('{channel}/{subChannel}/{category}/{article}', 'ArticleController@show');
     Route::get('/', 'HomeController@showHomePage');    
 });
-
-Route::post('login.auth', 'SessionsController@authenticate');
-Route::get('logout', [ 'as' => 'logout', 'uses' => 'SessionsController@logUserOut' ]);
-Route::get('login', [ 'as' => 'login', 'uses' => 'SessionsController@showLogIn' ]);

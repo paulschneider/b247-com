@@ -18,7 +18,7 @@ Class Caller {
 
 	public function get($endpoint = "/", $params = [], $headers = [])
 	{
-		$this->endpoint = $endpoint;
+		$this->endpoint = $this->client->getBaseUrl().$endpoint;
 
 		$request = $this->client->createRequest('GET', $this->endpoint, [
 			'headers' => $headers,

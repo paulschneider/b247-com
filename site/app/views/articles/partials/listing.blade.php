@@ -44,7 +44,7 @@
             <p>
                 {{ $date->time }}<br>
                 &pound;{{ $article['event']['details']['price'] }}<br>
-                <a href="#">Tickets</ha>
+                <a href="#">Tickets</a>
             </p>
 
             <input type="button" value="Share" class="primaryButton">

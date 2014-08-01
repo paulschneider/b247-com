@@ -4,7 +4,7 @@ class HomeController extends BaseController {
 
 	public function showHomePage()
 	{
-		$data = Api::get("/");
+		$data = Api::get("/home");
 
 		if (! Session::has('nav') )
 		{

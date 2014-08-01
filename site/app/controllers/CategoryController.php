@@ -4,7 +4,7 @@ Class CategoryController extends BaseController {
 
 	public function show($channel, $subChannel, $category)
 	{
-		$data = Api::get("category/$category/articles", ['subChannel' => $subChannel]);
+		$data = Api::get("/category/$category/articles", ['subChannel' => $subChannel]);
 
 		// Push the apps nav into the data array which we'll pass to the view
 		$data['nav'] = getApplicationNav();

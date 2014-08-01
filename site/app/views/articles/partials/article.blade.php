@@ -18,25 +18,8 @@
     @endif
     
     <div class="grid">
-        <!-- Top Carousel -->
         <div class="column col-12-20 colFirst tabCol-18-20 tabColFirst mobCol-20-20">
-            <div class="fr col-75 mobCol-20-20 carouselContainer">
-                <div class="galleryLarge">
-                    <div class="carouselSingleGallery">
-                        <div class="gallerySlides">
-                            <div>
-                                <img alt="" src="/a/i/gallery/large.jpg">
-                            </div>
-                        </div>
-
-                    <div class="gallerySlides">
-                        <div>
-                            <img alt="" src="/a/i/gallery/large.jpg">
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
+            @include('articles.partials.gallery.top')        
 
         <!-- Header -->
         <div class="fr col-75 mobCol-18-20 mobColLast">
@@ -60,7 +43,7 @@
         
         <!-- Lower Carousel -->   
 
-        @include('articles.partials.gallery')
+        @include('articles.partials.gallery.bottom')
                    
     </div>
 

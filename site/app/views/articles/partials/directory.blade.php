@@ -44,16 +44,18 @@
     </script>
 @endif
 
-<div class="advert">
-    <figure>
-        <a href="{{ $adverts[0]['url'] }}">
-            <img alt="{{ $adverts[0]['media']['alt'] }}" src="{{ $adverts[0]['media']['filepath'] }}" width="100%">
-        </a>
-        <figcaption>
-            Advertising
-        </figcaption>
-    </figure>
-</div>
+@if( isset($adverts[0]) )
+    <div class="advert">
+        <figure>
+            <a href="{{ $adverts[0]['url'] }}">
+                <img alt="{{ $adverts[0]['media']['alt'] }}" src="{{ $adverts[0]['media']['filepath'] }}" width="100%">
+            </a>
+            <figcaption>
+                Advertising
+            </figcaption>
+        </figure>
+    </div>
+@endif
 
 <article class="pageSection cmsContent">
     <!-- Header -->
@@ -64,22 +66,7 @@
     <div class="grid">
     <!-- Top Carousel -->
         <div class="column col-12-20 colFirst tabCol-18-20 tabColFirst mobCol-20-20">
-            <div class="fr col-75 mobCol-20-20 carouselContainer">
-                <div class="galleryLarge">
-                    <div class="carouselSingleGallery">
-                        <div class="gallerySlides">
-                            <div>
-                                <img alt="" src="/a/i/gallery/large.jpg">
-                            </div>
-                        </div>
-                        <div class="gallerySlides">
-                            <div>
-                                <img alt="" src="/a/i/gallery/large.jpg">
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
+            @include('articles.partials.gallery.top') 
 
         <aside class="column col-25 mobCol-18-20 mobColFirst">
             <h5>Location</h5>
@@ -104,7 +91,7 @@
             @if ( !empty($article['venue']['twitter']) )
                 <h5>Twitter</h5>
                 <p>
-                <a href="#">@{{ $article['venue']['twitter'] }}</a>
+                <a href="#">{{ $article['venue']['twitter'] }}</a>
                 </p>
             @endif
 
@@ -134,17 +121,19 @@
             </div>
         </div>
 
-        <!-- Advert -->   
-        <div class="advert">
-            <figure>
-                <a href="{{ $adverts[1]['url'] }}">
-                    <img alt="{{ $adverts[1]['media']['alt'] }}" src="{{ $adverts[1]['media']['filepath'] }}" width="100%">
-                </a>
-                <figcaption>
-                    Advertising
-                </figcaption>
-            </figure>
-        </div>
+        <!-- Advert --> 
+        @if( isset($adverts[1]) )  
+            <div class="advert">
+                <figure>
+                    <a href="{{ $adverts[1]['url'] }}">
+                        <img alt="{{ $adverts[1]['media']['alt'] }}" src="{{ $adverts[1]['media']['filepath'] }}" width="100%">
+                    </a>
+                    <figcaption>
+                        Advertising
+                    </figcaption>
+                </figure>
+            </div>
+        @endif
 
         <!-- Main Content Area (continued) -->   
         <div class="fr col-75 mobCol-18-20 mobColLast cmsSecondaryContent">
@@ -156,7 +145,7 @@
 
         <!-- Lower Carousel -->   
 
-        @include('articles.partials.gallery')
+        @include('articles.partials.gallery.bottom')
 
     </div>
 

@@ -4,7 +4,7 @@
 
 @section('content')
 
-@include("partials.tpl{$channelType}Article")
+@include("articles.partials.{$channelType}")
 
 @endsection
 

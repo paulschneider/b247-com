@@ -16,7 +16,7 @@ Class Caller {
 		$this->client = $client;
 	}
 
-	public function get($endpoint = "/", $params = [], $headers = [])
+	public function get($endpoint = "", $params = [], $headers = [])
 	{
 		$this->endpoint = $this->client->getBaseUrl().$endpoint;
 

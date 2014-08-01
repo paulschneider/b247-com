@@ -4,10 +4,10 @@ Class ArticleController extends BaseController {
 
 	public function show($channel, $subChannel, $category, $article)
 	{
-		$data = Api::get("articles", [ 'subchannel' => $subChannel, 'category' => $category, 'article' => $article, 'dataOnly' => true ]);
+		$data = Api::get("/articles", [ 'subchannel' => $subChannel, 'category' => $category, 'article' => $article, 'dataOnly' => true ]);
 
 		// Push the apps nav into the data array which we'll pass to the view
-		$data['nav'] = getApplicationNav()['channels'];
+		$data['nav'] = getApplicationNav();
 
 		$data['category'] = $category;
 		$data['apiKey'] = Config::get('googlemaps.ApiKey');

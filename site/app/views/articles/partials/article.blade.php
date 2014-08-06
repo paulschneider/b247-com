@@ -25,7 +25,7 @@
         <div class="fr col-75 mobCol-18-20 mobColLast">
             <div>
                 <h2>{{ $article['subHeading'] }}</h2>
-                <p class="author">Author, {{ $article['published'] }}</p>
+                <p class="author">{{ $article['author'] }}, {{ $article['published'] }}</p>
                 {{ $article['body'] }}
             </div>
         </div>

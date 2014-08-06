@@ -4,7 +4,7 @@ Class ChannelController extends BaseController {
 
 	public function showChannel($channel)
 	{
-		$data = Api::get("/channel/$channel");
+		$data = Api::get("channel/$channel");
 
 		$viewData = [
 			'nav' => getApplicationNav(),
@@ -19,7 +19,7 @@ Class ChannelController extends BaseController {
 
 	public function showSubChannel($channel, $subChannel)
 	{
-		$data = Api::get("/channel/$subChannel/articles");
+		$data = Api::get("channel/$subChannel/articles");
 
 		// Push the apps nav into the data array which we'll pass to the view
 		$data['nav'] = getApplicationNav();

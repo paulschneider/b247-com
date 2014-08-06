@@ -3,7 +3,7 @@
         <div class="gallerySmallMulti">
             @foreach($article['gallery']['bottom'] AS $image)
                 <div class="gallerySlides">
-                    <img alt="" src="{{ $image['filepath'] }}">
+                    <img alt="" src="{{ $image['filepath'] }}" />
                 </div>
             @endforeach
         </div>

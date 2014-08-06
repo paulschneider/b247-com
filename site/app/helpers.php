@@ -100,7 +100,7 @@ function getApplicationNav()
 {
 	if ( ! Session::has('nav') )
 	{
-		Session::put('nav', Api::get("app/nav"));		
+		Session::put('nav', Api::get("app/nav")['channels']);		
 	}
 
 	return Session::get('nav');

@@ -63,16 +63,18 @@
 
 </script>
 
-<div class="advert">
-    <figure>
-        <a href="{{ $adverts[0]['url'] }}">
-            <img alt="{{ $adverts[0]['media']['alt'] }}" src="{{ $adverts[0]['media']['filepath'] }}" width="100%">
-        </a>
-        <figcaption>
-            Advertising
-        </figcaption>
-    </figure>
-</div>
+@if( isset($adverts[0]) )
+	<div class="advert">
+	    <figure>
+	        <a href="{{ $adverts[0]['url'] }}">
+	            <img alt="{{ $adverts[0]['media']['alt'] }}" src="{{ $adverts[0]['media']['filepath'] }}" width="100%">
+	        </a>
+	        <figcaption>
+	            Advertising
+	        </figcaption>
+	    </figure>
+	</div>
+@endif
 
 <section class="pageSection">
 	<div class="grid">
@@ -145,16 +147,18 @@
 
 <hr>        
 
-<div class="advert spacer">
-    <figure>
-        <a href="{{ $adverts[1]['url'] }}">
-            <img alt="{{ $adverts[1]['media']['alt'] }}" src="{{ $adverts[1]['media']['filepath'] }}" width="100%">
-        </a>
-        <figcaption>
-            Advertising
-        </figcaption>
-    </figure>
-</div>
+@if( isset($adverts[1]) )
+	<div class="advert spacer">
+	    <figure>
+	        <a href="{{ $adverts[1]['url'] }}">
+	            <img alt="{{ $adverts[1]['media']['alt'] }}" src="{{ $adverts[1]['media']['filepath'] }}" width="100%">
+	        </a>
+	        <figcaption>
+	            Advertising
+	        </figcaption>
+	    </figure>
+	</div>
+@endif
 
 @endsection
 @include('layouts.footer')

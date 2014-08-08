@@ -17,12 +17,14 @@
                         <div class="articleListItem column artCol-1-3 <?php echo $counter == 0 ? 'artColFirst' : '' ?>">
                             <a href="{{ $subChannel->path }}" class="articleListSubChannel">{{ $subChannel->name }}</a>
                             <div class="articleListSynopsis">
-                                <div class="articleListImage">
-                                    <a href="{{ $r['path'] }}">
-                                        <img alt="" src="{{ $r['media']['filepath'] }}" />
-                                    </a>
-                                    <a href="{{ $category->path }}" class="articleListCategories">{{ $category->name }}</a>
-                                </div>
+                            @if(isset($r['media']))
+                                    <div class="articleListImage">
+                                        <a href="{{ $r['path'] }}">
+                                            <img alt="" src="{{ $r['media']['filepath'] }}" />
+                                        </a>
+                                        <a href="{{ $category->path }}" class="articleListCategories">{{ $category->name }}</a>
+                                    </div>
+                                @endif
                                 <div class="articleListContent">
                                     <a href="{{ $subChannel->path }}" class="articleListSubChannel">
                                         {{ $subChannel->name }}

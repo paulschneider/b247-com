@@ -103,7 +103,7 @@ function getApplicationNav()
 		Session::put('nav', Api::get("app/nav")['channels']);		
 	}
 
-	return Session::get('nav');
+	return Api::get("app/nav")['channels'];
 }
 
 function getFeatureCategories($features)

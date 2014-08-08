@@ -98,10 +98,10 @@ function getChannelType($channel)
 
 function getApplicationNav()
 {
-	if ( ! Session::has('nav') )
-	{
-		Session::put('nav', Api::get("app/nav")['channels']);		
-	}
+	// if ( ! Session::has('nav') )
+	// {
+	// 	Session::put('nav', Api::get("app/nav")['channels']);		
+	// }
 
 	return Api::get("app/nav")['channels'];
 }

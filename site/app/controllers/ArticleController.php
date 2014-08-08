@@ -41,7 +41,7 @@ Class ArticleController extends BaseController {
 		$response = [
 			'success' => [
 				'data' => [
-					'html' => View::make("articles.partials.{$channelType}", $data)->render()
+					'html' => $data
 				]
 			]
 		];

@@ -31,7 +31,7 @@ Class ArticleController extends BaseController {
 		$data = Input::get('data');
 
 		// we need to work out what type of page to display based on the channel type (e.g listing, promotion, directory or article)
-		$channelType = strtolower(Input::get('type'));
+		$channelType = Input::get('type');
 
 		$data['isMobile'] = true;
 		$data['apiKey'] = Config::get('googlemaps.ApiKey');
@@ -41,7 +41,7 @@ Class ArticleController extends BaseController {
 		$response = [
 			'success' => [
 				'data' => [
-					'html' => $data
+					'html' => View::make("articles.partials.{$channelType}", $data)->render()
 				]
 			]
 		];

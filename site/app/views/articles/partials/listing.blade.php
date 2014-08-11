@@ -23,34 +23,21 @@
             @include('articles.partials.gallery.top') 
         
         <aside class="column col-25 mobCol-18-20 mobColFirst">
-            <div class="dateBlock">               
+            <div class="dateBlock">
 
-                @if( ! $article['event']['details']['performances']['summary']['isMultiDate'] )
+            <?php $date = getEventDate($article['event']['details']['epoch']) ?>
 
-                    <?php $date = getEventDate($article['event']['details']['performances']['summary']['nextPerformance']['epoch']) ?>
+                <div class="dateEntry">
+                    {{ $date->dayOfWeek['short'] }} {{ $date->day }}<br>
+                    <span>{{ $date->month['short'] }}</span>
+                </div>
 
-                    <div class="dateEntry">
-                        {{ $date->dayOfWeek['short'] }} {{ $date->day }}<br>
-                        <span>{{ $date->month['short'] }}</span>
-                    </div>
-                    
-                @else
-                    <?php $date = getEventDate($article['event']['details']['performances']['summary']['firstPerformance']['epoch']) ?>
+                <div class="dateDivider">-</div>
 
-                    <div class="dateEntry">
-                        {{ $date->dayOfWeek['short'] }} {{ $date->day }}<br>
-                        <span>{{ $date->month['short'] }}</span>
-                    </div>
-
-                    <div class="dateDivider">-</div>
-
-                    <?php $date = getEventDate($article['event']['details']['performances']['summary']['lastPerformance']['epoch']) ?>
-
-                    <div class="dateEntry">
-                        {{ $date->dayOfWeek['short'] }} {{ $date->day }}<br>
-                        <span>{{ $date->month['short'] }}</span>
-                    </div>
-                @endif
+                <div class="dateEntry">
+                    Sun 04<br>
+                    <span>May</span>
+                </div>
             </div>
 
             <h5>{{ $article['event']['venue']['name'] }}</h5>

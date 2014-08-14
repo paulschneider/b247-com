@@ -1,5 +1,5 @@
 <?php
 
 return [
-	"baseUrl" => "http://local.b247-api/v1/"
+	"baseUrl" => "http://api.b247-co-uk/v1/"
 ];

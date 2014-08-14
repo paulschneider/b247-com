@@ -31,11 +31,11 @@ function getEventDate($timestamp)
 
 	$date = Carbon::createFromTimeStamp($timestamp);
 	$date->timezone = new DateTimeZone('Europe/London');
-	
+
 	$dt = new stdClass();
 
 	$dt->dayOfWeek = $days[$date->dayOfWeek];
-	$dt->month = $months[$date->month];
+	$dt->month = $months[$date->month-1];
 	$dt->day = $date->day;
 	$dt->time = $date->format('H:i');
 	

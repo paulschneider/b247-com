@@ -6,8 +6,7 @@ class HomeController extends BaseController {
 	{
 		$data = Api::get("home");
 
-		if (! Session::has('nav') )
-		{
+		if (! Session::has('nav') ) {
 		    Session::put('nav', $data['channels']);
 		}
 

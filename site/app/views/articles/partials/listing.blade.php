@@ -27,7 +27,7 @@
 
                 @if( ! $article['event']['details']['performances']['summary']['isMultiDate'] )
 
-                    <?php $date = getEventDate($article['event']['details']['performances']['summary']['nextPerformance']['epoch']) ?>
+                    <?php $date = getEventDate($article['event']['details']['performances']['summary']['nextPerformance']['start']['epoch']) ?>
 
                     <div class="dateEntry">
                         {{ $date->dayOfWeek['short'] }} {{ $date->day }}<br>
@@ -35,7 +35,7 @@
                     </div>
                     
                 @else
-                    <?php $date = getEventDate($article['event']['details']['performances']['summary']['firstPerformance']['epoch']) ?>
+                    <?php $date = getEventDate($article['event']['details']['performances']['summary']['firstPerformance']['start']['epoch']) ?>
 
                     <div class="dateEntry">
                         {{ $date->dayOfWeek['short'] }} {{ $date->day }}<br>
@@ -44,7 +44,7 @@
 
                     <div class="dateDivider">-</div>
 
-                    <?php $date = getEventDate($article['event']['details']['performances']['summary']['lastPerformance']['epoch']) ?>
+                    <?php $date = getEventDate($article['event']['details']['performances']['summary']['lastPerformance']['start']['epoch']) ?>
 
                     <div class="dateEntry">
                         {{ $date->dayOfWeek['short'] }} {{ $date->day }}<br>

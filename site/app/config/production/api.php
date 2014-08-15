@@ -1,5 +1,5 @@
 <?php
 
 return [
-	"baseUrl" => "http://api.wf-staging.co.uk/v1/"
+	"baseUrl" => "http://b247api.co.uk/v1/"
 ];

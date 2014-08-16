@@ -1,6 +1,11 @@
 <?php
-
 use Carbon\Carbon;
+
+function displayStyle($content)
+{
+	return $content['displayStyle'];
+}
+
 
 function getEventDate($timestamp)
 {
@@ -121,6 +126,11 @@ function getFeatureCategories($features)
 	return $response;
 }
 
+function getTheme($article)
+{
+	return isset($article['assignment']) ? themeClass($article['assignment']['channel']['sefName']) : '';
+}
+
 function themeClass($section)
 {
 	$themes = [
@@ -137,6 +147,11 @@ function themeClass($section)
 function assetPath()
 {
 	return "/";
+}
+
+function baseUrl()
+{
+	return '';
 }
 
 // shortcut for show_data function

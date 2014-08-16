@@ -53,7 +53,7 @@
               	@endif
               	
               	@if( $counter == 3 )
-              		</div><div class="featureList col-12-12">
+              		</div><div class="featureList col-16-20 tabCol-20-20 colFirst colLast">
               		<?php $counter = 1 ?>
               	@else
               		<?php $counter++ ?>

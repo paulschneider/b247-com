@@ -3,6 +3,12 @@
 Class ChannelController extends BaseController {
 
 	/**
+	 * The data to use for this controller class
+	 * @var mixed
+	 */
+	public $data = null;
+
+	/**
 	 * [showChannel description]
 	 * @param  [type] $channel [description]
 	 * @return [type]          [description]
@@ -30,21 +36,41 @@ Class ChannelController extends BaseController {
 	 */
 	public function showSubChannel($channel, $subChannel, $page = 1)
 	{
-		$data = Api::get("subchannel/$subChannel/articles", ['page' => $page]);
-
+		# if we don't already have some data to use then grab some from the API
+		if(is_null($this->data)) {
+			$this->data = Api::get("subchannel/$subChannel/articles", ['page' => $page]);
+		}
+		
 		# push the apps nav into the data array which we'll pass to the view
-		$data['nav'] = getApplicationNav();
+		$this->data['nav'] = getApplicationNav();
 
 		# we need to work out what type of page to display based on the channel type (e.g listing, promotion, directory or article)
-		$channelType = getChannelType($data['channel']);
+		$channelType = getChannelType($this->data['channel']);
 
 		# the channel/sub-channel combination we used to get here
-		$data['route'] = $channel .'/'. $subChannel;
+		$this->data['route'] = $channel .'/'. $subChannel;
 
 		# pass the subChannel sefName to the view so we know which channel we're viewing
-		$data['activeChannel'] = $subChannel;
+		$this->data['activeChannel'] = $subChannel;
 
 		# we don't know what type of data we've had returned by the API so just throw it all at the view and let it decide what to use
-		return View::make("channels.subChannel{$channelType}", $data);
+		return View::make("channels.subChannel{$channelType}", $this->data);
+	}
+
+	/**
+	 * [showListingSubChannel description]
+	 * @param  [type] $channel    [description]
+	 * @param  [type] $subChannel [description]
+	 * @param  [type] $time       [description]
+	 * @param  string $range      [description]
+	 * @return [type]             [description]
+	 */
+	public function showListingSubChannel($channel, $subChannel, $time, $range = "week")
+	{
+		# grab the data we'll need for the view from the API
+		$this->data = Api::get("subchannel/$subChannel/articles", ['range' => $range, 'time' => $time]);
+
+		# display the subChannel in the usual way (above)
+		return $this->showSubChannel($channel, $subChannel);
 	}
 }

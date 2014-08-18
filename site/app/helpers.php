@@ -1,6 +1,11 @@
 <?php
 use Carbon\Carbon;
 
+function getListingInWeek($listOfDays, $week)
+{
+	return getEventDate($listOfDays[$week]['publication']['epoch']);
+}
+
 function displayStyle($content)
 {
 	return $content['displayStyle'];
@@ -42,8 +47,16 @@ function getEventDate($timestamp)
 	$dt->month = $months[$date->month-1];
 	$dt->day = $date->day;
 	$dt->time = $date->format('H:i');
+	$dt->year = $date->year;
+	$dt->dateStamp = $date->toDateString();
+	$dt->timeStamp = $timestamp;
 	
 	return $dt;
+}
+
+function getNewTimestamp($date, $symbol, $amount)
+{
+	return strtotime($date->dateStamp. ' '.$symbol.' '.$amount); 
 }
 
 function dateFormat($date)

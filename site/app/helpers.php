@@ -6,7 +6,6 @@ function displayStyle($content)
 	return $content['displayStyle'];
 }
 
-
 function getEventDate($timestamp)
 {
 	$days = [

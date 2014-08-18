@@ -14,7 +14,10 @@ Class CategoryController extends BaseController {
 		// we need to work out what type of page to display based on the channel type (e.g listing, promotion, directory or article)
 		$channelType = getChannelType($data['channel']);
 
-		$data['mapItems'] = json_encode($data['map']);
+		if( isset($data['map']) ) {
+			$data['mapItems'] = json_encode($data['map']);	
+		}
+		
 		$data['apiKey'] = Config::get('googlemaps.ApiKey');
 
 		// we don't know what type of data we've had returned by the API so just throw it all at the view and let it decide what to use

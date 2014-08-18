@@ -11,7 +11,10 @@ Class ArticleController extends BaseController {
 
 		$data['category'] = $category;
 		$data['apiKey'] = Config::get('googlemaps.ApiKey');
-		$data['mapItems'] = json_encode($data['article']['mapItems']);
+
+		if(isset($data['article']['mapItems'])) {
+			$data['mapItems'] = json_encode($data['article']['mapItems']);
+		}	
 
 		$data['isMobile'] = false;
 

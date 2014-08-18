@@ -95,6 +95,11 @@ function getChannelName($channel)
 	return $channel['name'];
 }
 
+function getChannelPath($channel)
+{
+	return baseUrl().$channel['path'];
+}
+
 function getChannelType($channel)
 {
 	return $channel['subChannels'][0]['displayType']['type'];
@@ -150,7 +155,12 @@ function assetPath()
 
 function baseUrl()
 {
-	return '';
+	return URL::to('/').'/';
+}
+
+function current_url()
+{
+	return Request::url();
 }
 
 // shortcut for show_data function

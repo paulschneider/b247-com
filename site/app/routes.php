@@ -21,6 +21,7 @@ Route::group(array('before' => 'auth'), function()
 {
 	Route::get('{channel}', 'ChannelController@showChannel');
 	Route::get('{channel}/{subChannel}', 'ChannelController@showSubChannel');
+	Route::get('{channel}/{subChannel}/page/{page}', 'ChannelController@showSubChannel')->where('page', '[0-9]+');
 	Route::get('{channel}/{subChannel}/{category}', 'CategoryController@show');
 	Route::get('{channel}/{subChannel}/{category}/{article}', 'ArticleController@show');
     Route::get('/', 'HomeController@showHomePage');    

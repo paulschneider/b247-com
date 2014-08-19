@@ -17,7 +17,7 @@
 
 <section class="pageSection grid">
     <header class="artCol-3-3 artColFirst">
-        <h1 class="primaryHeader">{{ getChannelName($channel) }}</h1>
+        <h1 class="primaryHeader">{{ getSubChannelName($channel) }}</h1>
     </header>
 
     <ul class="linkList">
@@ -53,7 +53,7 @@
         <div class="carouselArticleList">
             <div class="articleList">
 
-                <?php $counter = 0; ?>
+                <?php $counter = 0; $s = 0; ?>
 
                 @foreach ( $articles AS $article )
                     
@@ -64,9 +64,9 @@
                         @include( 'partials.sm-sc-article' )                        
                     @endif                  
 
-                    <?php $counter = $counter + $article['displayStyle'] ?>
+                    <?php $counter++; $s++ ?>
 
-                    @if( $counter == 3 )
+                    @if( $counter == 3 and $s < count($articles))
                         </div><div class="articleList">
                         <?php $counter = 0 ?>
                     @endif

@@ -15,19 +15,24 @@ Class ChannelController extends BaseController {
 	 */
 	public function showChannel($channel)
 	{
-		$data = Api::get("channel/$channel");
+		$response = App::make("ApiClient")->get("channel/$channel");
 
-		$viewData = [
-			'nav' => getApplicationNav(),
-			'adverts' => $data['adverts'],
-			'features' => $data['features'],
-			'picks' => $data['picks'],
-			'channelFeed' => $data['channelFeed'],
-		];
+		if(isset($response['success']))
+		{
+			$data = $response['success']['data'];
 
-		$viewData['subChannels'] = getChannelSubChannels($viewData['nav'], $channel);
+			$viewData = [
+				'nav' => getApplicationNav(),
+				'adverts' => $data['adverts'],
+				'features' => $data['features'],
+				'picks' => $data['picks'],
+				'channelFeed' => $data['channelFeed'],
+			];
 
-		return View::make('home.index', $viewData);
+			$viewData['subChannels'] = getChannelSubChannels($viewData['nav'], $channel);
+
+			return View::make('home.index', $viewData);
+		}		
 	}	
 
 	/**
@@ -39,8 +44,14 @@ Class ChannelController extends BaseController {
 	public function showSubChannel($channel, $subChannel, $page = 1)
 	{
 		# if we don't already have some data to use then grab some from the API
-		if(is_null($this->data)) {
-			$this->data = Api::get("subchannel/$subChannel/articles", ['page' => $page]);
+		if(is_null($this->data)) 
+		{
+			$response = App::make("ApiClient")->get("subchannel/$subChannel/articles", ['page' => $page]);
+
+			if(isset($response['success']))
+			{
+				$this->data = $response['success']['data'];
+			}
 		}
 		
 		# push the apps nav into the data array which we'll pass to the view
@@ -53,7 +64,7 @@ Class ChannelController extends BaseController {
 		$this->data['route'] = $channel .'/'. $subChannel;
 
 		# pass the subChannel sefName to the view so we know which channel we're viewing
-		$this->data['activeChannel'] = $subChannel;
+		$this->data['activeChannel'] = $channel;
 
 		# grab any subChannels so we can create a sub-nav 
 		$this->data['subChannels'] = getChannelSubChannels($this->data['nav'], $channel);
@@ -73,13 +84,18 @@ Class ChannelController extends BaseController {
 	public function showListingSubChannel($channel, $subChannel, $time, $range = "week")
 	{
 		# grab the data we'll need for the view from the API
-		$this->data = Api::get("subchannel/$subChannel/articles", ['range' => $range, 'time' => $time]);
+		$response = App::make("ApiClient")->get("subchannel/$subChannel/articles", ['range' => $range, 'time' => $time]);
 
-		# get the rest of the data
-		$this->showSubChannel($channel, $subChannel);
+		if(isset($response['success']))
+		{
+			$this->data = $response['success']['data'];
 
-		#show the view
-		return View::make("channels.subChannelListing", $this->data);
+			# get the rest of the data
+			$this->showSubChannel($channel, $subChannel);
+
+			#show the view
+			return View::make("channels.subChannelListing", $this->data);
+		}	
 	}
 
 	/**
@@ -93,12 +109,17 @@ Class ChannelController extends BaseController {
 	public function showDayListingSubChannel($channel, $subChannel, $time, $range = "day")
 	{
 		# grab the data we'll need for the view from the API
-		$this->data = Api::get("subchannel/$subChannel/articles", ['range' => $range, 'time' => $time]);
+		$response = App::make("ApiClient")->get("subchannel/$subChannel/articles", ['range' => $range, 'time' => $time]);
 
-		# get the rest of the data
-		$this->showSubChannel($channel, $subChannel);
+		if(isset($response['success']))
+		{
+			$this->data = $response['success']['data'];
 
-		#show the view
-		return View::make("channels.subChannelListingDay", $this->data);
+			# get the rest of the data
+			$this->showSubChannel($channel, $subChannel);
+
+			#show the view
+			return View::make("channels.subChannelListingDay", $this->data);
+		}
 	}
 }

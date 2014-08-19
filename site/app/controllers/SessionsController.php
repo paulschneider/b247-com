@@ -14,14 +14,21 @@ Class SessionsController extends BaseController {
 		$email = $input['email'];
 		$password = $input['password'];
 
-		if (Auth::attempt( [ 'email' => $email, 'password' => $password ] , true))
-		{
+		if (Auth::attempt( [ 'email' => $email, 'password' => $password ] , true)) {
 		    return Redirect::to('/');
 		}
-		else
-		{
+		else {
 			return Redirect::to('login')->withInput(Input::except('password'));
 		}
+	}
+
+	public function register()
+	{
+		$data = [
+			'nav' => getApplicationNav()
+		];
+
+		return View::make('register.index', $data);
 	}
 
 	public function logUserOut()

@@ -19,6 +19,13 @@ Route::get('login', [ 'as' => 'login', 'uses' => 'SessionsController@showLogIn' 
 
 Route::group(array('before' => 'auth'), function()
 {
+	# register / log-in
+	Route::get('sign-up', [ 'signup', 'uses' => 'SessionsController@register' ]); 
+
+	# promotions
+    Route::get('promotion/redeem/voucher/{code}', 'PromotionsController@redeemPromotion');
+    Route::post('promotion/competition/enter', 'PromotionsController@competitionEntry');
+	
 	Route::get('{channel}', 'ChannelController@showChannel');
 	Route::get('{channel}/{subChannel}', 'ChannelController@showSubChannel');
 		
@@ -32,5 +39,5 @@ Route::group(array('before' => 'auth'), function()
 	Route::get('{channel}/{subChannel}/page/{page}', 'ChannelController@showSubChannel')->where('page', '[0-9]+');
 	Route::get('{channel}/{subChannel}/{category}', 'CategoryController@show');
 	Route::get('{channel}/{subChannel}/{category}/{article}', 'ArticleController@show');
-    Route::get('/', 'HomeController@showHomePage');    
+    Route::get('/', 'HomeController@showHomePage');        
 });

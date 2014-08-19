@@ -32,10 +32,16 @@
 
             {{ $article['body'] }}
 
-            <div class="emailVoucher">
-                <img width="315px" height="85px" alt="Email me a voucher" src="/i/layout/email-voucher.png">
-                <a href="#">Email me a voucher</a>
-            </div>            
+            <!-- there has to be a promotion attached to the article -->
+            @if( isset($article['promotion'][0]['code']) )
+                @include('articles.partials.promotion-voucher')
+            <!-- of a competition  -->
+            @elseif( isset($article['competition'][0]['id']) )
+                 @include('articles.partials.promotion-competition')
+            <!-- or we tell the user the voucher is unavailable at this time -->
+            @else
+                <p><strong>This promotion is not currently available.</strong></p>
+            @endif
 
             @if( isset($adverts[1]) )
                 <div class="advert">
@@ -49,6 +55,8 @@
                     </figure>
                 </div>
             @endif
+
+            {{ $article['bodyContinued'] }}
     </div>    
 </article>
 

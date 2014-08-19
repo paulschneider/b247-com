@@ -17,7 +17,7 @@
     
     <ul class="toolsNav">
       <li>
-        <a href="#">Sign in/register <span class="icoProfile"></span></a>
+        <a href="{{ baseUrl() }}sign-up">Sign in/register <span class="icoProfile"></span></a>
       </li>
       <li>
         <a class="searchLink" href="#">Search <span class="icoSearch"></span></a>
@@ -34,5 +34,9 @@
 </header>    
 
 @include('layouts.partials.sub-nav')
+
+@if(Session::get('message'))
+    <h1>{{ Session::get('message') }}</h1>
+@endif
 
 @endsection

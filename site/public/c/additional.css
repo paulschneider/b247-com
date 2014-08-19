@@ -5,3 +5,7 @@
 .movie-block ul {
 	padding:0;
 }
+
+.secondaryForm .formRadioGroup label {
+	width: auto;
+}

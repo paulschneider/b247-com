@@ -66,7 +66,7 @@
     <!--[if lt IE 9]><script src="{{ assetPath() }}j/vendor/html5shiv-printshiv.js"></script><![endif]-->
 
   </head>
-  <body class="homePage">
+  <body class="{{ isset($activeChannel) ? themeClass($activeChannel) : 'homePage' }}">
 
     <div id="pageWrapper">
         <div id="outerContainer">      

@@ -1,6 +1,19 @@
 <?php
 use Carbon\Carbon;
 
+function anExternalUrl($string)
+{
+    $protocols = [ 'http://', 'https://' ];
+
+    foreach($protocols AS $protocol)
+    {
+        if(strpos($string, $protocol) !== false)
+        {
+            return true;
+        }
+    }    
+}
+
 function getListingInWeek($listOfDays, $week)
 {
 	return getEventDate($listOfDays[$week]['publication']['epoch']);
@@ -157,7 +170,13 @@ function getApplicationNav()
 	// 	Session::put('nav', Api::get("app/nav")['channels']);		
 	// }
 
-	return Api::get("app/nav")['channels'];
+	$response = App::make("ApiClient")->get("app/nav");
+
+	if($response['success']) {
+		$data = $response['success']['data'];
+	}
+
+	return $data['channels'];
 }
 
 function getFeatureCategories($features)

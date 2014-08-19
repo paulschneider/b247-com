@@ -65,33 +65,34 @@
 			<div class="articleList">
 
 				<?php $i = 0; $s = 0; ?>	
-
-				@foreach($day['picks'] AS $article)
-					<?php $category = getArticleCategory($article) ?>
-					<div class="articleListItem column <?php echo $s == 0 ? 'artColFirst' : '' ?> artCol-1-3">
-						<div class="articleListSynopsis">
-							<div class="articleListImage">
-								<a href="{{ $article['path'] }}">
-									@if( isset($article['media']['filepath']) )
-										<img alt="{{ $article['media']['alt'] }}" src="{{ $article['media']['filepath'] }}" />
-									@endif
-								</a>
-								<a href="{{ $category->path }}" class="articleListCategories">{{ $category->name }}</a>	
-							</div>
-							<div class="articleListContent">
-								<a class="articleListTitle" href="{{ $article['path'] }}">{{ $article['title'] }}</a>
-								<p class="articleListDetails">{{ $article['event']['venue']['name'] }}, from &pound;{{ $article['event']['details']['price'] }}</p>
-								<p class="articleListSummary">{{ $article['subHeading'] }}</p>
-								<a href="{{ $category->path }}" class="articleListCategories">{{ $category->name }}</a>
+				@if( isset($day['picks']) )
+					@foreach($day['picks'] AS $article)
+						<?php $category = getArticleCategory($article) ?>
+						<div class="articleListItem column <?php echo $s == 0 ? 'artColFirst' : '' ?> artCol-1-3">
+							<div class="articleListSynopsis">
+								<div class="articleListImage">
+									<a href="{{ $article['path'] }}">
+										@if( isset($article['media']['filepath']) )
+											<img alt="{{ $article['media']['alt'] }}" src="{{ $article['media']['filepath'] }}" />
+										@endif
+									</a>
+									<a href="{{ $category->path }}" class="articleListCategories">{{ $category->name }}</a>	
+								</div>
+								<div class="articleListContent">
+									<a class="articleListTitle" href="{{ $article['path'] }}">{{ $article['title'] }}</a>
+									<p class="articleListDetails">{{ $article['event']['venue']['name'] }}, from &pound;{{ $article['event']['details']['price'] }}</p>
+									<p class="articleListSummary">{{ $article['subHeading'] }}</p>
+									<a href="{{ $category->path }}" class="articleListCategories">{{ $category->name }}</a>
+								</div>
 							</div>
 						</div>
-					</div>
-					<?php $s++; $i++ ?>
-					@if($s == 3 && $i < count($day['picks']))
-						</div><div class="articleList">
-						<?php $s = 0 ?>
-					@endif
-				@endforeach
+						<?php $s++; $i++ ?>
+						@if($s == 3 && $i < count($day['picks']))
+							</div><div class="articleList">
+							<?php $s = 0 ?>
+						@endif
+					@endforeach
+				@endif
 			</div>
 		</div>
 	</div>

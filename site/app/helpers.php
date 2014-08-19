@@ -50,8 +50,29 @@ function getEventDate($timestamp)
 	$dt->year = $date->year;
 	$dt->dateStamp = $date->toDateString();
 	$dt->timeStamp = $timestamp;
+	$dt->daysInMonth = $date->daysInMonth;
+	$dt->lastMonth = $date->subDays($dt->day)->subMonths(1)->timestamp;
+	$dt->nextMonth = $date->addDays($dt->day + ($dt->daysInMonth-$dt->day))->addMonths(1)->timestamp;
 	
 	return $dt;
+}
+
+function getDailyTimestamp($date, $dayNumber)
+{
+	$dateTime = Carbon::createFromTimeStamp($date->timeStamp);
+	$dateTime->timezone = new DateTimeZone('Europe/London');
+
+	if($dayNumber < $date->day) { 
+		$newDate = $dateTime->subDays( $date->day-$dayNumber )->timestamp;	
+	}
+	elseif($dayNumber > $date->day) {
+		$newDate = $dateTime->addDays( $dayNumber - $date->day )->timestamp;
+	}
+	else{
+		$newDate = $dateTime->timestamp;
+	}
+
+	return $newDate;
 }
 
 function getNewTimestamp($date, $symbol, $amount)
@@ -62,6 +83,17 @@ function getNewTimestamp($date, $symbol, $amount)
 function dateFormat($date)
 {
 	return date('Y-m-d', strtotime($date));
+}
+
+function getChannelSubChannels($channels, $channelToFind)
+{
+	foreach($channels AS $channel)
+	{
+		if($channel['sefName'] == $channelToFind)
+		{
+			return $channel['subChannels'];
+		}
+	}
 }
 
 function getCategoryPath($channel)

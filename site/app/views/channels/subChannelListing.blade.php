@@ -100,7 +100,7 @@
 							</div>
 						@endfor
 
-					<a class="carouselViewAll artCol-1-3" href="#">See all listings <span>for {{ $date->dayOfWeek['short'] .' '. $date->day  }}</span></a>
+					<a class="carouselViewAll artCol-1-3" href="{{ baseUrl().$route }}/day/{{ $date->timeStamp }}">See all listings <span>for {{ $date->dayOfWeek['short'] .' '. $date->day  }}</span></a>
 					</div>	
 				</div>	
 			</div> <!-- /.carouselContainer -->

@@ -32,4 +32,7 @@
 
   </div>      
 </header>    
+
+@include('layouts.partials.sub-nav')
+
 @endsection

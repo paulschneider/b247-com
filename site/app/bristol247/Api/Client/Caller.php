@@ -28,6 +28,7 @@ Class Caller {
 		// getStatusCode()
 		// getReasonPhrase()
 		// getBody()
+		// getUrl()
 
 		try {
 		   $response = $this->client->send($request)->json();

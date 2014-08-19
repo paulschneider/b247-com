@@ -25,6 +25,8 @@ Class ChannelController extends BaseController {
 			'channelFeed' => $data['channelFeed'],
 		];
 
+		$viewData['subChannels'] = getChannelSubChannels($viewData['nav'], $channel);
+
 		return View::make('home.index', $viewData);
 	}	
 
@@ -53,6 +55,9 @@ Class ChannelController extends BaseController {
 		# pass the subChannel sefName to the view so we know which channel we're viewing
 		$this->data['activeChannel'] = $subChannel;
 
+		# grab any subChannels so we can create a sub-nav 
+		$this->data['subChannels'] = getChannelSubChannels($this->data['nav'], $channel);
+
 		# we don't know what type of data we've had returned by the API so just throw it all at the view and let it decide what to use
 		return View::make("channels.subChannel{$channelType}", $this->data);
 	}
@@ -70,7 +75,30 @@ Class ChannelController extends BaseController {
 		# grab the data we'll need for the view from the API
 		$this->data = Api::get("subchannel/$subChannel/articles", ['range' => $range, 'time' => $time]);
 
-		# display the subChannel in the usual way (above)
-		return $this->showSubChannel($channel, $subChannel);
+		# get the rest of the data
+		$this->showSubChannel($channel, $subChannel);
+
+		#show the view
+		return View::make("channels.subChannelListing", $this->data);
+	}
+
+	/**
+	 * [showListingSubChannel description]
+	 * @param  [type] $channel    [description]
+	 * @param  [type] $subChannel [description]
+	 * @param  [type] $time       [description]
+	 * @param  string $range      [description]
+	 * @return [type]             [description]
+	 */
+	public function showDayListingSubChannel($channel, $subChannel, $time, $range = "day")
+	{
+		# grab the data we'll need for the view from the API
+		$this->data = Api::get("subchannel/$subChannel/articles", ['range' => $range, 'time' => $time]);
+
+		# get the rest of the data
+		$this->showSubChannel($channel, $subChannel);
+
+		#show the view
+		return View::make("channels.subChannelListingDay", $this->data);
 	}
 }

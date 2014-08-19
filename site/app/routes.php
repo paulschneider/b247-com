@@ -25,6 +25,9 @@ Route::group(array('before' => 'auth'), function()
 	# weeks listing subChannel
 	Route::get('{channel}/{subChannel}/week/{time}', 'ChannelController@showListingSubChannel')->where('time', '[0-9]+');
 
+	# day listing subChannel
+	Route::get('{channel}/{subChannel}/day/{time}', 'ChannelController@showDayListingSubChannel')->where('time', '[0-9]+');	
+
 	# paginated subChannel
 	Route::get('{channel}/{subChannel}/page/{page}', 'ChannelController@showSubChannel')->where('page', '[0-9]+');
 	Route::get('{channel}/{subChannel}/{category}', 'CategoryController@show');

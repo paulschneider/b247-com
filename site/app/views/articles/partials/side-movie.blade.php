@@ -35,7 +35,7 @@
     <p>
         <strong>Rating</strong>: {{ $performances['summary']['certificate'] }}<br />
         <strong>Directed By</strong>: <br />{{ $performances['summary']['director'] }}<br />
-        <strong>Running Time</strong>: {{ $performances['summary']['duration'] }}<br />
+        <strong>Running Time</strong>: {{ $performances['summary']['duration']/60 }} mins<br />
     </p>
     @if(isset($article['event']['details']['performances']['alternativeVenues']))
         <h3><strong>Also playing at...</strong></h3>

@@ -32,14 +32,8 @@ class User extends Eloquent implements UserInterface, RemindableInterface {
 		'firstname', 'lastname', 'email', 'password'
 	];
 
-	public function createUser()
+	public static function startSession($user)
 	{
-		$user = static::create([
-			'firstname' => 'David'
-			,'lastname' => 'Woodall'
-			,'email' => 'david.woodall@wildfirecomms.co.uk'
-			,'password' => Hash::make('password')
-			,'is_active' => true
-		]);
+		Session::put('user', $user);
 	}
 }

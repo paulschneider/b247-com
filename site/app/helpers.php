@@ -1,5 +1,32 @@
 <?php
 use Carbon\Carbon;
+use Monolog\Logger;
+use Monolog\Handler\StreamHandler;
+
+function logApiCall($endpoint)
+{	
+	$logFile = 'apiCalls.log';
+
+	$view_log = new Logger('View Logs');
+	$view_log->pushHandler(new StreamHandler(storage_path().'/logs/'.$logFile, Logger::INFO));
+
+	$view_log->addInfo($endpoint);
+}
+
+function userIsAuthenticated()
+{
+    if( array_key_exists('accessKey', getallheaders()) || Session::has('user.accessKey'))
+    {
+        return true;
+    }
+
+    return false;
+}
+
+function getAccessKey()
+{
+	return Session::get('user.accessKey');
+}
 
 function anExternalUrl($string)
 {
@@ -165,18 +192,18 @@ function getChannelType($channel)
 
 function getApplicationNav()
 {
-	// if ( ! Session::has('nav') )
-	// {
-	// 	Session::put('nav', Api::get("app/nav")['channels']);		
-	// }
+	if ( ! Session::has('nav') )
+	{
+		$response = App::make("ApiClient")->get("app/nav");
 
-	$response = App::make("ApiClient")->get("app/nav");
+		if($response['success']) {
+			$data = $response['success']['data'];
+		}
 
-	if($response['success']) {
-		$data = $response['success']['data'];
-	}
+		Session::put('nav', $data['channels']);		
+	}	
 
-	return $data['channels'];
+	return Session::get('nav');
 }
 
 function getFeatureCategories($features)

@@ -10,9 +10,6 @@ Class ArticleController extends BaseController {
 		{
 			$data = $response['success']['data'];
 
-			# Push the apps nav into the data array which we'll pass to the view
-			$data['nav'] = getApplicationNav();
-
 			$data['category'] = $category;
 			$data['apiKey'] = Config::get('googlemaps.ApiKey');
 
@@ -29,7 +26,7 @@ Class ArticleController extends BaseController {
 			$data['activeChannel'] = $channel;
 
 			# grab any subChannels so we can create a sub-nav 
-			$data['subChannels'] = getChannelSubChannels($data['nav'], $channel);
+			$data['subChannels'] = getChannelSubChannels(getApplicationNav(), $channel);
 
 			# we don't know what type of data we've had returned by the API so just throw it all at the view and let it decide what to use
 			return View::make("articles.template", $data);

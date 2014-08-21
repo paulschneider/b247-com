@@ -1,43 +1,105 @@
 <?php
+Route::group(array('before' => 'recordPevious'), function(){
 
-/*
-|--------------------------------------------------------------------------
-| Application Routes
-|--------------------------------------------------------------------------
-|
-| Here is where you can register all of the routes for an application.
-| It's a breeze. Simply tell Laravel the URIs it should respond to
-| and give it the Closure to execute when that URI is requested.
-|
-*/
+	/*
+	|--------------------------------------------------------------------------
+	| Application Routes
+	|--------------------------------------------------------------------------
+	|
+	| Here is where you can register all of the routes for an application.
+	| It's a breeze. Simply tell Laravel the URIs it should respond to
+	| and give it the Closure to execute when that URI is requested.
+	|
+	*/
 
-Route::post('app/article', 'ArticleController@getAppArticle');
+	/*
+	|--------------------------------------------------------------------------
+	| Filter all routes first and save a variable in case we need to go 
+	| back to a specific page (e.g after log in)
+	|--------------------------------------------------------------------------
+	|
+	|
+	*/
 
-Route::post('login.auth', 'SessionsController@authenticate');
-Route::get('logout', [ 'as' => 'logout', 'uses' => 'SessionsController@logUserOut' ]);
-Route::get('login', [ 'as' => 'login', 'uses' => 'SessionsController@showLogIn' ]);
+	/*
+	|--------------------------------------------------------------------------
+	| The B247 API calls this route to get the markup for articles to render 
+	| within mobile devices and tables
+	|--------------------------------------------------------------------------
+	|
+	|
+	*/
+	Route::post('app/article', 'ArticleController@getAppArticle');
 
-Route::group(array('before' => 'auth'), function()
-{
-	# register / log-in
-	Route::get('sign-up', [ 'signup', 'uses' => 'SessionsController@register' ]); 
+	/*
+	|--------------------------------------------------------------------------
+	| Auth
+	|--------------------------------------------------------------------------
+	|
+	|
+	*/
+	Route::post('login/auth', 'SessionsController@authenticate');
+	Route::get('logout', [ 'as' => 'logout', 'uses' => 'SessionsController@logUserOut' ]);
+	Route::get('login', [ 'as' => 'login', 'uses' => 'SessionsController@showLogIn' ]);
 
-	# promotions
-    Route::get('promotion/redeem/voucher/{code}', 'PromotionsController@redeemPromotion');
-    Route::post('promotion/competition/enter', 'PromotionsController@competitionEntry');
-	
+	/*
+	|--------------------------------------------------------------------------
+	| Register / Log-in / Profile
+	|--------------------------------------------------------------------------
+	|
+	|
+	*/
+	Route::get('sign-up', [ 'as' => 'signup', 'uses' => 'SessionsController@showRegistration' ]); 
+	Route::post('register/user', [ 'as' => 'register', 'uses' => 'SessionsController@registerNewUser' ]);
+	Route::get('profile', [ 'as' => 'profile', 'uses' => 'UserController@showProfile' ]); 
+
+	/*
+	|--------------------------------------------------------------------------
+	| Promotions
+	|--------------------------------------------------------------------------
+	|
+	|
+	*/
+	Route::get('promotion/redeem/voucher/{code}', 'PromotionsController@redeemPromotion');
+	Route::post('promotion/competition/enter', 'PromotionsController@competitionEntry');
+
+	/*
+	|--------------------------------------------------------------------------
+	| Channel / Sub-channel
+	|--------------------------------------------------------------------------
+	|
+	|
+	*/
 	Route::get('{channel}', 'ChannelController@showChannel');
 	Route::get('{channel}/{subChannel}', 'ChannelController@showSubChannel');
+	Route::get('{channel}/{subChannel}/page/{page}', 'ChannelController@showSubChannel')->where('page', '[0-9]+');
 		
-	# weeks listing subChannel
+	/*
+	|--------------------------------------------------------------------------
+	| Listings
+	|--------------------------------------------------------------------------
+	|
+	|
+	*/
 	Route::get('{channel}/{subChannel}/week/{time}', 'ChannelController@showListingSubChannel')->where('time', '[0-9]+');
-
-	# day listing subChannel
 	Route::get('{channel}/{subChannel}/day/{time}', 'ChannelController@showDayListingSubChannel')->where('time', '[0-9]+');	
 
-	# paginated subChannel
-	Route::get('{channel}/{subChannel}/page/{page}', 'ChannelController@showSubChannel')->where('page', '[0-9]+');
+	/*
+	|--------------------------------------------------------------------------
+	| Sub-channel / category
+	|--------------------------------------------------------------------------
+	|
+	|
+	*/
 	Route::get('{channel}/{subChannel}/{category}', 'CategoryController@show');
 	Route::get('{channel}/{subChannel}/{category}/{article}', 'ArticleController@show');
-    Route::get('/', 'HomeController@showHomePage');        
-});
+
+	/*
+	|--------------------------------------------------------------------------
+	| Home
+	|--------------------------------------------------------------------------
+	|
+	|
+	*/
+	Route::get('/', [ 'as' => 'home', 'uses' => 'HomeController@showHomePage' ]);     
+});   

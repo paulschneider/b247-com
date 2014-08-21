@@ -2,6 +2,15 @@
 
 class BaseController extends Controller {
 
+	public function __construct()
+	{
+		# Make sure all views have access to the application nav data
+		View::composer('*', function($view)
+		{
+		    $view->with('nav', getApplicationNav());
+		});
+	}
+
 	/**
 	 * if we get an API response that we need to feed back to the user then process it
 	 * 

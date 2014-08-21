@@ -15,7 +15,6 @@ class HomeController extends BaseController {
 			}
 
 			$viewData = [
-				'nav' => $data['channels'],
 				'adverts' => $data['adverts'],
 				'features' => $data['features'],
 				'picks' => $data['picks'],
@@ -23,10 +22,6 @@ class HomeController extends BaseController {
 			];
 			
 			return View::make('home.index', $viewData);
-		}
-		else
-		{
-			App::abort(500);
 		}
 	}
 }

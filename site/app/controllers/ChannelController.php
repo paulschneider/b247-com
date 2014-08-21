@@ -22,14 +22,18 @@ Class ChannelController extends BaseController {
 			$data = $response['success']['data'];
 
 			$viewData = [
-				'nav' => getApplicationNav(),
+				'channel' => $data['channel'],
 				'adverts' => $data['adverts'],
 				'features' => $data['features'],
 				'picks' => $data['picks'],
 				'channelFeed' => $data['channelFeed'],
 			];
 
-			$viewData['subChannels'] = getChannelSubChannels($viewData['nav'], $channel);
+			# pass the subChannel sefName to the view so we know which channel we're viewing
+			$viewData['activeChannel'] = $channel;
+
+			# grab the sub-channels so we can make a sub-nav out of them
+			$viewData['subChannels'] = getChannelSubChannels(getApplicationNav(), $channel);
 
 			return View::make('home.index', $viewData);
 		}		
@@ -53,9 +57,6 @@ Class ChannelController extends BaseController {
 				$this->data = $response['success']['data'];
 			}
 		}
-		
-		# push the apps nav into the data array which we'll pass to the view
-		$this->data['nav'] = getApplicationNav();
 
 		# we need to work out what type of page to display based on the channel type (e.g listing, promotion, directory or article)
 		$channelType = getChannelType($this->data['channel']);
@@ -67,7 +68,7 @@ Class ChannelController extends BaseController {
 		$this->data['activeChannel'] = $channel;
 
 		# grab any subChannels so we can create a sub-nav 
-		$this->data['subChannels'] = getChannelSubChannels($this->data['nav'], $channel);
+		$this->data['subChannels'] = getChannelSubChannels(getApplicationNav(), $channel);
 
 		# we don't know what type of data we've had returned by the API so just throw it all at the view and let it decide what to use
 		return View::make("channels.subChannel{$channelType}", $this->data);

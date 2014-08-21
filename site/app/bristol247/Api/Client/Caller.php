@@ -45,6 +45,8 @@ Class Caller {
 
 	public function send($request)
 	{
+		logApiCall($this->endpoint);
+
 		try 
 		{
 		   return $this->client->send($request)->json();

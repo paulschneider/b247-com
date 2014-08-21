@@ -57,9 +57,11 @@
             @endif
 
             {{ $article['bodyContinued'] }}
-    </div>    
+    </div>   
 </article>
 
 <hr class="spacerUp">
 
 @include('articles.partials.horizontal-related')
+
+@include("articles.comments");

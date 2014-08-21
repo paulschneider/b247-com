@@ -11,3 +11,9 @@
 .secondaryForm .formRadioGroup label {
 	width: auto;
 }
+
+#comments-block {
+	margin: 0 auto;
+	width: 75%;
+	float: none;
+}

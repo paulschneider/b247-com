@@ -1,17 +1,23 @@
+/** HIDE DEVICE LINKS IN ARTICLES **/
 .hide_desktop {display:none;}
 
+/** DISQUS **/
 .movie-block li {
 	list-style: none;
 	padding: 0;
 }
+
+/** ARTICLE FILM CINEMA LISTING VENUES **/
 .movie-block ul {
 	padding:0;
 }
 
+/** COMPETITION LABELS **/
 .secondaryForm .formRadioGroup label {
 	width: auto;
 }
 
+/** DISQUS **/
 #comments-block {
 	margin: 0 auto;
 	width: 75%;

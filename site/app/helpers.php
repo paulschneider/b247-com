@@ -1,5 +1,23 @@
 <?php
 use Carbon\Carbon;
+
+function isError($item, $errors)
+{
+	return array_key_exists($item, $errors);
+}
+
+function reformatErrors($errors)
+{
+	$tmp = [];
+
+	foreach($errors AS $error)
+	{
+		$tmp[$error['field']] = $error['message'];
+	}
+
+	return $tmp;
+}
+
 use Monolog\Logger;
 use Monolog\Handler\StreamHandler;
 
@@ -206,19 +224,31 @@ function getApplicationNav()
 	return Session::get('nav');
 }
 
+/**
+ * go through a list of articles and extract out unique categories
+ * 
+ * @param  array $features [a list of articles]
+ * @return array           [sorted categories]
+ */
 function getFeatureCategories($features)
 {
 	$response = [];
 
 	foreach( $features AS $feature )
 	{
-		$response[] = [
-			'name' => $feature['assignment']['category']['name'],
-			'path' => $feature['assignment']['category']['path']
-		];
+		$id = $feature['assignment']['category']['id'];
+
+		# make sure the categories we add are unique
+		if( ! array_key_exists($id, $response))
+		{
+			$response[$id] = [
+				'name' => $feature['assignment']['category']['name'],
+				'path' => $feature['assignment']['category']['path']
+			];
+		}
 	}
 
-	return $response;
+	return array_values($response);
 }
 
 function getTheme($article)

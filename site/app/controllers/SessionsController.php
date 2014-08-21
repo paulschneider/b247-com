@@ -78,7 +78,7 @@ Class SessionsController extends BaseController {
 		{
 			$errors = $response['error']['data']['errors'];
 
-			return Redirect::back();
+			return Redirect::back()->withErrors($errors);
 		}
 	}
 

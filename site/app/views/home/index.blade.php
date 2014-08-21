@@ -223,7 +223,10 @@
 										<div class="articleListContent">
 											<a href="{{ $subChannel->path }}" class="articleListSubChannel">{{ $subChannel->name }}</a> 
 											<a class="articleListTitle" href="{{ $article['path'] }}">{{ $article['title'] }}</a>
-											<p class="articleListDetails">Venue Name, from &pound;12.50</p>
+
+											@if(isset($article['event']))
+												<p class="articleListDetails">{{ $article['event']['venue']['name'] }}, from &pound;{{ $article['event']['details']['price'] }}</p>
+											@endif
 											<p class="articleListSummary">{{ $article['subHeading'] }}</p>
 											<a href="{{ $category->path }}" class="articleListCategories">{{ $category->name }}</a>
 										</div>

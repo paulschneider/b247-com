@@ -2,26 +2,29 @@
 
 class HomeController extends BaseController {
 
+	/**
+	 * show the the homepage
+	 * 
+	 * @return View
+	 */
 	public function showHomePage()
 	{
+		# call the API
 		$response = App::make("ApiClient")->get("home");
 
+		# if we got some data back successfully then do something with it
 		if($response['success'])
 		{
+			# short cut the data response
 			$data = $response['success']['data'];
 
+			# if we don't have the nav stored in the session then store it
 			if (! Session::has('nav') ) {
 			    Session::put('nav', $data['channels']);
 			}
-
-			$viewData = [
-				'adverts' => $data['adverts'],
-				'features' => $data['features'],
-				'picks' => $data['picks'],
-				'channelFeed' => $data['channelFeed'],
-			];
 			
-			return View::make('home.index', $viewData);
+			# make the view
+			return View::make('home.index', $data);
 		}
 	}
 }

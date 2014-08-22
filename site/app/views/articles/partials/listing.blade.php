@@ -23,6 +23,7 @@
             @include('articles.partials.gallery.top') 
         
         <aside class="column col-25 mobCol-18-20 mobColFirst">
+<<<<<<< HEAD
             <div class="dateBlock">
 
             <?php $date = getEventDate($article['event']['details']['epoch']) ?>
@@ -46,6 +47,14 @@
                 &pound;{{ $article['event']['details']['price'] }}<br>
                 <a href="#">Tickets</a>
             </p>
+=======
+                           
+            @if( isset($article['event']['details']['performances']['summary']['isMovie']) )
+                @include('articles.partials.side-movie')
+            @else
+                @include('articles.partials.side-performance')
+            @endif
+>>>>>>> cycle
 
             @if (! $isMobile) <!-- only show for the web version -->
                 <input type="button" value="Share" class="primaryButton">

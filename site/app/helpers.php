@@ -1,6 +1,83 @@
 <?php
-
 use Carbon\Carbon;
+
+function isError($item, $errors)
+{
+	return array_key_exists($item, $errors);
+}
+
+function reformatErrors($errors)
+{
+	$tmp = [];
+
+	foreach($errors AS $error)
+	{
+		$tmp[$error['field']] = $error['message'];
+	}
+
+	return $tmp;
+}
+
+use Monolog\Logger;
+use Monolog\Handler\StreamHandler;
+
+function logApiCall($endpoint)
+{	
+	$logFile = 'apiCalls.log';
+
+	$view_log = new Logger('View Logs');
+	$view_log->pushHandler(new StreamHandler(storage_path().'/logs/'.$logFile, Logger::INFO));
+
+	$view_log->addInfo($endpoint);
+}
+
+function clog($data)
+{
+	$logFile = 'console.log';
+
+	$view_log = new Logger('View Logs');
+	$view_log->pushHandler(new StreamHandler(storage_path().'/logs/'.$logFile, Logger::INFO));
+
+	$view_log->addInfo($data);	
+}
+
+function userIsAuthenticated()
+{
+    if( array_key_exists('accessKey', getallheaders()) || Session::has('user.accessKey'))
+    {
+        return true;
+    }
+
+    return false;
+}
+
+function getAccessKey()
+{
+	return Session::get('user.accessKey');
+}
+
+function anExternalUrl($string)
+{
+    $protocols = [ 'http://', 'https://' ];
+
+    foreach($protocols AS $protocol)
+    {
+        if(strpos($string, $protocol) !== false)
+        {
+            return true;
+        }
+    }    
+}
+
+function getListingInWeek($listOfDays, $week)
+{
+	return getEventDate($listOfDays[$week]['publication']['epoch']);
+}
+
+function displayStyle($content)
+{
+	return $content['displayStyle'];
+}
 
 function getEventDate($timestamp)
 {
@@ -31,20 +108,60 @@ function getEventDate($timestamp)
 
 	$date = Carbon::createFromTimeStamp($timestamp);
 	$date->timezone = new DateTimeZone('Europe/London');
-	
+
 	$dt = new stdClass();
 
 	$dt->dayOfWeek = $days[$date->dayOfWeek];
-	$dt->month = $months[$date->month];
+	$dt->month = $months[$date->month-1];
 	$dt->day = $date->day;
 	$dt->time = $date->format('H:i');
+	$dt->year = $date->year;
+	$dt->dateStamp = $date->toDateString();
+	$dt->timeStamp = $timestamp;
+	$dt->daysInMonth = $date->daysInMonth;
+	$dt->lastMonth = $date->subDays($dt->day)->subMonths(1)->timestamp;
+	$dt->nextMonth = $date->addDays($dt->day + ($dt->daysInMonth-$dt->day))->addMonths(1)->timestamp;
 	
 	return $dt;
+}
+
+function getDailyTimestamp($date, $dayNumber)
+{
+	$dateTime = Carbon::createFromTimeStamp($date->timeStamp);
+	$dateTime->timezone = new DateTimeZone('Europe/London');
+
+	if($dayNumber < $date->day) { 
+		$newDate = $dateTime->subDays( $date->day-$dayNumber )->timestamp;	
+	}
+	elseif($dayNumber > $date->day) {
+		$newDate = $dateTime->addDays( $dayNumber - $date->day )->timestamp;
+	}
+	else{
+		$newDate = $dateTime->timestamp;
+	}
+
+	return $newDate;
+}
+
+function getNewTimestamp($date, $symbol, $amount)
+{
+	return strtotime($date->dateStamp. ' '.$symbol.' '.$amount); 
 }
 
 function dateFormat($date)
 {
 	return date('Y-m-d', strtotime($date));
+}
+
+function getChannelSubChannels($channels, $channelToFind)
+{
+	foreach($channels AS $channel)
+	{
+		if($channel['sefName'] == $channelToFind)
+		{
+			return $channel['subChannels'];
+		}
+	}
 }
 
 function getCategoryPath($channel)
@@ -91,6 +208,11 @@ function getChannelName($channel)
 	return $channel['name'];
 }
 
+function getChannelPath($channel)
+{
+	return baseUrl().$channel['path'];
+}
+
 function getChannelType($channel)
 {
 	return $channel['subChannels'][0]['displayType']['type'];
@@ -98,29 +220,50 @@ function getChannelType($channel)
 
 function getApplicationNav()
 {
-	// if ( ! Session::has('nav') )
-	// {
+	if ( ! Session::has('nav') )
+	{
+		$response = App::make("ApiClient")->get("app/nav");
 
-	// 	Session::put('nav', Api::get("app/nav")['channels']);		
+		if($response['success']) {
+			$data = $response['success']['data'];
+		}
 
-	// }
+		Session::put('nav', $data['channels']);		
+	}	
 
-	return Api::get("app/nav")['channels'];
+	return Session::get('nav');
 }
 
+/**
+ * go through a list of articles and extract out unique categories
+ * 
+ * @param  array $features [a list of articles]
+ * @return array           [sorted categories]
+ */
 function getFeatureCategories($features)
 {
 	$response = [];
 
 	foreach( $features AS $feature )
 	{
-		$response[] = [
-			'name' => $feature['assignment']['category']['name'],
-			'path' => $feature['assignment']['category']['path']
-		];
+		$id = $feature['assignment']['category']['id'];
+
+		# make sure the categories we add are unique
+		if( ! array_key_exists($id, $response))
+		{
+			$response[$id] = [
+				'name' => $feature['assignment']['category']['name'],
+				'path' => $feature['assignment']['category']['path']
+			];
+		}
 	}
 
-	return $response;
+	return array_values($response);
+}
+
+function getTheme($article)
+{
+	return isset($article['assignment']) ? themeClass($article['assignment']['channel']['sefName']) : '';
 }
 
 function themeClass($section)
@@ -139,6 +282,17 @@ function themeClass($section)
 function assetPath()
 {
 	return "/";
+}
+
+function baseUrl()
+{
+	//return URL::to('/').'/';
+	return URL::to('/');
+}
+
+function current_url()
+{
+	return Request::url();
 }
 
 // shortcut for show_data function

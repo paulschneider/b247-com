@@ -17,7 +17,13 @@
     
     <ul class="toolsNav">
       <li>
-        <a href="#">Sign in/register <span class="icoProfile"></span></a>
+        @if( Session::has('user') )
+            <?php $user = Session::get('user') ?>
+            <a href="{{ baseUrl() }}profile">{{ $user['firstName'] .' '. $user['lastName'] }} <span class="icoProfile"></span></a>
+        @else
+            <a href="{{ baseUrl() }}sign-up">Sign in/register <span class="icoProfile"></span></a>
+        @endif
+        
       </li>
       <li>
         <a class="searchLink" href="#">Search <span class="icoSearch"></span></a>
@@ -32,4 +38,11 @@
 
   </div>      
 </header>    
+
+@include('layouts.partials.sub-nav')
+
+@if(Session::get('message'))
+    <h1>{{ Session::get('message') }}</h1>
+@endif
+
 @endsection

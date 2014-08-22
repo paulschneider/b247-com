@@ -13,9 +13,12 @@
 
 App::before(function($request)
 {
-	//
-});
+	Route::filter('recordPevious', function()
+	{
+		Session::put('previousPage', URL::previous());
+	});
 
+});
 
 App::after(function($request, $response)
 {

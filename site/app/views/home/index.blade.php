@@ -53,7 +53,7 @@
               	@endif
               	
               	@if( $counter == 3 )
-              		</div><div class="featureList col-12-12">
+              		</div><div class="featureList col-16-20 tabCol-20-20 colFirst colLast">
               		<?php $counter = 1 ?>
               	@else
               		<?php $counter++ ?>
@@ -79,7 +79,9 @@
 		</figure>
 	</div>
 @endif
-          
+
+<!-- PICKS -->
+     
 <section class="pageSection grid">
 
 	<header class="artCol-3-3 artColFirst artColLast">
@@ -87,44 +89,186 @@
 	</header>
 
 	<div class="carouselDoubleContainer">
-  		<div class="carouselDoubleList">
-   			<div class="articleList">
-   				<div class="artColRow">
+		<div class="carouselDoubleList">
+			<div class="articleList">
+				<div class="artColRow">
 
-	   			<?php $counter = 0; ?>
+				<?php $i = 0; $s = 1; ?>
 
-	   			@foreach ( $picks AS $pick )
-	  				@if ( $pick['isAdvert'] )
-	  					<?php $ad = $pick ?>
-	    				@include( 'partials.advert' )
-	    			@else
-	    				<?php $article = $pick ?>
-	    				@if ( $pick['displayStyle'] == 1 )        				
-	    					@include( 'partials.sm-article' )
-	    				@elseif ( $pick['displayStyle'] == 2 )
-	    					@include( 'partials.lg-pick' )
-	    				@endif
-	    			@endif	    			
+				@foreach($picks AS $article)
+					<?php $i += displayStyle($article) ?>
 
-	    			<?php $counter = $counter + $pick['displayStyle'] ?> 
+					<div class="articleListItem <?php echo getTheme($article) ?> column <?php echo $s == 1 ? 'artColFirst' : '' ?> <?php echo $i == 3 || $i == 6 ? 'artColLast' : '' ?> <?php echo displayStyle($article) == 2 ? 'artCol-2-3' : 'artCol-1-3' ?> mobArtCol-3-3">
+						@if($article['isAdvert'])
+							<div class="articleListBlockAdvert advert">
+								<figure>
+									<a href="{{ $article['url'] }}">
+										<img alt="{{ $article['media']['alt'] }}" src="{{ $article['media']['filepath'] }}" />
+									</a>
+									<figcaption>
+										Advertising
+									</figcaption>
+								</figure>
+							</div>
+						@else
+							<?php 
+								$category = getArticleCategory($article);
+								$subChannel = getArticleSubChannel($article); 
+							?>
 
-		      		@if( $counter == 3 )
-		          		</div><div class="artColRow">
-		          		<?php $counter = 0 ?>
-		          	@endif
-		          @endforeach
-		        </div>
-		    </div>
-      	</div>
-    </div>
-
+							@if(displayStyle($article) == 2)
+								<div class="articleListStandOut">
+									<div class="articleListImage">
+										<div class="articleListStandOutContent">
+											<a href="{{ baseUrl().$subChannel->path }}" class="articleListSubChannel">{{ $subChannel->name }}</a>
+											<a href="{{ baseUrl().$article['path'] }}" class="articleListTitle">{{ $article['title'] }}</a>
+											<p class="articleListSummary">{{ $article['subHeading'] }}</p>
+											<a href="{{ $category->path }}" class="articleListCategories">{{ $category->name }}</a>
+										</div>
+										<div class="articleListStandOutImage">
+											@if( isset($article['media']) and !empty($article['media']) )
+												<a href="{{ baseUrl().$article['path'] }}">
+													<img alt="{{ $article['media']['alt'] }}" src="{{ $article['media']['filepath'] }}" />
+												</a>
+												<a href="{{ $category->path }}" class="articleListCategories">{{ $category->name }}</a>
+											@endif
+										</div>
+									</div>
+								</div>
+							@else
+								<a href="{{ baseUrl().$subChannel->path }}" class="articleListSubChannel">{{ $subChannel->name }}</a>
+								<div class="articleListSynopsis">
+									<div class="articleListImage">
+										@if( isset($article['media']) and !empty($article['media']) )
+										<a href="{{ baseUrl().$article['path'] }}">
+											<img alt="{{ $article['media']['alt'] }}" src="{{ $article['media']['filepath'] }}" />
+										</a>
+										<a href="{{ $category->path }}" class="articleListCategories">{{ $category->name }}</a>
+										@endif
+									</div>
+									<div class="articleListContent">
+										<a href="{{ baseUrl().$subChannel->path }}" class="articleListSubChannel">{{ $subChannel->name }}</a> 
+										<a class="articleListTitle" href="{{ baseUrl().$article['path'] }}">{{ $article['title'] }}</a>
+										<p class="articleListSummary">{{ $article['subHeading'] }}</p>
+										<a href="{{ $category->path }}" class="articleListCategories">{{ $category->name }}</a>
+									</div>
+								</div>
+							@endif
+						@endif				
+					</div>
+					<?php $s++ ?>
+					@if($i == 3 or $i == 6)
+						</div><div class="artColRow">
+						<?php $s = 1; ?>
+					@endif
+					@if($i == 6)
+						<?php $i = 0; $s = 1; ?>
+						</div></div><div class="articleList"><div class="artColRow">
+					@endif
+					
+				@endforeach	      
+				</div>
+			</div>
+		</div>
 </section>
-          
-<hr>
 
-@foreach ( $channelFeed AS $feed ) 
-	@include('partials.channelFeed')
-@endforeach
+<hr class="spacer">
+
+<!-- CHANNEL FEED -->
+@if( isset($channelFeed) )
+	<?php $totalFeeds = count($channelFeed); $counter = 1; ?>
+	@foreach($channelFeed AS $feed)
+		<section class="pageSection grid">
+
+			<header class="artCol-3-3 artColFirst artColLast">
+				<h1 class="secondaryHeader">{{ $feed['name'] }}</h1>
+			</header>
+
+			<div class="carouselContainer">
+				<div class="carouselArticleList">
+					<div class="articleList">
+
+						<?php $i = 0; $s = 1; ?>				
+
+						@foreach($feed['articles'] AS $article)
+							<?php $i += displayStyle($article) ?>
+							<div class="articleListItem column {{ getTheme($article) }} {{ $s == 1 ? 'artColFirst' : '' }} {{ $i == 3 ? 'artColLast' : '' }} {{ displayStyle($article) == 2 ? 'artCol-2-3' : 'artCol-1-3' }} ">
+								@if( $article['isAdvert'] )
+									<div class="articleListBlockAdvert advert">
+										<figure>
+											<a href="{{ $article['url'] }}">
+												<img alt="{{ $article['media']['alt'] }}" src="{{ $article['media']['filepath'] }}" />
+											</a>
+											<figcaption>
+												Advertising
+											</figcaption>
+										</figure>
+									</div>
+								@else
+									<?php 
+										$category = getArticleCategory($article);
+										$subChannel = getArticleSubChannel($article); 
+									?>
+
+									<a href="{{ $subChannel->path }}" class="articleListSubChannel">{{ $subChannel->name }}</a>
+									@if( displayStyle($article) == 2)
+		                                <div class="articleListStandOut">
+		                                    <div class="articleListImage">
+		                                        <div class="articleListStandOutContent">
+		                                            <a href="{{ baseUrl().$article['path'] }}" class="articleListTitle">{{ $article['title'] }}</a>
+		                                            <p class="articleListSummary">{{ $article['subHeading'] }}</p>
+		                                        </div>
+		                                        <div class="articleListStandOutImage">
+		                                            <a href="{{ baseUrl().$article['path'] }}">
+		                                                @if( isset($article['media']) and !empty($article['media']) )
+		                                                    <img alt="{{ $article['media']['alt'] }}" src="{{ $article['media']['filepath'] }}" />
+		                                                @endif
+		                                            </a>
+		                                            <a href="{{ $category->path }}" class="articleListCategories">{{ $category->name }}</a>
+		                                        </div>
+		                                    </div>
+		                                </div>
+		                            @else
+		                                <div class="articleListSynopsis">
+		                                    <div class="articleListImage">
+		                                        <a href="{{ baseUrl().$article['path'] }}">
+		                                            @if( isset($article['media']) and !empty($article['media']) )
+		                                                <img alt="{{ $article['media']['alt'] }}" src="{{ $article['media']['filepath'] }}" />
+		                                            @endif
+		                                        </a>
+		                                        <a href="{{ $category->path }}" class="articleListCategories">{{ $category->name }}</a>
+		                                    </div>
+		                                    <div class="articleListContent">
+		                                        <a class="articleListTitle" href="{{ baseUrl().$article['path'] }}">{{ $article['title'] }}</a>
+		                                        <p class="articleListSummary">{{ $article['subHeading'] }}</p>
+		                                        <a href="{{ $category->path }}" class="articleListCategories">{{ $category->name }}</a>
+		                                    </div>
+		                                </div>
+		                            @endif
+								@endif														
+							</div> 
+
+							<?php $s++ ?>
+							@if($i == 3)
+								</div><div class="articleList">
+								<?php $i = 0; $s = 1; ?>
+							@endif
+
+						@endforeach
+					</div>
+				</div>
+				<a class="carouselViewAll col-3-12" href="{{ $feed['path'] }}">See full listings</a>
+			</div>
+		</section>
+
+		<?php $counter++; ?>
+		
+		@if($counter <= $totalFeeds)
+			<hr class="spacer">
+		@endif
+
+	@endforeach
+@endif
           
 @endsection
 @include('layouts.footer')

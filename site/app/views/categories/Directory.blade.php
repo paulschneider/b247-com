@@ -63,23 +63,16 @@
 
 </script>
 
+<!-- Letterbox advert - top -->
 @if( isset($adverts[0]) )
-	<div class="advert">
-	    <figure>
-	        <a href="{{ $adverts[0]['url'] }}">
-	            <img alt="{{ $adverts[0]['media']['alt'] }}" src="{{ $adverts[0]['media']['filepath'] }}" width="100%">
-	        </a>
-	        <figcaption>
-	            Advertising
-	        </figcaption>
-	    </figure>
-	</div>
+	<?php $advert = $adverts[0] ?>
+	@include("adverts.partials.letterbox")
 @endif
 
 <section class="pageSection">
 	<div class="grid">
 		<header class="artCol-3-3 artColFirst">
-			<h1 class="primaryHeader"><span class="subPrimaryHeader">{{ getChannelName($channel) }}:</span> {{ getCategoryName($channel) }}</h1>
+			<h1 class="primaryHeader"><span class="subPrimaryHeader">{{ getSubChannelName($channel) }}:</span> {{ getCategoryName($channel) }}</h1>
 		</header>
 
 		<p class="backTo column col-5-20 colFirst tabCol-9-20 tabColFirst mobCol-18-20 mobColFirst">Back to: <a href="{{ getSubChannelPath($channel) }}">{{ getSubChannelName($channel) }}</a></p>

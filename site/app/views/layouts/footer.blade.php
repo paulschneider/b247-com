@@ -1,5 +1,7 @@
 @section('footer')
 
+@include('channels.partials.sub-nav')
+
 <footer id="bottom">
   <div class="grid">          
     <nav class="footerNav column col-4-20 colFirst tabCol-6-20 tabColFirst mobCol-18-20 mobColFirst">

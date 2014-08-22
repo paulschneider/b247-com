@@ -35,10 +35,10 @@
 		</p>
 		<p class="backTo column col-5-20 showResults">
 			<?php $less = getNewTimestamp($start, '-', '7 days'); ?>
-			<a href="{{ baseUrl().$route }}/week/{{ $less }}">< previous 7 days</a>
+			<a href="{{ baseUrl().'/'.$route }}/week/{{ $less }}">< previous 7 days</a>
 			&nbsp; | &nbsp;
 			<?php $more = getNewTimestamp($start, '+', '7 days'); ?>
-			<a href="{{ baseUrl().$route }}/week/{{ $more }}">next 7 days ></a></p>
+			<a href="{{ baseUrl().'/'.$route }}/week/{{ $more }}">next 7 days ></a></p>
 	</div>
 
 	<hr>

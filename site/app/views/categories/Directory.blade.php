@@ -63,17 +63,10 @@
 
 </script>
 
+<!-- Letterbox advert - top -->
 @if( isset($adverts[0]) )
-	<div class="advert">
-	    <figure>
-	        <a href="{{ $adverts[0]['url'] }}">
-	            <img alt="{{ $adverts[0]['media']['alt'] }}" src="{{ $adverts[0]['media']['filepath'] }}" width="100%">
-	        </a>
-	        <figcaption>
-	            Advertising
-	        </figcaption>
-	    </figure>
-	</div>
+	<?php $advert = $adverts[0] ?>
+	@include("adverts.partials.letterbox")
 @endif
 
 <section class="pageSection">

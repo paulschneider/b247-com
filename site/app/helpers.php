@@ -31,6 +31,16 @@ function logApiCall($endpoint)
 	$view_log->addInfo($endpoint);
 }
 
+function clog($data)
+{
+	$logFile = 'console.log';
+
+	$view_log = new Logger('View Logs');
+	$view_log->pushHandler(new StreamHandler(storage_path().'/logs/'.$logFile, Logger::INFO));
+
+	$view_log->addInfo($data);	
+}
+
 function userIsAuthenticated()
 {
     if( array_key_exists('accessKey', getallheaders()) || Session::has('user.accessKey'))
@@ -276,7 +286,8 @@ function assetPath()
 
 function baseUrl()
 {
-	return URL::to('/').'/';
+	//return URL::to('/').'/';
+	return URL::to('/');
 }
 
 function current_url()

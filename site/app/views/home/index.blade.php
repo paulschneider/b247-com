@@ -192,7 +192,7 @@
 
 						@foreach($feed['articles'] AS $article)
 							<?php $i += displayStyle($article) ?>
-							<div class="articleListItem <?php echo getTheme($article) ?> column  <?php echo $s == 1 ? 'artColFirst' : '' ?> <?php echo $i == 3 ? 'artColLast' : '' ?> <?php echo displayStyle($article) == 2 ? 'artCol-2-3' : 'artCol-1-3' ?>">
+							<div class="articleListItem column {{ getTheme($article) }} {{ $s == 1 ? 'artColFirst' : '' }} {{ $i == 3 ? 'artColLast' : '' }} {{ displayStyle($article) == 2 ? 'artCol-2-3' : 'artCol-1-3' }} ">
 								@if( $article['isAdvert'] )
 									<div class="articleListBlockAdvert advert">
 										<figure>
@@ -211,26 +211,40 @@
 									?>
 
 									<a href="{{ $subChannel->path }}" class="articleListSubChannel">{{ $subChannel->name }}</a>
-									<div class="articleListSynopsis">
-										<div class="articleListImage">											
-											<a href="{{ $article['path'] }}">
-												@if( isset($article['media']['filepath']) )
-													<img alt="{{ $article['media']['alt'] }}" src="{{ $article['media']['filepath'] }}" />
-												@endif
-											</a>
-											<a href="{{ $category->path }}" class="articleListCategories">{{ $category->name }}</a>											
-										</div>
-										<div class="articleListContent">
-											<a href="{{ $subChannel->path }}" class="articleListSubChannel">{{ $subChannel->name }}</a> 
-											<a class="articleListTitle" href="{{ $article['path'] }}">{{ $article['title'] }}</a>
-
-											@if(isset($article['event']))
-												<p class="articleListDetails">{{ $article['event']['venue']['name'] }}, from &pound;{{ $article['event']['details']['price'] }}</p>
-											@endif
-											<p class="articleListSummary">{{ $article['subHeading'] }}</p>
-											<a href="{{ $category->path }}" class="articleListCategories">{{ $category->name }}</a>
-										</div>
-									</div>
+									@if( displayStyle($article) == 2)
+		                                <div class="articleListStandOut">
+		                                    <div class="articleListImage">
+		                                        <div class="articleListStandOutContent">
+		                                            <a href="{{ baseUrl().$article['path'] }}" class="articleListTitle">{{ $article['title'] }}</a>
+		                                            <p class="articleListSummary">{{ $article['subHeading'] }}</p>
+		                                        </div>
+		                                        <div class="articleListStandOutImage">
+		                                            <a href="{{ baseUrl().$article['path'] }}">
+		                                                @if( isset($article['media']) and !empty($article['media']) )
+		                                                    <img alt="{{ $article['media']['alt'] }}" src="{{ $article['media']['filepath'] }}" />
+		                                                @endif
+		                                            </a>
+		                                            <a href="{{ $category->path }}" class="articleListCategories">{{ $category->name }}</a>
+		                                        </div>
+		                                    </div>
+		                                </div>
+		                            @else
+		                                <div class="articleListSynopsis">
+		                                    <div class="articleListImage">
+		                                        <a href="{{ baseUrl().$article['path'] }}">
+		                                            @if( isset($article['media']) and !empty($article['media']) )
+		                                                <img alt="{{ $article['media']['alt'] }}" src="{{ $article['media']['filepath'] }}" />
+		                                            @endif
+		                                        </a>
+		                                        <a href="{{ $category->path }}" class="articleListCategories">{{ $category->name }}</a>
+		                                    </div>
+		                                    <div class="articleListContent">
+		                                        <a class="articleListTitle" href="{{ baseUrl().$article['path'] }}">{{ $article['title'] }}</a>
+		                                        <p class="articleListSummary">{{ $article['subHeading'] }}</p>
+		                                        <a href="{{ $category->path }}" class="articleListCategories">{{ $category->name }}</a>
+		                                    </div>
+		                                </div>
+		                            @endif
 								@endif														
 							</div> 
 

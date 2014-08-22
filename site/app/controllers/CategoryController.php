@@ -2,33 +2,33 @@
 
 Class CategoryController extends BaseController {
 
-	public function show($channel, $subChannel, $category)
+	public function show($channel, $subChannel, $category, $page = 1)
 	{
-		$response = App::make("ApiClient")->get("category/$category/articles", ['subChannel' => $subChannel]);
+		$response = App::make("ApiClient")->get("category/$category/articles", ['subChannel' => $subChannel, 'page' => $page]);
 
 		if($response['success'])
 		{
 			$data = $response['success']['data'];
 
-			# Push the apps nav into the data array which we'll pass to the view
-			$data['nav'] = getApplicationNav();
-
 			# the category being viewed now
 			$data['category'] = $category;
 
 			# grab any subChannels so we can create a sub-nav 
-			$data['subChannels'] = getChannelSubChannels($data['nav'], $channel);
+			$data['subChannels'] = getChannelSubChannels(getApplicationNav(), $channel);
+
+			# the channel/sub-channel/category combination we used to get here
+			$data['route'] = $channel .'/'. $subChannel .'/'. $category;
 
 			# we need to work out what type of page to display based on the channel type (e.g listing, promotion, directory or article)
 			$channelType = getChannelType($data['channel']);
 
+			# if there is a map object then we will be showing a map
 			if( isset($data['map']) ) {
 				$data['mapItems'] = json_encode($data['map']);	
-			}
-			
-			$data['apiKey'] = Config::get('googlemaps.ApiKey');
+				$data['apiKey'] = Config::get('googlemaps.ApiKey');
+			}		
 
-			// we don't know what type of data we've had returned by the API so just throw it all at the view and let it decide what to use
+			# we don't know what type of data we've had returned by the API so just throw it all at the view and let it decide what to use
 			return View::make("categories.{$channelType}", $data);
 		}
 	}	

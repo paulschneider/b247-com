@@ -157,3 +157,5 @@
     @include('articles.partials.related')
 
 </article>
+
+@include("articles.comments")

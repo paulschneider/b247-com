@@ -32,7 +32,7 @@
             <a href="#">About us</a>
           </li>
           <li>
-            <a href="#">Contact us</a>
+            <a href="{{ baseUrl() }}/contact-us">Contact us</a>
           </li>
         </ul>
       </nav>

@@ -10,11 +10,12 @@
 			<div class="featureList col-16-20 tabCol-20-20 colFirst colLast">
 
               <?php $counter = 1 ?>
+              
               @foreach( $features AS $feature )
 
               	@if( $counter == 1 )
 					<div class="featureListItemStandOut">
-						<a href="{{ $feature['assignment']['channel']['path'] }}" class="featureListLink">
+						<a href="{{ $feature['path'] }}" class="featureListLink">
 							<span class="featureListChannel">
 								{{ $feature['assignment']['channel']['name'] }}
 							</span>
@@ -43,7 +44,7 @@
 					</div>
               	@else
 					<div class="featureListItem">
-						<a href="#" class="featureListLink">
+						<a href="{{ $feature['path'] }}" class="featureListLink">
 							<div class="featureListContent">
 								<h1 class="featureListTitle">{{ $feature['title'] }}</h1>
 							</div>

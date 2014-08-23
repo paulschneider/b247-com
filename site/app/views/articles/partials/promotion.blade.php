@@ -64,4 +64,4 @@
 
 @include('articles.partials.horizontal-related')
 
-@include("articles.comments");
+@include("articles.comments")

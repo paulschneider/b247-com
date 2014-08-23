@@ -23,3 +23,8 @@
 	width: 75%;
 	float: none;
 }
+
+/** CONTACT US **/
+section#contact-form textarea {
+	width: 100%;
+}

@@ -19,9 +19,9 @@
       <li>
         @if( Session::has('user') )
             <?php $user = Session::get('user') ?>
-            <a href="{{ baseUrl() }}profile">{{ $user['firstName'] .' '. $user['lastName'] }} <span class="icoProfile"></span></a>
+            <a href="{{ baseUrl() }}/profile">{{ $user['firstName'] .' '. $user['lastName'] }} <span class="icoProfile"></span></a>
         @else
-            <a href="{{ baseUrl() }}sign-up">Sign in/register <span class="icoProfile"></span></a>
+            <a href="{{ baseUrl() }}/sign-up">Sign in/register <span class="icoProfile"></span></a>
         @endif
         
       </li>

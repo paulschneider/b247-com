@@ -48,4 +48,4 @@
 
 @include("articles.partials._global.horizontal-related")
 
-@include("articles.comments")
+@include("articles.partials._global.comments")

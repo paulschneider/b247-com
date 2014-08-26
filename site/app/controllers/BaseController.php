@@ -9,6 +9,8 @@ class BaseController extends Controller {
 		{
 		    $view->with('nav', getApplicationNav());
 		});
+
+		//View::share('key', $data);
 	}
 
 	/**

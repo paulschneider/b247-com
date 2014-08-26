@@ -50,6 +50,7 @@ Route::group(array('before' => 'recordPevious'), function(){
 	|
 	*/
 	Route::get('contact-us', [ 'as' => 'contact-us', 'uses' => 'ContactController@showContactForm' ]);
+	Route::post('contact-us', [ 'as' => 'contact-us', 'uses' => 'ContactController@submitNewEnquiry' ]);
 	/*
 	|--------------------------------------------------------------------------
 	| Register / Log-in / Profile

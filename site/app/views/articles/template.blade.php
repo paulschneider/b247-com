@@ -4,7 +4,7 @@
 
 @section('content')
 
-@include("articles.partials.{$channelType}")
+@include("articles.partials.{$channelType}.index")
 
 @endsection
 

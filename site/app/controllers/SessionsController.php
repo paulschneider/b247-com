@@ -37,7 +37,7 @@ Class SessionsController extends BaseController {
 	{
 		# make the call to the API
 		$response = App::make('ApiClient')->post('login', Input::only('email', 'password'));
-		
+
 		# if the user was authenticated
 		if(isset($response['success']))
 		{
@@ -50,6 +50,10 @@ Class SessionsController extends BaseController {
 
 			# and show the homepage
 			return Redirect::route('profile');	
+		}
+		# auth failed. return to the log in screen and display an error
+		else { 
+			return Redirect::to('login')->withErrors(getErrorMessage($response), 'message');
 		}
 	}	
 
@@ -68,17 +72,17 @@ Class SessionsController extends BaseController {
 		{
 			User::startSession($response['success']['data']['user']);
 
+			# if we were asked to redirect back to a specific page
 			if(Input::get('redirectBack')) {
 				return Redirect::route('profile');				
 			}
 
+			# show the user profile screen
 			return Redirect::route('profile');
 		}
-		else
-		{
-			$errors = $response['error']['data']['errors'];
-
-			return Redirect::back()->withErrors($errors);
+		# there was a problem registering the user
+		else {
+			return Redirect::to('signup')->withErrors(getErrors($response), 'register');
 		}
 	}
 

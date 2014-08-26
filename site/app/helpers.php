@@ -1,9 +1,23 @@
 <?php
 use Carbon\Carbon;
 
+function getErrorMessage($data)
+{
+	return $data['error']['data']['public'];
+}
+
+function getErrors($data)
+{
+	return $data['error']['data']['errors'];
+}
+
 function isError($item, $errors)
 {
-	return array_key_exists($item, $errors);
+	if(is_array($errors) && count($errors) > 0) {
+		return array_key_exists($item, $errors);	
+	}
+
+	return false;	
 }
 
 function reformatErrors($errors)

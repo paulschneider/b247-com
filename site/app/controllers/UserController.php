@@ -27,6 +27,11 @@ Class UserController extends BaseController {
 		return View::make('user.profile', compact('user'));
 	}
 
+	/**
+	 * update an existing profile with new user input
+	 * 
+	 * @return Redirect
+	 */
 	public function storeProfile()
 	{
 		$input = Input::all();

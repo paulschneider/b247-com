@@ -9,7 +9,20 @@ Class SessionsController extends BaseController {
 	 */
 	public function showRegistration()
 	{
-		return View::make('register.index');
+		# error vars, something went wrong!
+		if(Session::has('registration-errors')) {
+			$errors = Session::get('registration-errors')['errors'];
+			$message = Session::get('registration-errors')['public'];
+			$messageClass = "danger";
+
+			# grab the old form data
+			$input = Input::old();
+		}
+
+		# there are two forms on the page, this is a simple way of targetting them
+		$form = "registration";
+
+		return View::make('register.index', compact('errors', 'message', 'messageClass', 'input', 'form'));
 	}
 
 	/**
@@ -21,11 +34,24 @@ Class SessionsController extends BaseController {
 	{
 		$redirect = null;
 
+		# error vars, something went wrong!
+		if(Session::has('login-errors')) {
+			$errors = Session::get('login-errors')['errors'];
+			$message = Session::get('login-errors')['public'];
+			$messageClass = "danger";
+
+			# grab the old form data
+			$input = Input::old();
+		}
+
 		if(Session::has('previousPage')) {
 			$redirect = Session::get('previousPage');
 		}
 
-		return View::make('register.index', compact('redirect'));
+		# there are two forms on the page, this is a simple way of targetting them
+		$form = "login";
+
+		return View::make('register.index', compact('redirect', 'form', 'errors', 'message', 'messageClass'));
 	}
 
 	/**
@@ -52,8 +78,16 @@ Class SessionsController extends BaseController {
 			return Redirect::route('profile');	
 		}
 		# auth failed. return to the log in screen and display an error
-		else { 
-			return Redirect::to('login')->withErrors(getErrorMessage($response), 'message');
+		else 
+		{ 
+			# save the API response to some flash data
+			Session::flash('login-errors', getErrors($response));
+
+			# also flash the input so we can replay it out onto the reg form again
+			Input::flash();
+
+			# ... and show the log in page again
+			return Redirect::to('login');
 		}
 	}	
 
@@ -82,7 +116,14 @@ Class SessionsController extends BaseController {
 		}
 		# there was a problem registering the user
 		else {
-			return Redirect::to('signup')->withErrors(getErrors($response), 'register');
+			# save the API response to some flash data
+			Session::flash('registration-errors', getErrors($response));
+
+			# also flash the input so we can replay it out onto the reg form again
+			Input::flash();
+
+			# ... and show the sign up form again
+			return Redirect::to('sign-up');
 		}
 	}
 

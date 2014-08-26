@@ -8,7 +8,7 @@ function getErrorMessage($data)
 
 function getErrors($data)
 {
-	return $data['error']['data']['errors'];
+	return $data['error']['data'];
 }
 
 function isError($item, $errors)

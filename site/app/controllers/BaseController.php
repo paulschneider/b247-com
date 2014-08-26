@@ -10,7 +10,9 @@ class BaseController extends Controller {
 		    $view->with('nav', getApplicationNav());
 		});
 
-		//View::share('key', $data);
+		View::share('errors', null);
+		View::share('message', null);
+		View::share('messageClass', null);
 	}
 
 	/**

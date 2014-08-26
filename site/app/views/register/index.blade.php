@@ -20,22 +20,22 @@
 					        <h1 class="primaryHeader">Log in</h1>
 					    </header>
 
-	                    <div class="formRow cf {{ isset($errors->login->email) ? 'formRowError' : ''  }}">
+	                    <div class="formRow cf {{ isError('email', $errors) && $form == 'login' ? 'formRowError' : ''  }}">
 	                        <label for="email">Email Address</label>
 	                        <div class="formElement">
 	                            <input id="email" name="email" type="text" value="" class="text" />
-	                            @if(isset($errors->login->email))
-	                                <span class="formError">{{ $errors->login->email }}</span>
+	                            @if(isError('email', $errors) && $form == 'login')
+	                                <span class="formError">{{ $errors['email'] }}</span>
 	                            @endif
 	                        </div>
 	                    </div>
 
-	                    <div class="formRow cf {{ isset($errors->login->password) ? 'formRowError' : ''  }}">
+	                    <div class="formRow cf {{ isError('password', $errors) && $form == 'login' ? 'formRowError' : '' }}">
 	                        <label for="password">Password</label>
 	                        <div class="formElement">
 	                            <input id="password" name="password" type="password" value="" class="text" />
-	                            @if(isset($errors->login->password))
-	                                <span class="formError">{{ $errors->login->password }}</span>
+	                            @if(isError('password', $errors) && $form == 'login')
+	                                <span class="formError">{{ $errors['password'] }}</span>
 	                            @endif
 	                        </div>
 	                    </div>
@@ -60,32 +60,32 @@
 					        <h1 class="primaryHeader">Register</h1>
 					    </header>
 
-						<div class="formRow cf {{ isset($errors->register->firstName) ? 'formRowError' : ''  }}">
+						<div class="formRow cf {{ isError('firstName', $errors) && $form == 'registration' ? 'formRowError' : '' }}">
 				            <label for="firstName">First name</label>
 				            <div class="formElement">
 				                <input id="firstName" name="firstName" type="text" value="" class="text" />
-				                @if(isset($errors->register->firstName'))
-				                    <span class="formError">{{ $errors->register->firstName }}</span>
+				                @if(isError('firstName', $errors) && $form == 'registration')
+				                    <span class="formError">{{ $errors['firstName'] }}</span>
 				                @endif
 				            </div>
 				        </div>
 
-				        <div class="formRow cf {{ isset($errors->register->lastName) ? 'formRowError' : ''  }}">
+				        <div class="formRow cf {{ isError('lastName', $errors) && $form == 'registration' ? 'formRowError' : '' }}">
 				            <label for="lastName">Surname</label>
 				            <div class="formElement">
 				                <input id="lastName" name="lastName" type="text" value="" class="text" />
-				                @if(isset($errors->register->lastName))
-				                    <span class="formError">{{ $errors->register->lastName }}</span>
+				                @if(isError('lastName', $errors) && $form == 'registration')
+				                    <span class="formError">{{ $errors['lastName'] }}</span>
 				                @endif
 				            </div>
 				        </div>
 
-				        <div class="formRow cf {{ isset($errors->register->email) ? 'formRowError' : ''  }}">
+				        <div class="formRow cf {{ isError('email', $errors) && $form == 'registration' ? 'formRowError' : '' }}">
 				            <label for="email">Email</label>
 				            <div class="formElement">
 				                <input id="email" name="email" type="email" value="" class="text" />
-				                @if(isset($errors->register->email))
-				                    <span class="formError">{{ $errors->register->email }}</span>
+				                @if(isError('email', $errors) && $form == 'registration')
+				                    <span class="formError">{{ $errors['email'] }}</span>
 				                @endif
 				            </div>
 				        </div>

@@ -2,6 +2,11 @@
 
 Class ContactController extends BaseController {
 
+	/**
+	 * display the contact enquiry form
+	 * 
+	 * @return View
+	 */
 	public function showContactForm()
 	{
 		$errors = null;
@@ -31,8 +36,14 @@ Class ContactController extends BaseController {
 		return View::make('contact.index', compact('message', 'errors', 'messageClass', 'input'));
 	}
 
+	/**
+	 * process the submission of a new contact enquiry
+	 * 
+	 * @return Redirect
+	 */
 	public function submitNewEnquiry()
 	{
+		# POST the submitted data to the API
 		$response = App::make("ApiClient")->post("contact-enquiry", Input::all());
 
 		# if we successfully submit a new enquiry

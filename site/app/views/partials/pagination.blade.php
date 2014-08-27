@@ -6,7 +6,7 @@
                 @if(is_null($pagination['prevPage']))
                     <span class="primaryButton disabledButton fl">< Previous</span>
                 @else
-                    <a class="primaryButton fl" href="{{ baseUrl().$route }}/page/{{ $pagination['prevPage'] }}">< Previous</a>
+                    <a class="primaryButton fl" href="{{ baseUrl().'/'.$route }}/page/{{ $pagination['prevPage'] }}">< Previous</a>
                 @endif
                 
                 Page {{ $pagination['currentPage'] }}
@@ -14,7 +14,7 @@
                 @if( $pagination['currentPage'] == $pagination['totalPages'] )
                     <span class="primaryButton disabledButton fr">Next ></span>
                 @else
-                    <a class="primaryButton fr" href="{{ baseUrl().$route }}/page/{{ $pagination['nextPage'] }}">Next ></a>
+                    <a class="primaryButton fr" href="{{ baseUrl().'/'.$route }}/page/{{ $pagination['nextPage'] }}">Next ></a>
                 @endif            
             </div>
         </div>

@@ -131,7 +131,8 @@ Class SessionsController extends BaseController {
 			return Redirect::route('profile');
 		}
 		# there was a problem registering the user
-		else {
+		else 
+		{
 			# save the API response to some flash data
 			Session::flash('registration-errors', getErrors($response));
 
@@ -154,5 +155,68 @@ Class SessionsController extends BaseController {
 		Session::regenerate();
 
 		return Redirect::home();
+	}
+
+	/**
+	 * show the template for a user to request a password reset
+	 * 
+	 * @return View
+	 */
+	public function showPasswordResetForm()
+	{
+		# if we get here then forget the redirect value as the user will presumably always want to go back to 
+		# the log-in screen after requesting a password reset
+		Session::forget('redirect');
+
+		# the enquiry submission went well
+		if(Session::has('success')) {
+			# set some success vars
+			$message = Session::get('success')['public'];
+			$messageClass = "success";
+		}
+
+		# error vars, something went wrong!
+		if(Session::has('reset-errors')) 
+		{	
+			# some error responses come back without a validation errors array
+			if(isset(Session::get('reset-errors')['errors'])) {
+				$errors = reformatErrors(Session::get('reset-errors')['errors']);
+			}
+			
+			$message = Session::get('reset-errors')['public'];
+			$messageClass = "danger";
+
+			# grab the old form data
+			$input = Input::old();
+		}
+
+		return View::make('auth.password-reset', compact('errors', 'message', 'messageClass', 'input'));
+	}
+	/**
+	 * Make an API call to request a new password be sent to the user
+	 * 
+	 * @return Redirect
+	 */
+	public function resetUserPassword()
+	{
+		# make the call to the API
+		$response = App::make('ApiClient')->post('user/password?forgotten=true', Input::only('email'));	
+
+		# if the call was successful we'll want to give some feedback to the user
+		if(isset($response['success']))
+		{
+			Session::flash('success', $response['success']['data']);
+		}
+		# similarly if it failed, but this time also show the previous form data
+		else {
+			# save the API response to some flash data
+			Session::flash('reset-errors', getErrors($response));
+
+			# also flash the input so we can replay it out onto the reg form again
+			Input::flash();
+		}		
+
+		# ... and show the reset form again
+		return Redirect::to('forgotten-password');
 	}
 }

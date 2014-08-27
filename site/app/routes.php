@@ -21,6 +21,8 @@ Route::group(array('before' => 'recordPevious'), function(){
 	Route::post('login/auth', 'SessionsController@authenticate');
 	Route::get('logout', [ 'as' => 'logout', 'uses' => 'SessionsController@logUserOut' ]);
 	Route::get('login', [ 'as' => 'login', 'uses' => 'SessionsController@showLogIn' ]);
+	Route::get('forgotten-password', [ 'as' => 'password', 'uses' => 'SessionsController@showPasswordResetForm' ]);
+	Route::post('password/reset', [ 'as' => 'resetPassword', 'uses' => 'SessionsController@resetUserPassword' ]);
 
 	/*
 	|--------------------------------------------------------------------------

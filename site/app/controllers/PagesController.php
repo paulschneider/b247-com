@@ -21,4 +21,14 @@ Class PagesController extends BaseController {
 	{
 		return View::make("statics/about-us");	
 	}
+
+	/**
+	 * show the advertise page
+	 * 
+	 * @return View
+	 */
+	public function advertise()
+	{
+		return View::make("statics/advertise");	
+	}
 }

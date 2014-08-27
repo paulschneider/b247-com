@@ -1,25 +1,17 @@
 @if (isset($adverts[0]))
-    <div class="advert">
-        <figure>
-            <a href="{{ $adverts[0]['url'] }}">
-                <img alt="{{ $adverts[0]['media']['alt'] }}" src="{{ $adverts[0]['media']['filepath'] }}" width="100%">
-            </a>
-            <figcaption>
-                Advertising
-            </figcaption>
-        </figure>
-    </div>
+    <?php $advert = $adverts[0] ?>
+    @include("adverts.partials.letterbox")
 @endif
           
 <article class="pageSection cmsContent">
     <!-- Header -->
     @if (! $isMobile) <!-- only show for the web version -->
-        @include('articles.partials.header')
+        @include('articles.partials._global.header')
     @endif
     
     <div class="grid">
         <div class="column col-12-20 colFirst tabCol-18-20 tabColFirst mobCol-20-20">
-            @include('articles.partials.gallery.top')        
+            @include('articles.partials._global.gallery-top')        
 
         <!-- Header -->
         <div class="fr col-75 mobCol-18-20 mobColLast">
@@ -43,12 +35,14 @@
         
         <!-- Lower Carousel -->   
 
-        @include('articles.partials.gallery.bottom')
+        @include('articles.partials._global.gallery-bottom')        
                    
     </div>
 
     <!-- Related Articles --> 
 
-    @include('articles.partials.related')
+    @include('articles.partials._global.related')
 
 </article>
+
+@include("articles.partials._global.comments")

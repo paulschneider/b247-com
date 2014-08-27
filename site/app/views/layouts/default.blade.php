@@ -60,6 +60,7 @@
     <link rel="apple-touch-icon-precomposed" href="{{ assetPath() }}i/icons/favicon-57.png">
     
 <!-- Files -->
+    <link href="//netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" href="{{ assetPath() }}c/live.css">
     <link rel="stylesheet" href="{{ assetPath() }}c/content.css">
     <link rel="stylesheet" href="{{ assetPath() }}c/additional.css">
@@ -69,10 +70,17 @@
   <body class="{{ isset($activeChannel) ? themeClass($activeChannel) : 'homePage' }}">
 
     <div id="pageWrapper">
-        <div id="outerContainer">      
-
+        <div id="outerContainer"> 
             @yield('header')
             <main id="main" role="main">
+
+                @if(isset($message) and !is_null($message))
+                    <div class="alert alert-{{ $messageClass }} alert-dismissible" role="alert">
+                        <button type="button" class="close" data-dismiss="alert"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+                        {{ $message }}
+                    </div>
+                @endif
+
                 @yield('content')
             </main>
             @yield('footer')
@@ -83,6 +91,7 @@
         <a class="backToTop" href="#top"><span>Back to top</span></a>
     
         <script src="//ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
+        <script src="//netdna.bootstrapcdn.com/bootstrap/3.1.1/js/bootstrap.min.js"></script>
         <script>window.jQuery || document.write('<script src="{{ assetPath() }}j/vendor/jquery-1.10.2.min.js"><\/script>')</script>
         <script src="{{ assetPath() }}j/live.min.js"></script>
     </body>

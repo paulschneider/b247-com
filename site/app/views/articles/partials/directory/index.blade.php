@@ -44,29 +44,21 @@
     </script>
 @endif
 
-@if( isset($adverts[0]) )
-    <div class="advert">
-        <figure>
-            <a href="{{ $adverts[0]['url'] }}">
-                <img alt="{{ $adverts[0]['media']['alt'] }}" src="{{ $adverts[0]['media']['filepath'] }}" width="100%">
-            </a>
-            <figcaption>
-                Advertising
-            </figcaption>
-        </figure>
-    </div>
+@if (isset($adverts[0]))
+    <?php $advert = $adverts[0] ?>
+    @include("adverts.partials.letterbox")
 @endif
 
 <article class="pageSection cmsContent">
     <!-- Header -->
     @if (! $isMobile) <!-- only show for the web version -->
-        @include('articles.partials.header')
+        @include("articles.partials._global.header")
     @endif
 
     <div class="grid">
     <!-- Top Carousel -->
         <div class="column col-12-20 colFirst tabCol-18-20 tabColFirst mobCol-20-20">
-            @include('articles.partials.gallery.top') 
+            @include('articles.partials._global.gallery-top')   
 
         <aside class="column col-25 mobCol-18-20 mobColFirst">
             <h5>Location</h5>
@@ -125,17 +117,9 @@
         </div>
 
         <!-- Advert --> 
-        @if( isset($adverts[1]) )  
-            <div class="advert">
-                <figure>
-                    <a href="{{ $adverts[1]['url'] }}">
-                        <img alt="{{ $adverts[1]['media']['alt'] }}" src="{{ $adverts[1]['media']['filepath'] }}" width="100%">
-                    </a>
-                    <figcaption>
-                        Advertising
-                    </figcaption>
-                </figure>
-            </div>
+       @if (isset($adverts[1]))
+            <?php $advert = $adverts[1] ?>
+            @include("adverts.partials.letterbox")
         @endif
 
         <!-- Main Content Area (continued) -->   
@@ -148,12 +132,14 @@
 
         <!-- Lower Carousel -->   
 
-        @include('articles.partials.gallery.bottom')
+        @include("articles.partials._global.gallery-bottom")
 
     </div>
 
     <!-- Related Articles --> 
 
-    @include('articles.partials.related')
+    @include("articles.partials._global.related")
 
 </article>
+
+@include("articles.partials._global.comments")

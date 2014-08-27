@@ -1,9 +1,3 @@
-@if($errors->any())
-    <?php $errors = reformatErrors($errors->getMessages()[0]) ?>
-@else
-    <?php $errors = [] ?>
-@endif
-
 @extends('layouts.default')
 
 @include('layouts.header')

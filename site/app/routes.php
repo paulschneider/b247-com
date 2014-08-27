@@ -3,26 +3,6 @@ Route::group(array('before' => 'recordPevious'), function(){
 
 	/*
 	|--------------------------------------------------------------------------
-	| Application Routes
-	|--------------------------------------------------------------------------
-	|
-	| Here is where you can register all of the routes for an application.
-	| It's a breeze. Simply tell Laravel the URIs it should respond to
-	| and give it the Closure to execute when that URI is requested.
-	|
-	*/
-
-	/*
-	|--------------------------------------------------------------------------
-	| Filter all routes first and save a variable in case we need to go 
-	| back to a specific page (e.g after log in)
-	|--------------------------------------------------------------------------
-	|
-	|
-	*/
-
-	/*
-	|--------------------------------------------------------------------------
 	| The B247 API calls this route to get the markup for articles to render 
 	| within mobile devices and tables
 	|--------------------------------------------------------------------------
@@ -44,6 +24,15 @@ Route::group(array('before' => 'recordPevious'), function(){
 
 	/*
 	|--------------------------------------------------------------------------
+	| Contact Us
+	|--------------------------------------------------------------------------
+	|
+	|
+	*/
+	Route::get('contact-us', [ 'as' => 'contact-us', 'uses' => 'ContactController@showContactForm' ]);
+	Route::post('contact-us', [ 'as' => 'contact-us', 'uses' => 'ContactController@submitNewEnquiry' ]);
+	/*
+	|--------------------------------------------------------------------------
 	| Register / Log-in / Profile
 	|--------------------------------------------------------------------------
 	|
@@ -63,6 +52,28 @@ Route::group(array('before' => 'recordPevious'), function(){
 	*/
 	Route::get('promotion/redeem/voucher/{code}', 'PromotionsController@redeemPromotion');
 	Route::post('promotion/competition/enter', 'PromotionsController@competitionEntry');
+
+	/*
+	|--------------------------------------------------------------------------
+	| Search
+	|--------------------------------------------------------------------------
+	|
+	|
+	*/
+	Route::get('search', 'SearchController@showResultsPage');
+	Route::get('search/page/{page}', 'SearchController@search');
+	Route::post('search', 'SearchController@search');
+
+	/*
+	|--------------------------------------------------------------------------
+	| Statics
+	|--------------------------------------------------------------------------
+	|
+	|
+	*/
+	Route::get('download-the-app', 'PagesController@appDownload');
+	Route::get('about-us', 'PagesController@aboutUs');
+
 
 	/*
 	|--------------------------------------------------------------------------
@@ -94,7 +105,7 @@ Route::group(array('before' => 'recordPevious'), function(){
 	*/
 	Route::get('{channel}/{subChannel}/{category}', 'CategoryController@show');
 	Route::get('{channel}/{subChannel}/{category}/page/{page}', 'CategoryController@show');
-	Route::get('{channel}/{subChannel}/{category}/{article}', 'ArticleController@show');
+	Route::get('{channel}/{subChannel}/{category}/{article}', 'ArticleController@show');	
 
 	/*
 	|--------------------------------------------------------------------------

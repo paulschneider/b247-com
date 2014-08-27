@@ -23,3 +23,18 @@
 	width: 75%;
 	float: none;
 }
+
+/** CONTACT US **/
+section#contact-form textarea {
+	width: 100%;
+}
+
+/** PAGINATION **/
+.pagination {
+	width: 100%;
+}
+
+/** SEARCH RESULTS **/
+.searchContainer .primaryButton {
+	float: none;
+}

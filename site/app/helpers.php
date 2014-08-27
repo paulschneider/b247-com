@@ -1,11 +1,31 @@
 <?php
 use Carbon\Carbon;
 
-function isError($item, $errors)
+function getErrorMessage($data)
 {
-	return array_key_exists($item, $errors);
+	return $data['error']['data']['public'];
 }
 
+function getErrors($data)
+{
+	return $data['error']['data'];
+}
+
+function isError($item, $errors)
+{
+	if(is_array($errors) && count($errors) > 0) {
+		return array_key_exists($item, $errors);	
+	}
+
+	return false;	
+}
+
+/**
+ * Turn the "complex" error array returned by the API into a simple k-v-p array
+ * 
+ * @param  array $errors [an array of error arrays]
+ * @return array $tmp
+ */
 function reformatErrors($errors)
 {
 	$tmp = [];

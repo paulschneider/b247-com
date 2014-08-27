@@ -22,5 +22,9 @@
     </form> 
 
 @else
-    <a href="{{ Route::to('login') }}">Log-In to get the voucher!</a>
+    @if ( $isMobile) )
+        <a href="b247://signin">Log-In to enter this competition!</a>
+    @else
+        <a href="{{ route('login') }}">Log-In to enter this competition!</a>
+    @endif    
 @endif

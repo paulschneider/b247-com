@@ -1,21 +1,13 @@
 @if (isset($adverts[0]))
-    <div class="advert">
-        <figure>
-            <a href="{{ $adverts[0]['url'] }}">
-                <img alt="{{ $adverts[0]['media']['alt'] }}" src="{{ $adverts[0]['media']['filepath'] }}" width="100%">
-            </a>
-            <figcaption>
-                Advertising
-            </figcaption>
-        </figure>
-    </div>
+    <?php $advert = $adverts[0] ?>
+    @include("adverts.partials.letterbox")
 @endif
 
 <article class="pageSection cmsContent">
     
     <!-- Header -->
     @if (! $isMobile) <!-- only show for the web version -->
-        @include('articles.partials.header')
+       @include("articles.partials._global.header")
     @endif
     
     <div class="grid">
@@ -34,26 +26,18 @@
 
             <!-- there has to be a promotion attached to the article -->
             @if( isset($article['promotion'][0]['code']) )
-                @include('articles.partials.promotion-voucher')
+                @include("articles.partials.promotion.voucher")
             <!-- of a competition  -->
             @elseif( isset($article['competition'][0]['id']) )
-                 @include('articles.partials.promotion-competition')
+                 @include("articles.partials.promotion.competition")
             <!-- or we tell the user the voucher is unavailable at this time -->
             @else
                 <p><strong>This promotion is not currently available.</strong></p>
             @endif
 
-            @if( isset($adverts[1]) )
-                <div class="advert">
-                    <figure>
-                        <a href="{{ $adverts[1]['url'] }}">
-                            <img alt="{{ $adverts[1]['media']['alt'] }}" src="{{ $adverts[1]['media']['filepath'] }}" width="100%">
-                        </a>
-                        <figcaption>
-                            Advertising
-                        </figcaption>
-                    </figure>
-                </div>
+            @if (isset($adverts[1]))
+                <?php $advert = $adverts[1] ?>
+                @include("adverts.partials.letterbox")
             @endif
 
             {{ $article['bodyContinued'] }}
@@ -62,6 +46,6 @@
 
 <hr class="spacerUp">
 
-@include('articles.partials.horizontal-related')
+@include("articles.partials._global.horizontal-related")
 
-@include("articles.comments");
+@include("articles.partials._global.comments")

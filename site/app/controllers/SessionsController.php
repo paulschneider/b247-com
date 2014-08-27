@@ -9,7 +9,30 @@ Class SessionsController extends BaseController {
 	 */
 	public function showRegistration()
 	{
-		return View::make('register.index');
+		# if the user is already authenticated then they can't register and they can't log in
+		# so get them out of here.
+		if( userIsAuthenticated() ) {
+			return Redirect::to('profile');
+		}
+
+		# if we get here then forget the redirect value as the user has used the global sign in link
+		# and we won't need to take them anywhere specific after authentication
+		Session::forget('redirect');
+
+		# error vars, something went wrong!
+		if(Session::has('registration-errors')) {
+			$errors = reformatErrors(Session::get('registration-errors')['errors']);
+			$message = Session::get('registration-errors')['public'];
+			$messageClass = "danger";
+
+			# grab the old form data
+			$input = Input::old();
+		}
+
+		# there are two forms on the page, this is a simple way of targetting them
+		$form = "registration";
+
+		return View::make('register.index', compact('errors', 'message', 'messageClass', 'input', 'form'));
 	}
 
 	/**
@@ -21,11 +44,29 @@ Class SessionsController extends BaseController {
 	{
 		$redirect = null;
 
+		# error vars, something went wrong!
+		if(Session::has('login-errors')) {
+
+			# there might be specific validation errors
+			if(Session::has('login-errors')['errors']) {
+				$errors = reformatErrors(Session::get('login-errors')['errors']);	
+			}
+			
+			$message = Session::get('login-errors')['public'];
+			$messageClass = "danger";
+
+			# grab the old form data
+			$input = Input::old();
+		}
+
 		if(Session::has('previousPage')) {
 			$redirect = Session::get('previousPage');
 		}
 
-		return View::make('register.index', compact('redirect'));
+		# there are two forms on the page, this is a simple way of targetting them
+		$form = "login";
+
+		return View::make('register.index', compact('redirect', 'form', 'errors', 'message', 'messageClass'));
 	}
 
 	/**
@@ -37,10 +78,10 @@ Class SessionsController extends BaseController {
 	{
 		# make the call to the API
 		$response = App::make('ApiClient')->post('login', Input::only('email', 'password'));
-		
+
 		# if the user was authenticated
 		if(isset($response['success']))
-		{
+		{	
 			# save the returned user object to the session for later use
 			User::startSession($response['success']['data']['user']);
 
@@ -48,8 +89,21 @@ Class SessionsController extends BaseController {
 				return Redirect::to(Input::get('redirect'));
 			}
 
-			# and show the homepage
-			return Redirect::route('profile');	
+			# and show the profile page
+			return Redirect::to('profile');	
+		}
+		# auth failed. return to the log in screen and display an error
+		else 
+		{ 
+
+			# save the API response to some flash data
+			Session::flash('login-errors', getErrors($response));
+
+			# also flash the input so we can replay it out onto the reg form again
+			Input::flash();
+
+			# ... and show the log in page again
+			return Redirect::to('login');
 		}
 	}	
 
@@ -68,17 +122,24 @@ Class SessionsController extends BaseController {
 		{
 			User::startSession($response['success']['data']['user']);
 
+			# if we were asked to redirect back to a specific page
 			if(Input::get('redirectBack')) {
 				return Redirect::route('profile');				
 			}
 
+			# show the user profile screen
 			return Redirect::route('profile');
 		}
-		else
-		{
-			$errors = $response['error']['data']['errors'];
+		# there was a problem registering the user
+		else {
+			# save the API response to some flash data
+			Session::flash('registration-errors', getErrors($response));
 
-			return Redirect::back()->withErrors($errors);
+			# also flash the input so we can replay it out onto the reg form again
+			Input::flash();
+
+			# ... and show the sign up form again
+			return Redirect::to('sign-up');
 		}
 	}
 

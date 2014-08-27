@@ -48,7 +48,7 @@
           <a href="{{ baseUrl() }}/download-the-app">Download the app</a>
         </li>
         <li>
-          <a href="#">Advertise on B24/7</a>
+          <a href="{{ baseUrl() }}/advertise">Advertise on B24/7</a>
         </li>
       </ul>
       

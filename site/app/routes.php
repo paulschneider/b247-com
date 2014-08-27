@@ -73,6 +73,7 @@ Route::group(array('before' => 'recordPevious'), function(){
 	*/
 	Route::get('download-the-app', 'PagesController@appDownload');
 	Route::get('about-us', 'PagesController@aboutUs');
+	Route::get('advertise', 'PagesController@advertise');
 
 
 	/*

@@ -22,7 +22,7 @@
         <ul>
         @if( ! userIsAuthenticated() )            
             <li>
-                <a href="/log-in">Sign in</a>
+                <a href="/login">Sign in</a>
             </li>
             <li>
                 <a href="/sign-up">Register</a>

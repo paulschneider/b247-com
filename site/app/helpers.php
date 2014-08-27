@@ -20,6 +20,12 @@ function isError($item, $errors)
 	return false;	
 }
 
+/**
+ * Turn the "complex" error array returned by the API into a simple k-v-p array
+ * 
+ * @param  array $errors [an array of error arrays]
+ * @return array $tmp
+ */
 function reformatErrors($errors)
 {
 	$tmp = [];

@@ -7,7 +7,7 @@
     <nav class="footerNav column col-4-20 colFirst tabCol-6-20 tabColFirst mobCol-18-20 mobColFirst">
       <ul>
       	<li>
-          <a href="#" class="footerHome">Home</a>
+          <a href="{{ baseUrl() }}" class="footerHome">Home</a>
         </li>
       	@foreach( $nav AS $item )
 			<li class="{{ themeClass($item['sefName']) }}">
@@ -20,16 +20,22 @@
     <div class="footerSubNav column col-8-20 tabCol-12-20 tabColLast mobCol-18-20 mobColFirst">
       <nav>
         <ul>
-          <li>
-            <a href="#">Sign in</a>
-          </li>
-          <li>
-            <a href="#">Register</a>
-          </li>
+        @if( ! userIsAuthenticated() )            
+            <li>
+                <a href="/log-in">Sign in</a>
+            </li>
+            <li>
+                <a href="/sign-up">Register</a>
+            </li>
+        @else
+            <li>
+                <a href="/logout">Log Out</a>
+            </li>
+        @endif 
         </ul>
         <ul>
           <li>
-            <a href="#">About us</a>
+            <a href="{{ baseUrl() }}/about-us">About us</a>
           </li>
           <li>
             <a href="{{ baseUrl() }}/contact-us">Contact us</a>
@@ -39,7 +45,7 @@
       
       <ul class="footerMoreDetails">
         <li>
-          <a href="#">Download the app</a>
+          <a href="{{ baseUrl() }}/download-the-app">Download the app</a>
         </li>
         <li>
           <a href="#">Advertise on B24/7</a>

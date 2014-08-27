@@ -17,7 +17,7 @@ Class ContactController extends BaseController {
 		# there was an issue submitting the enquiry
 		if(Session::has('error')) {
 			# set some error vars
-			$errors = Session::get('error')['errors'];
+			$errors = reformatErrors(Session::get('error')['errors']);
 			$message = Session::get('error')['public'];
 			$messageClass = "danger";
 

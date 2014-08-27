@@ -16,33 +16,28 @@
     </nav>
     
     <ul class="toolsNav">
-      <li>
-        @if( Session::has('user') )
-            <?php $user = Session::get('user') ?>
-            <a href="{{ baseUrl() }}/profile">{{ $user['firstName'] .' '. $user['lastName'] }} <span class="icoProfile"></span></a>
-        @else
-            <a href="{{ baseUrl() }}/sign-up">Sign in/register <span class="icoProfile"></span></a>
-        @endif
-        
-      </li>
-      <li>
-        <a class="searchLink" href="#">Search <span class="icoSearch"></span></a>
-      </li>
+        <li>
+            @if( Session::has('user') )
+                <?php $user = Session::get('user') ?>
+                <a href="{{ baseUrl() }}/profile">{{ $user['firstName'] .' '. $user['lastName'] }} <span class="icoProfile"></span></a>
+            @else
+                <a href="{{ baseUrl() }}/sign-up">Sign in/register <span class="icoProfile"></span></a>
+            @endif        
+        </li>
+        <li>
+            <a class="searchLink" href="#">Search <span class="icoSearch"></span></a>
+        </li>
     </ul>
     
-    <form action="" method="post" class="searchContainer">
-      <input type="text" class="text" value="" placeholder="Search" name="search">
-      <input type="submit" class="primaryButton" value="Go">
-      <a class="searchClose icoSearchHide" href="#">Hide</a>
+    <form action="/search" method="post" class="searchContainer">
+        <input type="text" class="text" value="" placeholder="Search" name="search">
+        <input type="submit" class="primaryButton" value="Go">
+        <a class="searchClose icoSearchHide" href="#">Hide</a>
     </form>
 
-  </div>      
+    </div>      
 </header>    
 
 @include('layouts.partials.sub-nav')
-
-@if(Session::get('message'))
-    <h1>{{ Session::get('message') }}</h1>
-@endif
 
 @endsection

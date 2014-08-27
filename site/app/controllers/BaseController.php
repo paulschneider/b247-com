@@ -7,7 +7,13 @@ class BaseController extends Controller {
 		# Make sure all views have access to the application nav data
 		View::composer('*', function($view)
 		{
+			# all views need the nav, so grab it
 		    $view->with('nav', getApplicationNav());
+
+		    # when authenticated the user is saved to the session. Get the data
+			if(Session::has('user')) {
+				$view->with('user', Session::get('user'));
+			}
 		});
 
 		View::share('errors', null);

@@ -24,10 +24,7 @@ Class UserController extends BaseController {
 		if(Session::has('success')) {
 			# set some success vars
 			$message = Session::get('success')['public'];
-			$messageClass = "success";
-
-			# when authenticated the user is saved to the session. Get the data
-			$user = Session::get('user');
+			$messageClass = "success";			
 		}
 
 		# there was an issue submitting the enquiry
@@ -39,10 +36,10 @@ Class UserController extends BaseController {
 
 			# grab the old form data
 			$input = Input::old();
-		}	
+		}			
 
 		# send the data to the view and render!
-		return View::make('user.profile', compact('user', 'message', 'messageClass'));
+		return View::make('user.profile', compact('message', 'messageClass'));
 	}
 
 	/**

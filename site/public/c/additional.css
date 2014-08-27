@@ -38,3 +38,12 @@ section#contact-form textarea {
 .searchContainer .primaryButton {
 	float: none;
 }
+
+/** Password reset **/
+#password-reset input[type=submit] {
+	clear: none;
+}
+
+#password-reset .formAction {
+	margin-bottom: 25px;
+}

@@ -40,9 +40,12 @@
 	                        </div>
 	                    </div>
 
+	                    <p><a href="{{ baseUrl() }}/forgotten-password">I've forgotten my password</a></p>
+
 	                    <div class="formAction cf">
 	                        <input type="submit" class="primaryButton" value="Log-In" />
 	                    </div>
+	            	</div>
 	            </div>
             </fieldset>
 		</form>
@@ -96,9 +99,8 @@
 		            </div>
 		        </div>
 		    <fieldset>
-	</form>
-</div>
-	
+		</form>
+	</div>
 </section>
 @stop
 

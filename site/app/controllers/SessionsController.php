@@ -177,8 +177,12 @@ Class SessionsController extends BaseController {
 
 		# error vars, something went wrong!
 		if(Session::has('reset-errors')) 
-		{
-			$errors = reformatErrors(Session::get('reset-errors')['errors']);
+		{	
+			# some error responses come back without a validation errors array
+			if(isset(Session::get('reset-errors')['errors'])) {
+				$errors = reformatErrors(Session::get('reset-errors')['errors']);
+			}
+			
 			$message = Session::get('reset-errors')['public'];
 			$messageClass = "danger";
 
@@ -199,7 +203,7 @@ Class SessionsController extends BaseController {
 		$response = App::make('ApiClient')->post('user/password?forgotten=true', Input::only('email'));	
 
 		# if the call was successful we'll want to give some feedback to the user
-		if($response['success'])
+		if(isset($response['success']))
 		{
 			Session::flash('success', $response['success']['data']);
 		}

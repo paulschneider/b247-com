@@ -22,7 +22,11 @@ App::before(function($request)
 
 App::after(function($request, $response)
 {
-	//
+	App::missing(function($exception)
+	{
+		sd('missing');
+	    //return Response::view('errors.missing', array(), 404);
+	});
 });
 
 /*

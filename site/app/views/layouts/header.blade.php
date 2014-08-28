@@ -9,7 +9,7 @@
         <ul>
         @foreach( $nav AS $item )
 		    <li class="{{ themeClass($item['sefName']) }}">
-		      <a href="/{{ $item['sefName'] }}">{{ $item['name'] }}</a>
+		      <a href="{{ $item['path'] }}">{{ $item['name'] }}</a>
 		    </li>
         @endforeach
         </ul>

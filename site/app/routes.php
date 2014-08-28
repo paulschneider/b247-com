@@ -44,6 +44,8 @@ Route::group(array('before' => 'recordPevious'), function(){
 	Route::post('register/user', [ 'as' => 'register', 'uses' => 'SessionsController@registerNewUser' ]);
 	Route::get('profile', [ 'as' => 'profile', 'uses' => 'UserController@showProfile' ]); 
 	Route::post('profile', 'UserController@storeProfile'); 
+	Route::get('your-b247', 'UserController@showPreferences'); 
+	
 
 	/*
 	|--------------------------------------------------------------------------
@@ -85,10 +87,11 @@ Route::group(array('before' => 'recordPevious'), function(){
 	|
 	|
 	*/
-	Route::get('{channel}', 'ChannelController@showChannel');
-	Route::get('{channel}/{subChannel}', 'ChannelController@showSubChannel');
-	Route::get('{channel}/{subChannel}/page/{page}', 'ChannelController@showSubChannel')->where('page', '[0-9]+');
-		
+	Route::group(['prefix' => 'channel'], function() {
+		Route::get('{channel}', 'ChannelController@showChannel');
+		Route::get('{channel}/{subChannel}', 'ChannelController@showSubChannel');
+		Route::get('{channel}/{subChannel}/page/{page}', 'ChannelController@showSubChannel')->where('page', '[0-9]+');
+	});
 	/*
 	|--------------------------------------------------------------------------
 	| Listings
@@ -96,8 +99,10 @@ Route::group(array('before' => 'recordPevious'), function(){
 	|
 	|
 	*/
-	Route::get('{channel}/{subChannel}/week/{time}', 'ChannelController@showListingSubChannel')->where('time', '[0-9]+');
-	Route::get('{channel}/{subChannel}/day/{time}', 'ChannelController@showDayListingSubChannel')->where('time', '[0-9]+');	
+	Route::group(['prefix' => 'channel'], function() {
+		Route::get('{channel}/{subChannel}/week/{time}', 'ChannelController@showListingSubChannel')->where('time', '[0-9]+');
+		Route::get('{channel}/{subChannel}/day/{time}', 'ChannelController@showDayListingSubChannel')->where('time', '[0-9]+');	
+	});
 
 	/*
 	|--------------------------------------------------------------------------
@@ -106,9 +111,11 @@ Route::group(array('before' => 'recordPevious'), function(){
 	|
 	|
 	*/
-	Route::get('{channel}/{subChannel}/{category}', 'CategoryController@show');
-	Route::get('{channel}/{subChannel}/{category}/page/{page}', 'CategoryController@show');
-	Route::get('{channel}/{subChannel}/{category}/{article}', 'ArticleController@show');	
+	Route::group(['prefix' => 'channel'], function() {
+		Route::get('{channel}/{subChannel}/{category}', 'CategoryController@show');
+		Route::get('{channel}/{subChannel}/{category}/page/{page}', 'CategoryController@show');
+		Route::get('{channel}/{subChannel}/{category}/{article}', 'ArticleController@show');		
+	});	
 
 	/*
 	|--------------------------------------------------------------------------
@@ -117,5 +124,20 @@ Route::group(array('before' => 'recordPevious'), function(){
 	|
 	|
 	*/
-	Route::get('/', [ 'as' => 'home', 'uses' => 'HomeController@showHomePage' ]);     
+	Route::get('/', [ 'as' => 'home', 'uses' => 'HomeController@showHomePage' ]);  
+
+	/*
+	|--------------------------------------------------------------------------
+	| No route found
+	|--------------------------------------------------------------------------
+	| This final route, if reached, means the user is trying to access a route that doesn't
+	| exist.
+	|
+	*/  
+
+	App::missing(function($exception)
+	{
+	    return Response::view('errors.missing', ['nav' => getApplicationNav()], 404);
+	});
+	
 });   

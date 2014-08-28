@@ -22,27 +22,37 @@ class BaseController extends Controller {
 	}
 
 	/**
-	 * if we get an API response that we need to feed back to the user then process it
+	 * if we get an API response that we need to feed back to the user - process it
 	 * 
 	 * @param  array $responseData 	[response object as returned by the API call]
-	 * @param  string $message      [which language file do we want to use for the messaging]
 	 * @return Redirect
 	 */
-	public function respond($responseData, $message)
+	public function respond($responseData)
 	{
-		# if its a success get the success code
-		if(isset($responseData['error'])) {
-			$statusCode = (int) $responseData['error']['statusCode'];			
-		}
-		# if it was successful then use that object
-		else {
-			$statusCode = (int) $responseData['success']['statusCode'];	
-		}
+		# if we have an error in the response object
+		if(isset($responseData['error']))		
+		{
+			# grab the status code from the response
+			$statusCode = $responseData['error']['statusCode'];
 
-		# set a message in the flash data
-		Session::flash('message', Lang::get($message)[$statusCode]);
+			# depending on the status code received, do something
+			switch($statusCode)
+			{
+				# resource not found
+				case 404 :
+					return Response::view('errors.missing', ['nav' => getApplicationNav()], 404);
+				break;
+			}
+		}
+		# there's a real issue if we don't get a success or error from the API. 
+		# Just show the home page in this case.
+		else 
+		{
+			# log the error (custom function - helpers.php)
+			logApiFailure("API didn't return a SUCCESS or ERROR object. This is really bad!!!");
 
-		# and redirect back to the page we just came from
-		return Redirect::back();		
+			# ... show the homepage
+			return Redirect::home();
+		}
 	}
 }

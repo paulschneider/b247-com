@@ -4,6 +4,8 @@
 
 @section('content')
 
+@include("user.partials.sub-nav")
+
 <section class="featureArea">
     <header class="centralHeader grid">
         <h1 class="primaryHeader">Profile</h1>
@@ -102,7 +104,9 @@
         </form>
     </div>
 </section>
-    
+
+@include("user.partials.sub-nav") 
+
 @endsection
 
 @include('layouts.footer')

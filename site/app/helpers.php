@@ -1,6 +1,13 @@
 <?php
 use Carbon\Carbon;
 
+function cleanup()
+{
+	Session::forget('registration-errors');
+	Session::forget('login-errors');
+	Session::forget('ignoreRedirect');
+}
+
 function getErrorMessage($data)
 {
 	return $data['error']['data']['public'];
@@ -40,6 +47,16 @@ function reformatErrors($errors)
 
 use Monolog\Logger;
 use Monolog\Handler\StreamHandler;
+
+function logApiFailure($message)
+{
+	$logFile = 'apiFails.log';
+
+	$view_log = new Logger('View Logs');
+	$view_log->pushHandler(new StreamHandler(storage_path().'/logs/'.$logFile, Logger::INFO));
+
+	$view_log->addInfo($message);
+}
 
 function logApiCall($endpoint)
 {	

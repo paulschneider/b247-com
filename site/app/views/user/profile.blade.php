@@ -53,7 +53,7 @@
                         </div>
 
                         <div class="formRow cf"> <!-- If error add .formRowError to .formRow container -->
-                            <label for="postcode {{ isError('postCode', $errors) ? 'formRowError' : ''  }}">Postcode</label>
+                            <label for="postcode {{ isError('postCode', $errors) ? 'formRowError' : ''  }}">Postcode (eg: BS4 3LG)</label>
                             <div class="formElement">
                                 <input id="postcode" name="postCode" type="text" value="{{ isset($user['profile']['postCode']) ? $user['profile']['postCode'] : '' }}" class="text" />
                                 @if(isError('postCode', $errors))

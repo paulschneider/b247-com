@@ -1,4 +1,4 @@
-<?php
+	<?php
 
 Class UserController extends BaseController {
 
@@ -36,7 +36,10 @@ Class UserController extends BaseController {
 
 			# grab the old form data
 			$input = Input::old();
-		}			
+		}	
+
+		# cleanup (any session data created through log in or registration) - helpers.php		
+		cleanup();
 
 		# send the data to the view and render!
 		return View::make('user.profile', compact('message', 'messageClass'));
@@ -86,5 +89,15 @@ Class UserController extends BaseController {
 			# ... redirect back to the form
 			return Redirect::to('profile');
 		}
+	}
+
+	/**
+	 * show the user preferences page
+	 * 
+	 * @return View
+	 */
+	public function showPreferences()
+	{
+		return View::make('user.preferences');
 	}
 }

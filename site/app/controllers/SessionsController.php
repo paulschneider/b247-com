@@ -17,7 +17,7 @@ Class SessionsController extends BaseController {
 
 		# if we get here then forget the redirect value as the user has used the global sign in link
 		# and we won't need to take them anywhere specific after authentication
-		Session::forget('redirect');
+		Session::forget('previousPage');
 
 		# error vars, something went wrong!
 		if(Session::has('registration-errors')) {
@@ -44,6 +44,12 @@ Class SessionsController extends BaseController {
 	{
 		$redirect = null;
 
+		# if the user is already authenticated then they can't register and they can't log in
+		# so get them out of here.
+		if( userIsAuthenticated() ) {
+			return Redirect::to('profile');
+		}
+
 		# error vars, something went wrong!
 		if(Session::has('login-errors')) {
 
@@ -63,7 +69,7 @@ Class SessionsController extends BaseController {
 			$redirect = Session::get('previousPage');
 		}
 
-		# there are two forms on the page, this is a simple way of targetting them
+		# there are two forms on the page, this is a simple way of targeting them
 		$form = "login";
 
 		return View::make('register.index', compact('redirect', 'form', 'errors', 'message', 'messageClass'));
@@ -85,7 +91,7 @@ Class SessionsController extends BaseController {
 			# save the returned user object to the session for later use
 			User::startSession($response['success']['data']['user']);
 
-			if(Input::get('redirect')) {
+			if(Input::get('redirect') && ! Session::has('ignoreRedirect')) {
 				return Redirect::to(Input::get('redirect'));
 			}
 
@@ -145,19 +151,6 @@ Class SessionsController extends BaseController {
 	}
 
 	/**
-	 * log an authenticated user out of their account and return them to the homepage
-	 * 
-	 * @return Redirect
-	 */
-	public function logUserOut()
-	{
-		Session::flush();
-		Session::regenerate();
-
-		return Redirect::home();
-	}
-
-	/**
 	 * show the template for a user to request a password reset
 	 * 
 	 * @return View
@@ -166,10 +159,11 @@ Class SessionsController extends BaseController {
 	{
 		# if we get here then forget the redirect value as the user will presumably always want to go back to 
 		# the log-in screen after requesting a password reset
-		Session::forget('redirect');
+		Session::put('ignoreRedirect', true);
 
-		# the enquiry submission went well
-		if(Session::has('success')) {
+		# the reset request succeeded
+		if(Session::has('success')) 
+		{
 			# set some success vars
 			$message = Session::get('success')['public'];
 			$messageClass = "success";
@@ -203,7 +197,7 @@ Class SessionsController extends BaseController {
 		$response = App::make('ApiClient')->post('user/password?forgotten=true', Input::only('email'));	
 
 		# if the call was successful we'll want to give some feedback to the user
-		if(isset($response['success']))
+		if(isset($response['success'])) 
 		{
 			Session::flash('success', $response['success']['data']);
 		}
@@ -218,5 +212,22 @@ Class SessionsController extends BaseController {
 
 		# ... and show the reset form again
 		return Redirect::to('forgotten-password');
+	}
+
+	/**
+	 * log an authenticated user out of their account and return them to the homepage
+	 * 
+	 * @return Redirect
+	 */
+	public function logUserOut()
+	{
+		# destroy the session
+		Session::flush();
+
+		# generate a new session ID
+		Session::regenerate();
+
+		# ... and show the homepage
+		return Redirect::home();
 	}
 }

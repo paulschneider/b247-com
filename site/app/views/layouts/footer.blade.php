@@ -1,6 +1,6 @@
 @section('footer')
 
-@include('channels.partials.sub-nav')
+@include('layouts.partials.sub-nav')
 
 <footer id="bottom">
   <div class="grid">          

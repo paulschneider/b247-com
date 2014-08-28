@@ -14,7 +14,7 @@ Class ChannelController extends BaseController {
 	 * @return [type]          [description]
 	 */
 	public function showChannel($channel)
-	{
+	{ 
 		$response = App::make("ApiClient")->get("channel/$channel");
 
 		if(isset($response['success']))
@@ -36,6 +36,9 @@ Class ChannelController extends BaseController {
 			$viewData['subChannels'] = getChannelSubChannels(getApplicationNav(), $channel);
 
 			return View::make('home.index', $viewData);
+		}
+		else {
+			return parent::respond($response);
 		}		
 	}	
 

@@ -77,7 +77,6 @@
 
 		<p class="backTo column col-5-20 colFirst tabCol-9-20 tabColFirst mobCol-18-20 mobColFirst">Back to: <a href="{{ getSubChannelPath($channel) }}">{{ getSubChannelName($channel) }}</a></p>
 		<p class="backTo column col-6-20 tabCol-9-20 totalResults mobCol-18-20 mobColFirst">Your search returned <span class="highlight">{{ $totalArticles }} results</span></p>
-		<p class="backTo column col-5-20 showResults"><a href="#">Show results near me</a></p>
 	</div>
 
 	<hr>

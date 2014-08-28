@@ -118,8 +118,6 @@
         </div>
     </div>
 </nav>
-
-@include('channels.partials.sub-nav')
     
 @endsection
 

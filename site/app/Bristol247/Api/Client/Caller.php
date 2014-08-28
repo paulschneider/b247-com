@@ -43,16 +43,25 @@ Class Caller {
 		return $this->send($request);
 	}
 
+	/**
+	 * make the call to the API
+	 * 
+	 * @param  Request
+	 * @return Response
+	 */
 	public function send($request)
 	{
+		# log which call was made to the API
 		logApiCall($this->endpoint);
 
 		try 
 		{
+			# if it was successful, return the response
 		   return $this->client->send($request)->json();
 		} 
 		catch (ClientException $e) 
 		{
+			# if it was unsuccessful then return the error that was thrown
 			return $e->getResponse()->json();
 		}
 	}

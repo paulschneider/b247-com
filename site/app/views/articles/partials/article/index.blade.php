@@ -5,10 +5,8 @@
           
 <article class="pageSection cmsContent">
     <!-- Header -->
-    @if (! $isMobile) <!-- only show for the web version -->
-        @include('articles.partials._global.header')
-    @endif
-    
+    @include('articles.partials._global.header')
+   
     <div class="grid">
         <div class="column col-12-20 colFirst tabCol-18-20 tabColFirst mobCol-20-20">
             @include('articles.partials._global.gallery-top')        

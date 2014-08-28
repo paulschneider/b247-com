@@ -5,9 +5,7 @@
 
 <article class="pageSection cmsContent">
     <!-- Header -->
-    @if (! $isMobile) <!-- only show for the web version -->
-        @include("articles.partials._global.header")
-    @endif   
+    @include("articles.partials._global.header")
 
     <div class="grid">
         <!-- Top Carousel -->

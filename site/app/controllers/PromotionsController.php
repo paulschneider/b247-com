@@ -59,7 +59,16 @@ Class PromotionsController extends BaseController {
 		# make the call to the API
 		$response = App::make('ApiClient')->post('user/competition/enter', $postData);
 
-		# do something with the response. Send the response data as well as the name of the language file to use for messaging
-		return parent::respond($response, 'api_competitionResponses');	
+		# grab the response
+		if(isset($response['success'])) {
+			# successful
+			Session::flash('success', $response['success']['data']);
+		}
+		else {
+			# it failed
+			Session::flash('error', $response['error']['data']);	
+		}
+		
+		return Redirect::back();
 	}
 }

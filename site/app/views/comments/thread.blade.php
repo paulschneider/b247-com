@@ -1,3 +1,15 @@
+<?php
+
+/*
+|--------------------------------------------------------------------------
+| Auth
+|--------------------------------------------------------------------------
+| This is a dedicated Disqus comment include. Its used by the apps to pull 
+| in article threads for a specified article.
+|
+*/
+?>
+
 <div id="comments-block" class="fr col-75 mobCol-18-20 mobColLast cmsSecondaryContent">
     <div id="disqus_thread"></div>
     <script type="text/javascript">

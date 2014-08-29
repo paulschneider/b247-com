@@ -9,9 +9,9 @@ Class ChannelController extends BaseController {
 	public $data = null;
 
 	/**
-	 * [showChannel description]
-	 * @param  [type] $channel [description]
-	 * @return [type]          [description]
+	 * obtain and display a top level channel
+	 * @param  string $channel [unique identifier for the channel]
+	 * @return View
 	 */
 	public function showChannel($channel)
 	{ 
@@ -58,6 +58,9 @@ Class ChannelController extends BaseController {
 			if(isset($response['success']))
 			{
 				$this->data = $response['success']['data'];
+			}
+			else {
+				return parent::respond($response);
 			}
 		}
 

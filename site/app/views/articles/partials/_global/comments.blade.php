@@ -4,6 +4,7 @@
         <script type="text/javascript">
 
             var disqus_shortname = 'bristol247';
+            var disqus_identifier = "article-<?php echo $article['id'] ?>";       
             
             /* * * DON'T EDIT BELOW THIS LINE * * */
             (function() {

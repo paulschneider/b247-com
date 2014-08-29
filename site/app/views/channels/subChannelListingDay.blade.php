@@ -5,16 +5,8 @@
 @section('content')      
 
 @if (isset($adverts[0]))
-<div class="advert">
-    <figure>
-        <a href="{{ $adverts[0]['url'] }}">
-            <img alt="{{ $adverts[0]['media']['alt'] }}" src="{{ $adverts[0]['media']['filepath'] }}" width="100%">
-        </a>
-        <figcaption>
-            Advertising
-        </figcaption>
-    </figure>
-</div>
+    <?php $advert = $adverts[0] ?>
+    @include("adverts.partials.letterbox")
 @endif
 
 <?php 
@@ -46,7 +38,7 @@
 				<ul>
 					@for($i = 1; $i<= $date->daysInMonth; $i++)
 						<li class="<?php echo $i == $date->day ? 'active' : '' ?>">
-							<a href="{{ baseUrl().$route }}/day/{{ getDailyTimestamp($date, $i) }}">{{ $i }}</a>
+							<a href="{{ baseUrl().'/channel/'.$route }}/day/{{ getDailyTimestamp($date, $i) }}">{{ $i }}</a>
 						</li>
 					@endfor
 				</ul>
@@ -101,16 +93,8 @@
 <hr>        
 
 @if (isset($adverts[1]))
-	<div class="advert">
-	    <figure>
-	        <a href="{{ $adverts[1]['url'] }}">
-	            <img alt="{{ $adverts[1]['media']['alt'] }}" src="{{ $adverts[1]['media']['filepath'] }}" width="100%" />
-	        </a>
-	        <figcaption>
-	            Advertising
-	        </figcaption>
-	    </figure>
-	</div>
+    <?php $advert = $adverts[1] ?>
+    @include("adverts.partials.letterbox")
 @endif
 
 <section class="grid pageSection">
@@ -151,16 +135,8 @@
 <hr>        
 
 @if (isset($adverts[2]))
-	<div class="advert">
-	    <figure>
-	        <a href="{{ $adverts[2]['url'] }}">
-	            <img alt="{{ $adverts[2]['media']['alt'] }}" src="{{ $adverts[2]['media']['filepath'] }}" width="100%" />
-	        </a>
-	        <figcaption>
-	            Advertising
-	        </figcaption>
-	    </figure>
-	</div>
+    <?php $advert = $adverts[2] ?>
+    @include("adverts.partials.letterbox")
 @endif
 
 @endsection

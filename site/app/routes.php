@@ -113,8 +113,9 @@ Route::group(array('before' => 'recordPevious'), function(){
 	*/
 	Route::group(['prefix' => 'channel'], function() {
 		Route::get('{channel}/{subChannel}/{category}', 'CategoryController@show');
-		Route::get('{channel}/{subChannel}/{category}/page/{page}', 'CategoryController@show');
-		Route::get('{channel}/{subChannel}/{category}/{article}', 'ArticleController@show');		
+		Route::get('{channel}/{subChannel}/{category}/page/{page}', 'CategoryController@show');		
+		Route::get('{channel}/{subChannel}/{category}/{article}', 'ArticleController@show');	
+		Route::get('{channel}/{subChannel}/{category}/{article}/comments', 'ArticleController@getArticleComments');	
 	});	
 
 	/*

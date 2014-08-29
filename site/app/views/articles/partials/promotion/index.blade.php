@@ -10,6 +10,9 @@
     
     <div class="grid">
         <div class="column col-12-20 colFirst tabCol-18-20 tabColFirst mobCol-20-20">
+
+            @include('articles.partials._global.gallery-top')   
+            
             <aside class="column col-25 mobCol-18-20 mobColFirst">
                 @if (! $isMobile) <!-- only show for the web version -->
                     <input type="button" value="Share" class="primaryButton">
@@ -18,7 +21,7 @@
 
         <div class="fr col-75 mobCol-18-20 mobColLast">
             <h2>{{ $article['subHeading'] }}</h2>
-            <p class="author">{{ $article['author'] }}, {{ $article['published'] }}</p>
+            <p class="author">{{ $article['author'] }}, {{ getPublishedDate($article['published']) }}</p>
 
             {{ $article['body'] }}
 
@@ -39,8 +42,14 @@
             @endif
 
             {{ $article['bodyContinued'] }}
+
+            
     </div>   
 </article>
+
+<!-- Lower Carousel -->   
+
+            @include('articles.partials._global.gallery-bottom')    
 
 <hr class="spacerUp">
 

@@ -28,11 +28,11 @@
 		<header class="artCol-3-3 artColFirst">
 			<h1 class="primaryHeader"><span class="subPrimaryHeader">Listings:</span> {{ $date->dayOfWeek['short'] .' '. $date->day .' '. $date->month['full'] }}</h1>
 			<p class="backTo">
-				Back to: <a href="{{ baseUrl().$route }}/week/{{ $lastWeek }}">Listings</a>
+				Back to: <a href="{{ baseUrl().'/channel/'.$route }}/week/{{ $lastWeek }}">Listings</a>
 				<span class="fr">
-					<a href="{{ baseUrl().$route }}/week/{{ $date->lastMonth }}">< previous month</a>
+					<a href="{{ baseUrl().'/channel/'.$route }}/week/{{ $date->lastMonth }}">< previous month</a>
 					&nbsp; | &nbsp;
-					<a href="{{ baseUrl().$route }}/week/{{ $date->nextMonth }}">next month ></a>
+					<a href="{{ baseUrl().'/channel/'.$route }}/week/{{ $date->nextMonth }}">next month ></a>
 				</span>
 			</p>
 		</header>

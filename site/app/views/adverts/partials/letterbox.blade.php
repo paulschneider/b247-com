@@ -1,6 +1,6 @@
 <div class="advert">
     <figure>
-        <a href="{{ $advert['url'] }}">
+        <a href="{{ $advert['url'] }}" rel="nofollow">
 	        @if(isset($advert['media']))
 	            <img alt="{{ $advert['media']['alt'] }}" src="{{ $advert['media']['filepath'] }}" width="100%" />
 	        @endif

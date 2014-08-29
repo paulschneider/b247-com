@@ -29,7 +29,7 @@
                         @if($article['isAdvert'])
                             <div class="articleListBlockAdvert advert">
                                 <figure>
-                                    <a href="{{ $article['url'] }}">
+                                    <a href="{{ $article['url'] }}" rel="nofollow">
                                         <img alt="{{ $article['media']['alt'] }}" src="{{ $article['media']['filepath'] }}" />
                                     </a>
                                     <figcaption>

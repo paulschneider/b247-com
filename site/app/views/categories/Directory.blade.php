@@ -106,7 +106,9 @@
 								<div class="articleListSynopsis">
 									<div class="articleListImage">
 										<a href="{{ $article['path'] }}">
-											<img alt="" src="{{ $article['media']['filepath'] }}">
+											@if(isset($article['media']['filepath']))
+												<img alt="{{ $article['media']['alt'] }}" src="{{ $article['media']['filepath'] }}">
+											@endif
 										</a>
 										<a href="{{ $article['assignment']['category']['path'] }}" class="articleListCategories">{{ $article['assignment']['category']['name'] }}</a>
 									</div>
@@ -139,18 +141,12 @@
 
 <hr>        
 
+<!-- Letterbox advert - top -->
 @if( isset($adverts[1]) )
-	<div class="advert spacer">
-	    <figure>
-	        <a href="{{ $adverts[1]['url'] }}">
-	            <img alt="{{ $adverts[1]['media']['alt'] }}" src="{{ $adverts[1]['media']['filepath'] }}" width="100%">
-	        </a>
-	        <figcaption>
-	            Advertising
-	        </figcaption>
-	    </figure>
-	</div>
+	<?php $advert = $adverts[1] ?>
+	@include("adverts.partials.letterbox")
 @endif
 
 @endsection
+
 @include('layouts.footer')

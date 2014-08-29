@@ -42,14 +42,13 @@
             @endif
 
             {{ $article['bodyContinued'] }}
-
-            
+ 
     </div>   
 </article>
 
 <!-- Lower Carousel -->   
 
-            @include('articles.partials._global.gallery-bottom')    
+@include('articles.partials._global.gallery-bottom')    
 
 <hr class="spacerUp">
 

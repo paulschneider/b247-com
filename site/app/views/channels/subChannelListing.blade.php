@@ -65,13 +65,14 @@
 			<div class="carouselContainer">
 				<div class="carouselArticleList">
 					<div class="articleList">
+						<?php $s = 0; ?>
 						@for($i=0; $i < count($articles); $i++)
 							<?php 
 								$article = $articles[$i];
 								$subChannel = getArticleSubChannel($article);
 								$category = getArticleCategory($article);
 							?>
-							<div class="articleListItem column artCol-1-3 <?php echo $i == 0 ? 'artColFirst' : '' ?>">
+							<div class="articleListItem column artCol-1-3 <?php echo $s == 0 ? 'artColFirst' : '' ?>">
 								<a href="{{ $subChannel->path }}" class="articleListSubChannel">{{ $subChannel->name }}</a>
 								<div class="articleListSynopsis">
 		  							<div class="articleListImage">
@@ -93,6 +94,11 @@
 		  							</div>
 								</div>
 							</div>
+							<?php $s++ ?>
+							@if($s == 3)
+								</div><div class="articleList">
+								<?php $s = 0 ?>
+							@endif 					
 						@endfor
 
 					<a class="carouselViewAll artCol-1-3" href="{{ baseUrl().'/channel/'.$route }}/day/{{ $date->timeStamp }}">See all listings <span>for {{ $date->dayOfWeek['short'] .' '. $date->day  }}</span></a>

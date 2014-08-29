@@ -4,17 +4,10 @@
 
 @section('content')      
 
-@if (isset($adverts[0]))
-<div class="advert">
-    <figure>
-        <a href="{{ $adverts[0]['url'] }}">
-            <img alt="{{ $adverts[0]['media']['alt'] }}" src="{{ $adverts[0]['media']['filepath'] }}" width="100%">
-        </a>
-        <figcaption>
-            Advertising
-        </figcaption>
-    </figure>
-</div>
+<!-- Letterbox advert - top -->
+@if( isset($adverts[0]) )
+	<?php $advert = $adverts[0] ?>
+	@include("adverts.partials.letterbox")
 @endif
 
 <?php 
@@ -82,17 +75,10 @@
 
 <hr>        
 
-@if (isset($adverts[1]))
-	<div class="advert">
-	    <figure>
-	        <a href="{{ $adverts[1]['url'] }}">
-	            <img alt="{{ $adverts[1]['media']['alt'] }}" src="{{ $adverts[1]['media']['filepath'] }}" width="100%" />
-	        </a>
-	        <figcaption>
-	            Advertising
-	        </figcaption>
-	    </figure>
-	</div>
+<!-- Letterbox advert - top -->
+@if( isset($adverts[1]) )
+	<?php $advert = $adverts[1] ?>
+	@include("adverts.partials.letterbox")
 @endif
 
 <section class="grid pageSection">
@@ -132,17 +118,10 @@
 
 <hr>        
 
-@if (isset($adverts[2]))
-	<div class="advert">
-	    <figure>
-	        <a href="{{ $adverts[2]['url'] }}">
-	            <img alt="{{ $adverts[2]['media']['alt'] }}" src="{{ $adverts[2]['media']['filepath'] }}" width="100%" />
-	        </a>
-	        <figcaption>
-	            Advertising
-	        </figcaption>
-	    </figure>
-	</div>
+<!-- Letterbox advert - top -->
+@if( isset($adverts[2]) )
+	<?php $advert = $adverts[2] ?>
+	@include("adverts.partials.letterbox")
 @endif
 
 @endsection

@@ -20,7 +20,7 @@
                                 @if(isset($r['media']))
                                     <div class="articleListImage">
                                         <a href="{{ $r['path'] }}">                                        
-                                            <img alt="" src="{{ $r['media']['filepath'] }}" />                                        
+                                            <img alt="{{ $r['media']['alt'] }}" src="{{ $r['media']['filepath'] }}" />                                        
                                         </a>
                                         <a href="{{ $category->path }}" class="articleListCategories">{{ $category->name }}</a>
                                     </div>

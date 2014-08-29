@@ -22,6 +22,9 @@ Class CategoryController extends BaseController {
 			# we need to work out what type of page to display based on the channel type (e.g listing, promotion, directory or article)
 			$channelType = getChannelType($data['channel']);
 
+			# pass the subChannel sefName to the view so we know which channel we're viewing
+			$data['activeChannel'] = $channel;
+
 			# if there is a map object then we will be showing a map
 			if( isset($data['map']) ) {
 				$data['mapItems'] = json_encode($data['map']);	

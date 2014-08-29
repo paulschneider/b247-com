@@ -6,7 +6,7 @@
                 @foreach( $article['gallery']['top'] AS $image )
                     <div class="gallerySlides">                                      
                         <div>
-                            <img alt="" src="{{ $image['filepath'] }}" />
+                            <img alt="{{ $image['alt'] }}" src="{{ $image['filepath'] }}" />
                         </div>
                     </div>
                 @endforeach

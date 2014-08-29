@@ -23,7 +23,7 @@
 	                    <div class="formRow cf {{ isError('email', $errors) && $form == 'login' ? 'formRowError' : ''  }}">
 	                        <label for="email">Email Address</label>
 	                        <div class="formElement">
-	                            <input id="email" name="email" type="text" value="" class="text" />
+	                            <input id="email" name="email" type="text" value="{{ isset($input['email']) && $form == 'login' ? $input['email'] : '' }}" class="text" />
 	                            @if(isError('email', $errors) && $form == 'login')
 	                                <span class="formError">{{ $errors['email'] }}</span>
 	                            @endif
@@ -66,7 +66,7 @@
 						<div class="formRow cf {{ isError('firstName', $errors) && $form == 'registration' ? 'formRowError' : '' }}">
 				            <label for="firstName">First name</label>
 				            <div class="formElement">
-				                <input id="firstName" name="firstName" type="text" value="" class="text" />
+				                <input id="firstName" name="firstName" type="text" value="{{ isset($input['firstName']) ? $input['firstName'] : '' }}" class="text" />
 				                @if(isError('firstName', $errors) && $form == 'registration')
 				                    <span class="formError">{{ $errors['firstName'] }}</span>
 				                @endif
@@ -76,7 +76,7 @@
 				        <div class="formRow cf {{ isError('lastName', $errors) && $form == 'registration' ? 'formRowError' : '' }}">
 				            <label for="lastName">Surname</label>
 				            <div class="formElement">
-				                <input id="lastName" name="lastName" type="text" value="" class="text" />
+				                <input id="lastName" name="lastName" type="text" value="{{ isset($input['lastName']) ? $input['lastName'] : '' }}" class="text" />
 				                @if(isError('lastName', $errors) && $form == 'registration')
 				                    <span class="formError">{{ $errors['lastName'] }}</span>
 				                @endif
@@ -86,7 +86,7 @@
 				        <div class="formRow cf {{ isError('email', $errors) && $form == 'registration' ? 'formRowError' : '' }}">
 				            <label for="email">Email</label>
 				            <div class="formElement">
-				                <input id="email" name="email" type="email" value="" class="text" />
+				                <input id="email" name="email" type="email" value="{{ isset($input['email']) && $form == 'registration' ? $input['email'] : '' }}" class="text" />
 				                @if(isError('email', $errors) && $form == 'registration')
 				                    <span class="formError">{{ $errors['email'] }}</span>
 				                @endif

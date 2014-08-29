@@ -28,7 +28,7 @@ Class UserController extends BaseController {
 		}
 
 		# there was an issue submitting the enquiry
-		elseif(Session::has('error')) {
+		if(Session::has('error')) {
 			# set some error vars
 			$errors = reformatErrors(Session::get('error')['errors']);
 			$message = Session::get('error')['public'];
@@ -36,7 +36,7 @@ Class UserController extends BaseController {
 
 			# grab the old form data
 			$input = Input::old();
-		}	
+		}
 
 		# cleanup (any session data created through log in or registration) - helpers.php		
 		cleanup();

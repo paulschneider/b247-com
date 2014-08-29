@@ -91,6 +91,12 @@ Class SessionsController extends BaseController {
 			# save the returned user object to the session for later use
 			User::startSession($response['success']['data']['user']);
 
+			# we got here from a redirect. if they came via a new account registration then reflash the 
+			# session so we can use the data on the next page load
+			if(Session::has('success')) {
+				Session::reflash();
+			}			
+
 			if(Input::get('redirect') && ! Session::has('ignoreRedirect')) {
 				return Redirect::to(Input::get('redirect'));
 			}
@@ -128,10 +134,8 @@ Class SessionsController extends BaseController {
 		{
 			User::startSession($response['success']['data']['user']);
 
-			# if we were asked to redirect back to a specific page
-			if(Input::get('redirectBack')) {
-				return Redirect::route('profile');				
-			}
+			# grab the data array from the response
+			Session::flash('success', $response['success']['data']);
 
 			# show the user profile screen
 			return Redirect::route('profile');

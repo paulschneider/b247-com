@@ -27,9 +27,14 @@
     @endif
 </div>
 
-<h5>{{ $article['event']['venue']['name'] }}</h5>
+<h5>
+    @if(!empty($article['event']['venue']['website']))
+        <a href="{{ $article['event']['venue']['website'] }}">$article['event']['venue']['name']</a>
+    @else
+        {{ $article['event']['venue']['name'] }}
+    @endif
+</h5>
 <p>
-    {{ $date->time }} <br>
-    &pound;{{ $article['event']['details']['price'] }}<br>
+    from &pound;{{ $article['event']['details']['price'] }}<br>
     <a href="#">Tickets</a>
 </p>

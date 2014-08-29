@@ -1,6 +1,13 @@
 <?php
 use Carbon\Carbon;
 
+function getPublishedDate($date)
+{
+	$date = getEventDate(strtotime($date));
+
+	return $date->day.'.'.$date->monthNumber.'.'.$date->shortYear;
+}
+
 function cleanup()
 {
 	Session::forget('registration-errors');
@@ -150,9 +157,11 @@ function getEventDate($timestamp)
 
 	$dt->dayOfWeek = $days[$date->dayOfWeek];
 	$dt->month = $months[$date->month-1];
-	$dt->day = $date->day;
+	$dt->monthNumber = $date->format('m');
+	$dt->day = $date->format('j');
 	$dt->time = $date->format('H:i');
 	$dt->year = $date->year;
+	$dt->shortYear = $date->format('y');
 	$dt->dateStamp = $date->toDateString();
 	$dt->timeStamp = $timestamp;
 	$dt->daysInMonth = $date->daysInMonth;

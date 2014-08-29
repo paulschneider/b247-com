@@ -28,6 +28,20 @@ Class ArticleController extends BaseController {
 			# grab any subChannels so we can create a sub-nav 
 			$data['subChannels'] = getChannelSubChannels(getApplicationNav(), $channel);
 
+			# there was an issue doing....... something
+			if(Session::has('error')) {
+				# set some error vars
+				$data['message'] = Session::get('error')['public'];
+				$data['messageClass'] = "danger";
+			}
+
+			# something just happened that caused a success value to be stored
+			if(Session::has('success')) {
+				# set some success vars
+				$data['message'] = Session::get('success')['public'];
+				$data['messageClass'] = "success";
+			}
+
 			# we don't know what type of data we've had returned by the API so just throw it all at the view and let it decide what to use
 			return View::make("articles.template", $data);
 		}

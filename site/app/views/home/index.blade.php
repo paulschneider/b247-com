@@ -122,6 +122,11 @@
 									<div class="articleListImage">
 										<div class="articleListStandOutContent">
 											<a href="{{ baseUrl().$subChannel->path }}" class="articleListSubChannel">{{ $subChannel->name }}</a>
+
+											@if(isset($article['event']['details']['id']))
+												<p class="articleListDetails">{{ $article['event']['venue']['name'] }}{{ isset($article['event']['details']['price']) ? ', from &pound;'. $article['event']['details']['price'] : '' }}</p>
+											@endif
+
 											<a href="{{ baseUrl().$article['path'] }}" class="articleListTitle">{{ $article['title'] }}</a>
 											<p class="articleListSummary">{{ $article['subHeading'] }}</p>
 											<a href="{{ $category->path }}" class="articleListCategories">{{ $category->name }}</a>
@@ -149,6 +154,11 @@
 									</div>
 									<div class="articleListContent">
 										<a href="{{ baseUrl().$subChannel->path }}" class="articleListSubChannel">{{ $subChannel->name }}</a> 
+
+										@if(isset($article['event']['details']['id']))
+											<p class="articleListDetails">{{ $article['event']['venue']['name'] }}{{ isset($article['event']['details']['price']) ? ', from &pound;'. $article['event']['details']['price'] : '' }}</p>
+										@endif
+
 										<a class="articleListTitle" href="{{ baseUrl().$article['path'] }}">{{ $article['title'] }}</a>
 										<p class="articleListSummary">{{ $article['subHeading'] }}</p>
 										<a href="{{ $category->path }}" class="articleListCategories">{{ $category->name }}</a>
@@ -216,6 +226,9 @@
 		                                <div class="articleListStandOut">
 		                                    <div class="articleListImage">
 		                                        <div class="articleListStandOutContent">
+		                                        	@if(isset($article['event']['details']['id']))
+														<p class="articleListDetails">{{ $article['event']['venue']['name'] }}{{ isset($article['event']['details']['price']) ? ', from &pound;'. $article['event']['details']['price'] : '' }}</p>
+													@endif
 		                                            <a href="{{ baseUrl().$article['path'] }}" class="articleListTitle">{{ $article['title'] }}</a>
 		                                            <p class="articleListSummary">{{ $article['subHeading'] }}</p>
 		                                        </div>
@@ -241,6 +254,9 @@
 		                                    </div>
 		                                    <div class="articleListContent">
 		                                        <a class="articleListTitle" href="{{ baseUrl().$article['path'] }}">{{ $article['title'] }}</a>
+		                                        @if(isset($article['event']['details']['id']))
+													<p class="articleListDetails">{{ $article['event']['venue']['name'] }}{{ isset($article['event']['details']['price']) ? ', from &pound;'. $article['event']['details']['price'] : '' }}</p>
+												@endif
 		                                        <p class="articleListSummary">{{ $article['subHeading'] }}</p>
 		                                        <a href="{{ $category->path }}" class="articleListCategories">{{ $category->name }}</a>
 		                                    </div>

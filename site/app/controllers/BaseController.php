@@ -14,6 +14,11 @@ class BaseController extends Controller {
 			if(Session::has('user')) {
 				$view->with('user', Session::get('user'));
 			}
+
+			# when authenticated the user is saved to the session. Get the data
+			if(Session::has('previousPage')) {
+				$view->with('previousPage', Session::get('previousPage'));
+			}
 		});
 
 		View::share('errors', null);

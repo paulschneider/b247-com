@@ -5,7 +5,7 @@
         @if ( $isMobile) )
         	<a href="b247://redeem/{{ $article['promotion'][0]['code'] }}">Email me a voucher</a>
         @else
-        	<a href="{{ baseUrl() }}promotion/redeem/voucher/{{ $article['promotion'][0]['code'] }}">Email me a voucher</a>
+        	<a href="{{ baseUrl() }}/promotion/redeem/voucher/{{ $article['promotion'][0]['code'] }}">Email me a voucher</a>
         @endif
     @else
     	@if ( $isMobile) )

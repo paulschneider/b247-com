@@ -27,10 +27,10 @@
 		</p>
 		<p class="backTo column col-5-20 showResults">
 			<?php $less = getNewTimestamp($start, '-', '7 days'); ?>
-			<a href="{{ baseUrl().'/channel/'.$route }}/week/{{ $less }}">< previous 7 days</a>
+			<a href="{{ baseUrl().$route }}/week/{{ $less }}">< previous 7 days</a>
 			&nbsp; | &nbsp;
 			<?php $more = getNewTimestamp($start, '+', '7 days'); ?>
-			<a href="{{ baseUrl().'/channel/'.$route }}/week/{{ $more }}">next 7 days ></a></p>
+			<a href="{{ baseUrl().$route }}/week/{{ $more }}">next 7 days ></a></p>
 	</div>
 
 	<hr>
@@ -65,10 +65,10 @@
 			<div class="carouselContainer">
 				<div class="carouselArticleList">
 					<div class="articleList">
-						<?php $s = 0; ?>
-						@for($i=0; $i < count($articles); $i++)
+						<?php $s = 0; /* row item counter */ $j = 0 /* total items counter */ ?>
+						@for($i=1; $i <= count($articles); $i++)
 							<?php 
-								$article = $articles[$i];
+								$article = $articles[$j];
 								$subChannel = getArticleSubChannel($article);
 								$category = getArticleCategory($article);
 							?>
@@ -94,14 +94,14 @@
 		  							</div>
 								</div>
 							</div>
-							<?php $s++ ?>
-							@if($s == 3)
+							<?php $s++; $j++ ?>
+							@if($s == 3 && $j < count($articles))
 								</div><div class="articleList">
 								<?php $s = 0 ?>
 							@endif 					
 						@endfor
 
-					<a class="carouselViewAll artCol-1-3" href="{{ baseUrl().'/channel/'.$route }}/day/{{ $date->timeStamp }}">See all listings <span>for {{ $date->dayOfWeek['short'] .' '. $date->day  }}</span></a>
+					<a class="carouselViewAll artCol-1-3" href="{{ baseUrl().$route }}/day/{{ $date->timeStamp }}">See all listings <span>for {{ $date->dayOfWeek['short'] .' '. $date->day  }}</span></a>
 					</div>	
 				</div>	
 			</div> <!-- /.carouselContainer -->
@@ -114,8 +114,6 @@
 
 	@endforeach
 </section>
-
-@include('channels.partials.sub-nav')
 
 @endsection
 

@@ -20,11 +20,11 @@
 		<header class="artCol-3-3 artColFirst">
 			<h1 class="primaryHeader"><span class="subPrimaryHeader">Listings:</span> {{ $date->dayOfWeek['short'] .' '. $date->day .' '. $date->month['full'] }}</h1>
 			<p class="backTo">
-				Back to: <a href="{{ baseUrl().'/channel/'.$route }}/week/{{ $lastWeek }}">Listings</a>
+				Back to: <a href="{{ baseUrl().$route }}/week/{{ $lastWeek }}">Listings</a>
 				<span class="fr">
-					<a href="{{ baseUrl().'/channel/'.$route }}/week/{{ $date->lastMonth }}">< previous month</a>
+					<a href="{{ baseUrl().$route }}/week/{{ $date->lastMonth }}">< previous month</a>
 					&nbsp; | &nbsp;
-					<a href="{{ baseUrl().'/channel/'.$route }}/week/{{ $date->nextMonth }}">next month ></a>
+					<a href="{{ baseUrl().$route }}/week/{{ $date->nextMonth }}">next month ></a>
 				</span>
 			</p>
 		</header>
@@ -38,7 +38,7 @@
 				<ul>
 					@for($i = 1; $i<= $date->daysInMonth; $i++)
 						<li class="<?php echo $i == $date->day ? 'active' : '' ?>">
-							<a href="{{ baseUrl().'/channel/'.$route }}/day/{{ getDailyTimestamp($date, $i) }}">{{ $i }}</a>
+							<a href="{{ baseUrl().$route }}/day/{{ getDailyTimestamp($date, $i) }}">{{ $i }}</a>
 						</li>
 					@endfor
 				</ul>

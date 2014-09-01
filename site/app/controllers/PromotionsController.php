@@ -39,21 +39,22 @@ Class PromotionsController extends BaseController {
 	 */
 	public function competitionEntry()
 	{
+
 		# ensure the user has logged in
 		if( ! userIsAuthenticated()) {
 			Redirect::to('/login?redirectBack='.current_url());
 		}
 
 		# check to see that we have a competition answer
-		if( ! Input::get('answer') ) {
+		if( ! Input::get('answerId') ) {
 			Session::flash('message', 'Fill in the form!!');
 			return Redirect::back();
 		}
 
 		$postData = [
-			'accessKey' => getAccessKey(),
+			'accessKey' => Input::get('accessKey'),
 			'competitionId' => Input::get('competitionId'),
-			'answerId' => Input::get('answer')
+			'answerId' => Input::get('answerId')
 		];
 
 		# make the call to the API

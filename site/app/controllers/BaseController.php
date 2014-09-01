@@ -21,6 +21,8 @@ class BaseController extends Controller {
 			}
 		});
 
+		# variable defaults for the views
+		View::share('page', null);
 		View::share('errors', null);
 		View::share('message', null);
 		View::share('messageClass', null);

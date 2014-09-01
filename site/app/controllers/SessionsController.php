@@ -36,7 +36,11 @@ Class SessionsController extends BaseController {
 			$redirect = Session::get('previousPage');
 		}
 
-		return View::make('auth.log-in', compact('redirect', 'form', 'errors', 'message', 'messageClass'));
+		# indicate what we're on to the view. This is used to prevent the auth/register pop up
+		# when viewing these pages
+		$page = "login";
+
+		return View::make('auth.log-in', compact('redirect', 'form', 'errors', 'message', 'messageClass', 'page'));
 	}
 
 	/**
@@ -109,7 +113,11 @@ Class SessionsController extends BaseController {
 			$input = Input::old();
 		}
 
-		return View::make('register.index', compact('errors', 'message', 'messageClass', 'input', 'form'));
+		# indicate what we're on to the view. This is used to prevent the auth/register pop up
+		# when viewing these pages
+		$page = "register";
+
+		return View::make('register.index', compact('errors', 'message', 'messageClass', 'input', 'form', 'page'));
 	}
 
 	/**

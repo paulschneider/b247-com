@@ -4,104 +4,77 @@
 
 @section('content')
 
-<section class="featureArea">   
-	
-	<div class="pageForm">		
-        <form name="frm-login" action="login/auth" method="post">
-	        @if( isset($redirect) and ! is_null($redirect) )
-				<input type="hidden" name="redirect" value="{{ $redirect }}" />
-			@endif
+	<section class="formRegister">
+		<header class="modalHeader">
+			<div class="grid">
+				<div class="headerContent column col-16-20 colSpacing2 mobColFirst">		
+					<h2 class="secondaryHeader">
+						<strong class="blackHighlight">Register</strong> to filter your content
+						<span class="modalSwitch">or <a href="{{ baseUrl() }}/login">Sign in</a></span>
+					</h2>
+				</div>
+			</div>
+			
+			<hr>
+		</header>
 
-            <fieldset>
-	            <div class="grid">            
-	                <div class="column col-5-20 colSpacing4 tabCol-12-20 mobCol-18-20 mobColFirst">
+		<div class="modalBody">
+			<form class="primaryForm" name="frm-register" action="register/user" method="post">
 
-	                	<header class="centralHeader grid">
-					        <h1 class="primaryHeader">Log in</h1>
-					    </header>
+				@if( isset($redirect) and ! is_null($redirect) )
+		        	<input type="hidden" name="redirect" value="{{ $redirect }}" />
+		      	@endif
 
-	                    <div class="formRow cf {{ isError('email', $errors) && $form == 'login' ? 'formRowError' : ''  }}">
-	                        <label for="email">Email Address</label>
-	                        <div class="formElement">
-	                            <input id="email" name="email" type="text" value="{{ isset($input['email']) && $form == 'login' ? $input['email'] : '' }}" class="text" />
-	                            @if(isError('email', $errors) && $form == 'login')
-	                                <span class="formError">{{ $errors['email'] }}</span>
-	                            @endif
-	                        </div>
-	                    </div>
+				<fieldset>
+					<div class="grid">
+						<div class="bodyContent column col-12-20 colSpacing4 mobColFirst mobCol-18-20">
 
-	                    <div class="formRow cf {{ isError('password', $errors) && $form == 'login' ? 'formRowError' : '' }}">
-	                        <label for="password">Password</label>
-	                        <div class="formElement">
-	                            <input id="password" name="password" type="password" value="" class="text" />
-	                            @if(isError('password', $errors) && $form == 'login')
-	                                <span class="formError">{{ $errors['password'] }}</span>
-	                            @endif
-	                        </div>
-	                    </div>
+							<div class="formRow cf {{ isError('firstName', $errors) ? 'formRowError' : '' }}">
+								<label for="firstName">Firstname</label>
+								<div class="formElement">
+									<input id="firstName" name="firstName" type="text" value="{{ isset($input['firstName']) ? $input['firstName'] : '' }}" class="text">
+									@if(isError('firstName', $errors))
+										<span class="formError">{{ $errors['firstName'] }}</span>
+									@endif
+								</div>
+							</div>
 
-	                    <p><a href="{{ baseUrl() }}/forgotten-password">I've forgotten my password</a></p>
+							<div class="formRow cf {{ isError('lastName', $errors) ? 'formRowError' : '' }}">
+								<label for="lastName">Surname</label>
+								<div class="formElement">
+									<input id="lastName" name="lastName" type="text" value="{{ isset($input['lastName']) ? $input['lastName'] : '' }}" class="text">
+									@if(isError('lastName', $errors))
+										<span class="formError">{{ $errors['lastName'] }}</span>
+									@endif
+								</div>
+							</div>
 
-	                    <div class="formAction cf">
-	                        <input type="submit" class="primaryButton" value="Log-In" />
-	                    </div>
-	            	</div>
-	            </div>
-            </fieldset>
-		</form>
-	</div>
+							<div class="formRow cf {{ isError('email', $errors) ? 'formRowError' : ''  }}">
+								<label for="email">Email address</label>
+								<div class="formElement">
+									<input id="email" name="email" type="email" value="{{ isset($input['email']) ? $input['email'] : '' }}" class="text">
+									@if(isError('email', $errors))
+										<span class="formError">{{ $errors['email'] }}</span>
+									@endif
+								</div>
+							</div>		
 
-	<hr />
+							<div class="formAction cf">
+								<input type="submit" class="primaryButton" value="Create account">
+							</div>
+							<p>
+								By proceeding, you agree to our 
+								<a href="{{ baseUrl() }}/terms-and-conditions">Terms of Service</a> 
+								and 
+								<a href="{{ baseUrl() }}/privacy-policy">Privacy Policy</a>
+							</p>
+						</div>
+					</div>
+				</fieldset>
+			</form>
+		</div>
+	</section>
 
-	<div class="pageForm">
-		<form name="frm-register" action="register/user" method="post">
-			<fieldset>
-	            <div class="grid">
-	            	<div class="column col-5-20 colSpacing4 tabCol-12-20 mobCol-18-20 mobColFirst">
-
-	            		<header class="centralHeader grid">
-					        <h1 class="primaryHeader">Register</h1>
-					    </header>
-
-						<div class="formRow cf {{ isError('firstName', $errors) && $form == 'registration' ? 'formRowError' : '' }}">
-				            <label for="firstName">First name</label>
-				            <div class="formElement">
-				                <input id="firstName" name="firstName" type="text" value="{{ isset($input['firstName']) ? $input['firstName'] : '' }}" class="text" />
-				                @if(isError('firstName', $errors) && $form == 'registration')
-				                    <span class="formError">{{ $errors['firstName'] }}</span>
-				                @endif
-				            </div>
-				        </div>
-
-				        <div class="formRow cf {{ isError('lastName', $errors) && $form == 'registration' ? 'formRowError' : '' }}">
-				            <label for="lastName">Surname</label>
-				            <div class="formElement">
-				                <input id="lastName" name="lastName" type="text" value="{{ isset($input['lastName']) ? $input['lastName'] : '' }}" class="text" />
-				                @if(isError('lastName', $errors) && $form == 'registration')
-				                    <span class="formError">{{ $errors['lastName'] }}</span>
-				                @endif
-				            </div>
-				        </div>
-
-				        <div class="formRow cf {{ isError('email', $errors) && $form == 'registration' ? 'formRowError' : '' }}">
-				            <label for="email">Email</label>
-				            <div class="formElement">
-				                <input id="email" name="email" type="email" value="{{ isset($input['email']) && $form == 'registration' ? $input['email'] : '' }}" class="text" />
-				                @if(isError('email', $errors) && $form == 'registration')
-				                    <span class="formError">{{ $errors['email'] }}</span>
-				                @endif
-				            </div>
-				        </div>
-
-				        <div class="formAction cf">
-			                <input type="submit" class="primaryButton" value="Register" />
-			            </div>
-		            </div>
-		        </div>
-		    <fieldset>
-		</form>
-	</div>
-</section>
 @stop
 
 @include('layouts.footer')

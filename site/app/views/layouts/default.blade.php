@@ -32,7 +32,7 @@
     
 <!-- Icons -->
     <!-- Favicon -->
-    <link rel="shortcut icon" href="{{ assetPath() }}i/icons/favicon.ico" />
+    <link rel="shortcut icon" href="{{ assetPath() }}i/icons/favicon-16x16.ico" />
     <link rel="icon" href="{{ assetPath() }}i/icons/favicon-32.png" sizes="32x32">
     <!-- Touch icon for iOS 2.0+ and Android 2.1+ -->
     <link rel="apple-touch-icon-precomposed" href="path/to/favicon-152.png">
@@ -61,7 +61,7 @@
     
 <!-- Files -->
     <link href="//netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap.min.css" rel="stylesheet">
-    <link rel="stylesheet" href="{{ assetPath() }}c/live.css">
+    <link rel="stylesheet" href="{{ assetPath() }}c/live.min.css">
     <link rel="stylesheet" href="{{ assetPath() }}c/content.css">
     <link rel="stylesheet" href="{{ assetPath() }}c/additional.css">
     <!--[if lt IE 9]><script src="{{ assetPath() }}j/vendor/html5shiv-printshiv.js"></script><![endif]-->

@@ -31,4 +31,24 @@ Class PagesController extends BaseController {
 	{
 		return View::make("statics/advertise");	
 	}
+
+	/**
+	 * show the T&C page
+	 * 
+	 * @return View
+	 */
+	public function terms()
+	{
+		return View::make("statics/terms");	
+	}
+
+	/**
+	 * show the privacy policy page
+	 * 
+	 * @return View
+	 */
+	public function privacy()
+	{
+		return View::make("statics/privacy");	
+	}
 }

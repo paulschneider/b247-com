@@ -78,8 +78,9 @@ Route::group(array('before' => 'recordPevious'), function(){
 	Route::get('download-the-app', 'PagesController@appDownload');
 	Route::get('about-us', 'PagesController@aboutUs');
 	Route::get('advertise', 'PagesController@advertise');
-
-
+	Route::get('terms-and-conditions', 'PagesController@terms');
+	Route::get('privacy-policy', 'PagesController@privacy');
+	
 	/*
 	|--------------------------------------------------------------------------
 	| Channel / Sub-channel

@@ -74,7 +74,7 @@
     <div class="footerTerms column col-4-20 colLast tabCol-12-20 tabColLast mobCol-18-20 mobColFirst">
       <ul>
         <li>
-          <a href="#">Terms &amp; conditions</a>
+          <a href="{{ baseUrl() }}/terms-and-conditions">Terms &amp; conditions</a>
         </li>
         <li>
           <a href="#">Privacy Policy</a>
@@ -96,4 +96,7 @@
     </div>
   </div>
 </footer>
+
+@include("layouts.partials.modal")
+
 @endsection

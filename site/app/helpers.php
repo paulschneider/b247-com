@@ -97,7 +97,18 @@ function userIsAuthenticated()
 
 function getAccessKey()
 {
-	return Session::get('user.accessKey');
+	if(Request::header("accessKey"))
+    {
+        return Request::header("accessKey");
+    }
+    elseif(Session::has('user.accessKey'))
+    {
+        return Session::get('user.accessKey');
+    }
+    else
+    {
+        return false;
+    }
 }
 
 function anExternalUrl($string)

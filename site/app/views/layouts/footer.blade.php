@@ -77,7 +77,7 @@
           <a href="{{ baseUrl() }}/terms-and-conditions">Terms &amp; conditions</a>
         </li>
         <li>
-          <a href="#">Privacy Policy</a>
+          <a href="{{ baseUrl() }}/privacy-policy">Privacy Policy</a>
         </li>
       </ul>
       <p>

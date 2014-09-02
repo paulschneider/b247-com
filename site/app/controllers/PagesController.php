@@ -9,7 +9,8 @@ Class PagesController extends BaseController {
 	 */
 	public function appDownload()
 	{
-		return View::make("statics/download-the-app");
+		# grab the data for the page
+		return $this->getContent("download");
 	}
 
 	/**
@@ -19,7 +20,8 @@ Class PagesController extends BaseController {
 	 */
 	public function aboutUs()
 	{
-		return View::make("statics/about-us");	
+		# grab the data for the page
+		return $this->getContent("about");	
 	}
 
 	/**
@@ -29,7 +31,8 @@ Class PagesController extends BaseController {
 	 */
 	public function advertise()
 	{
-		return View::make("statics/advertise");	
+		# grab the data for the page
+		return $this->getContent("advertise");	
 	}
 
 	/**
@@ -39,7 +42,8 @@ Class PagesController extends BaseController {
 	 */
 	public function terms()
 	{
-		return View::make("statics/terms");	
+		# grab the data for the page
+		return $this->getContent("terms-conditions");
 	}
 
 	/**
@@ -49,6 +53,30 @@ Class PagesController extends BaseController {
 	 */
 	public function privacy()
 	{
-		return View::make("statics/privacy");	
+		# grab the data for the page
+		return $this->getContent("privacy_policy");	
+	}
+
+	/**
+	 * make a call to the API to retrieve content for a specified page
+	 * 
+	 * @param  string $pageSefName [search engine friendly name for the article]
+	 * @return array on success | Response on failure
+	 */
+	private function getContent($pageSefName)
+	{
+		# call the API with the required parms
+		$response = App::make("ApiClient")->get("articles", ['article' => $pageSefName, 'static' => true]);
+
+		# it was successful, so send the data (article) back 
+		if(isset($response['success']))
+		{
+			return View::make('statics.index')->with($response['success']['data']['article']);
+		}
+		# it failed, so handle the error response
+		else
+		{
+			return parent::respond($response);
+		}
 	}
 }

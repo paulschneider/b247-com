@@ -9,7 +9,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     
-    <title></title>
+    <title>Bristol 24/7</title>
 
 <!-- SEO/Social -->
     <!-- Meta -->

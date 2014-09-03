@@ -1,5 +1,5 @@
-@if( ! $isMobile )
-    <div id="comments-block" class="fr col-75 mobCol-18-20 mobColLast cmsSecondaryContent">
+<div id="comments-block" class="fr col-75 mobCol-18-20 mobColLast cmsSecondaryContent">
+    @if( ! $isMobile )    
         <div id="disqus_thread"></div>
         <script type="text/javascript">
 
@@ -14,6 +14,10 @@
             })();
         </script>
         <noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
-        <a href="http://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
-    </div>
-@endif
+        <a href="http://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>    
+    @else
+        <div class="comment-btn" style="margin:0 0 2% 32%; width:19%">
+            <a href="{{ $commentRoute }}" class="primaryButton">Article Comments</a>
+        </div>
+    @endif
+</div>

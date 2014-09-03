@@ -42,6 +42,10 @@ Class ArticleController extends BaseController {
 				$data['messageClass'] = "success";
 			}
 
+			# define a route for the current articles comment page. This is output only when the
+			# article is viewed on a mobile device
+			$data['commentRoute'] = baseUrl().'/'.$data['article']['path'].'comments';
+
 			# we don't know what type of data we've had returned by the API so just throw it all at the view and let it decide what to use
 			return View::make("articles.template", $data);
 		}

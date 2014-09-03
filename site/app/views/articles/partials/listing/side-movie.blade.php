@@ -1,7 +1,7 @@
 <div class="dateBlock">   
-    @if( ! $article['event']['details']['performances']['summary']['isMultiDate'] )
+    @if( ! $article['event']['summary']['isMultiDate'] )
         
-        <?php $date = getEventDate($article['event']['details']['performances']['summary']['show']['startTime']['epoch']) ?>
+        <?php $date = getEventDate($article['event']['details']['epoch']) ?>
 
         <div class="dateEntry">
             {{ $date->dayOfWeek['short'] }} {{ $date->day }}<br>
@@ -10,7 +10,7 @@
         
     @else    
 
-        <?php $date = getEventDate($article['event']['details']['performances']['summary']['show']['startTime']['epoch']) ?>
+        <?php $date = getEventDate($article['event']['details']['epoch']) ?>
 
         <div class="dateEntry">
             {{ $date->dayOfWeek['short'] }} {{ $date->day }}<br>
@@ -19,7 +19,7 @@
 
         <div class="dateDivider">-</div>
 
-        <?php $date = getEventDate($article['event']['details']['performances']['summary']['show']['showRunEnd']['epoch']) ?>
+        <?php $date = getEventDate($article['event']['venues'][0]['showRunEnd']['epoch']) ?>
 
         <div class="dateEntry">
             {{ $date->dayOfWeek['short'] }} {{ $date->day }}<br>
@@ -29,34 +29,24 @@
 </div>
 
 <div class="movie-block">
-    <?php $performances = $article['event']['details']['performances']; ?>
+    <?php $performances = $article['event']['venues']; ?>
     <br />
     <ul>  
-        <li>
-            @if(!empty($article['event']['venue']['website']))
-                <a href="{{ $article['event']['venue']['website'] }}">{{ $article['event']['venue']['name'] }}</a>
-            @else
-                {{ $article['event']['venue']['name'] }}
-            @endif
-        </li>
-        @if(isset($article['event']['details']['performances']['alternativeVenues']))
-            @foreach($performances['alternativeVenues'] AS $alternative)                    
-                <li>
-                    @if(!empty($alternative['venue']['website']))
-                        <a href="{{ $alternative['venue']['website'] }}">{{ $alternative['venue']['name'] }}</a>
-                    @else
-                        {{ $alternative['venue']['name'] }}
-                    @endif
-                </li>
-            @endforeach
-         @endif   
+        @foreach($performances AS $performance)                    
+            <li>
+                @if(!empty($venue['website']))
+                    <a href="{{ $performance['venue']['website'] }}">{{ $performance['venue']['name'] }}</a>
+                @else
+                    {{ $performance['venue']['name'] }}
+                @endif
+            </li>
+        @endforeach
     </ul>
     <br />
     <br />
-
     <p>
-        <strong>Rating</strong>: {{ $performances['summary']['certificate'] }}<br />
-        <strong>Directed By</strong>: <br />{{ $performances['summary']['director'] }}<br />
-        <strong>Running Time</strong>: {{ $performances['summary']['duration'] }} mins<br />
+        <strong>Rating</strong>: {{ $article['event']['summary']['certificate'] }}<br />
+        <strong>Directed By</strong>: <br />{{ $article['event']['summary']['director'] }}<br />
+        <strong>Running Time</strong>: {{ $article['event']['summary']['duration'] }} mins<br />
     </p>    
 </div>

@@ -14,7 +14,7 @@
         
         <aside class="column col-25 mobCol-18-20 mobColFirst">
                           
-            @if( isset($article['event']['details']['performances']['summary']['isMovie']) )
+            @if( isset($article['event']['summary']['isMovie']) )
                 @include("articles.partials.listing.side-movie")
             @else
                 @include("articles.partials.listing.side-performance")

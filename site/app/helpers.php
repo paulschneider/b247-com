@@ -333,7 +333,7 @@ function themeClass($section)
 		'lifestyle' => 'themeLife',
 	];
 
-	return $themes[$section];
+	return isset($themes[$section]) ? $themes[$section] : 'themeNews';
 }
 
 function assetPath()

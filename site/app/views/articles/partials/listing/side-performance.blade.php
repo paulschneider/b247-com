@@ -1,4 +1,5 @@
 <div class="dateBlock">
+
     @if( ! $article['event']['details']['performances']['summary']['isMultiDate'] )
 
         <?php $date = getEventDate($article['event']['details']['epoch']) ?>
@@ -36,5 +37,5 @@
 </h5>
 <p>
     from &pound;{{ $article['event']['details']['price'] }}<br>
-    <a href="#">Tickets</a>
+    <a href="{{ $article['event']['details']['url'] }}">Tickets</a>
 </p>

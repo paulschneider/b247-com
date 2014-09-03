@@ -44,7 +44,8 @@ Route::group(array('before' => 'recordPevious'), function(){
 	Route::post('register/user', [ 'as' => 'register', 'uses' => 'SessionsController@registerNewUser' ]);
 	Route::get('profile', [ 'as' => 'profile', 'uses' => 'UserController@showProfile' ]); 
 	Route::post('profile', 'UserController@storeProfile'); 
-	Route::get('your-b247', 'UserController@showPreferences'); 
+	Route::get('your-b247', 'UserController@showPreferences');
+	Route::post('your-b247', 'UserController@storePreferences'); 
 	
 
 	/*

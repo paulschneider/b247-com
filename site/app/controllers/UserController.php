@@ -41,8 +41,11 @@ Class UserController extends BaseController {
 		# cleanup (any session data created through log in or registration) - helpers.php		
 		cleanup();
 
+		# which sub-nav option do we want to make active
+		$activeNav = "profile";
+
 		# send the data to the view and render!
-		return View::make('user.profile', compact('message', 'messageClass'));
+		return View::make('user.profile', compact('message', 'messageClass', 'activeNav'));
 	}
 
 	/**
@@ -52,19 +55,19 @@ Class UserController extends BaseController {
 	 */
 	public function storeProfile()
 	{
-		$input = Input::all();
+		# if there is no authenticated user return them to the log in screen
+		if( ! userIsAuthenticated() ) 
+		{
+			# save the current path as the redirect path so the system brings us back here
+			# after the authentication is successful
+			Session::flash('redirectPath', Session::put('previousPage', URL::current()));
 
-		# format the data into the structure the API needs
-		$data = [
-			"firstName" => $input['firstName'],
-			"lastName" => $input['lastName'],
-			"email" => $input['email'],
-			"postCode" => $input['postCode'],
-			"ageGroup" => $input['ageGroup']
-		];
+			# and redirect to the login screen
+			return Redirect::to('login');
+		}
 
 		# make the call to the API
-		$response = App::make('ApiClient')->post('user/profile', $data, [ 'accessKey' => Session::get('user.accessKey') ]);
+		$response = App::make('ApiClient')->post('user/profile', Input::all(), [ 'accessKey' => Session::get('user.accessKey') ]);
 
 		# if the user profile was saved
 		if(isset($response['success'])) {
@@ -98,6 +101,82 @@ Class UserController extends BaseController {
 	 */
 	public function showPreferences()
 	{
-		return View::make('user.preferences');
+		# if there is no authenticated user return them to the log in screen
+		if( ! userIsAuthenticated() ) 
+		{
+			# save the current path as the redirect path so the system brings us back here
+			# after the authentication is successful
+			Session::flash('redirectPath', Session::put('previousPage', URL::current()));
+
+			# and redirect to the login screen
+			return Redirect::to('login');
+		}
+
+		$response = App::make("ApiClient")->get('user/preferences', ['accessKey' => getAccessKey()]);
+
+		# the call to the APU was successful and we got the list of user
+		# preferences back
+		if(isset($response['success']))
+		{
+			# save it 
+			$data = $response['success']['data'];
+
+			# and to the session so we can retrieve it if they want to update any 
+			# of their preferences
+			Session::put('preferences', $data);
+		}
+
+		# the enquiry submission went well
+		if(Session::has('success')) {
+			# set some success vars
+			$data['message'] = Session::get('success')['public'];
+			$data['messageClass'] = "success";			
+		}
+
+		# there was an issue submitting the enquiry
+		elseif(Session::has('error')) {
+			# set some error vars
+			$data['message'] = Session::get('error')['public'];
+			$data['messageClass'] = "danger";
+		}
+
+		$data['activeNav'] = "prefs";
+
+		return View::make('user.preferences', $data);
+	}
+
+	/**
+	 * process and pass updated user preferences to the API for storage
+	 * 
+	 * @return Redirect
+	 */
+	public function storePreferences()
+	{
+		# retrieve the user' preferences from the session
+		if(Session::has('preferences')) {
+			$preferences = Session::get('preferences');
+		}
+		# for some reason they aren't there, so grab them from the API again.
+		else {
+			// to do
+		}
+
+		$preferences = App::make('Bristol247\Tools\UserPreferenceOrganiser')->set($preferences, Input::all());
+
+		# POST the submitted and processed data to the API
+		$response = App::make("ApiClient")->post("user/preferences", $preferences, ['accessKey' => getAccessKey()]);
+
+		if(isset($response['success']))
+		{
+			# store the success data in the session so we can use it on the next page load
+			Session::flash('success', $response['success']['data']);
+		}
+		else
+		{
+			# save the error response to the session
+			Session::flash('error', $response['error']['data']);	
+		}
+
+		return Redirect::back();
 	}
 }

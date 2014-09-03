@@ -94,5 +94,6 @@
         <script src="//netdna.bootstrapcdn.com/bootstrap/3.1.1/js/bootstrap.min.js"></script>
         <script>window.jQuery || document.write('<script src="{{ assetPath() }}j/vendor/jquery-1.10.2.min.js"><\/script>')</script>
         <script src="{{ assetPath() }}j/live.min.js"></script>
+        <script src="{{ assetPath() }}j/preferences.js"></script>
     </body>
 </html>

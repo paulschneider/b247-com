@@ -38,7 +38,10 @@ Class Caller {
 	{
 		$this->endpoint = $endpoint;
 
-		$request = $this->client->createRequest('POST', $this->endpoint, ['body' => $data, 'headers' => $headers]);
+		$request = $this->client->createRequest('POST', $this->endpoint, [
+			'body' => $data, 
+			'headers' => $headers
+		]);
 
 		return $this->send($request);
 	}

@@ -37,9 +37,9 @@
 							</div>
 
 							<div class="formRow cf {{ isError('password', $errors) ? 'formRowError' : '' }}"> <!-- If error add .formRowError to .formRow container -->
-								<label for="loginPassword">Password</label>
+								<label for="password">Password</label>
 								<div class="formElement">
-									<input id="loginPassword" name="loginPassword" type="password" value="" class="text">
+									<input id="password" name="password" type="password" value="" class="text" />
 									@if(isError('password', $errors))
 		                                <span class="formError">{{ $errors['password'] }}</span>
 		                            @endif

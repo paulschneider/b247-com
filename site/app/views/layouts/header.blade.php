@@ -38,16 +38,6 @@
     </div>      
 </header>    
 
-@if(isset($subChannels))
-    <nav class="subHeader top-head">
-        <ul>
-        @foreach($subChannels AS $subChannel)
-                <li>
-                    <a href="{{ baseUrl().$subChannel['path'] }}">{{ $subChannel['name'] }}</a>
-                </li>
-            @endforeach
-        </ul>
-    </nav>
-@endif
+@include('layouts.partials.sub-nav')
 
 @endsection

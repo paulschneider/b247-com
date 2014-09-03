@@ -52,3 +52,20 @@ section#contact-form textarea {
 #password-reset .formAction {
 	margin-bottom: 25px;
 }
+
+/** PREFERENCES **/
+
+#user-preferences input[type="checkbox"] {
+	visibility: hidden;
+}
+
+.optionCategory .optionList {
+	width:100%;
+	clear: both;
+}
+
+h2.category-subChannel {
+	width:100%;
+	border-bottom: 1px solid red;
+	
+}

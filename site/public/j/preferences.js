@@ -159,7 +159,7 @@ $(document).ready(function(){
 		$input = $control.parent().find('input[type=checkbox]');
 
 		// the user is choosing to hide this content
-		if(! $control.hasClass('optionOn') )
+		if( $control.parent().hasClass('optionOn') )
 		{
 			$input.prop("checked", true);
 			$input.attr("checked", "checked");

@@ -14,7 +14,7 @@
                             $category = getArticleCategory($r);
                         ?>
 
-                        <div class="articleListItem column artCol-1-3 <?php echo $counter == 1 ? 'artColFirst' : '' ?>">
+                        <div class="articleListItem column artCol-1-3 <?php echo $counter == 1 ? 'artColFirst' : '' ?><?php echo $counter == 3 || $counter == 6 ? 'artColLast' : '' ?>">
                             <a href="{{ $subChannel->path }}" class="articleListSubChannel">{{ $subChannel->name }}</a>
                             <div class="articleListSynopsis">
                                 @if(isset($r['media']))
@@ -32,7 +32,7 @@
                                     <a class="articleListTitle" href="{{ $r['path'] }}">
                                         {{ $r['title'] }}
                                     </a>
-                                    <p class="articleListSummary">{{ $r['subHeading'] }}</p>
+                                    <p class="articleListSummary">{{ str_limit($r['subHeading'], $limit = 60, $end = '...') }}</p>
                                     <a href="{{ $category->path }}" class="articleListCategories">{{ $category->name }}</a>
                                 </div>
                             </div>

@@ -86,7 +86,11 @@
 		  							<div class="articleListContent">
 		    							<a href="{{ $subChannel->path }}" class="articleListSubChannel">{{ $subChannel->name }}</a> 
 		    							@if(isset($article['event']['details']['id']))
-											<p class="articleListDetails">{{ $article['event']['venue']['name'] }}{{ isset($article['event']['details']['price']) ? ', from &pound;'. $article['event']['details']['price'] : '' }}</p>
+											<p class="articleListDetails">
+												@if(isset($article['event']['venue']['name']))
+													{{ $article['event']['venue']['name'] }}{{ isset($article['event']['details']['price']) ? ', from &pound;'. $article['event']['details']['price'] : '' }}
+												@endif 
+											</p>
 										@endif
 		    							<a class="articleListTitle" href="{{ $article['path'] }}">{{ $article['title'] }}</a>
 		    							<p class="articleListSummary">{{ $article['subHeading'] }}</p>

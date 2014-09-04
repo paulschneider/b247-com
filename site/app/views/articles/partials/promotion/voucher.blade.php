@@ -1,7 +1,7 @@
 <div class="emailVoucher">                
     <!-- the user has to be logged in -->
     @if( userIsAuthenticated() )                    
-        <img width="315px" height="85px" alt="Email me a voucher" src="/i/layout/email-voucher.png">
+        <img width="315px" height="85px" alt="Email me a voucher" src="{{ baseUrl() }}/i/layout/email-voucher.png">
         @if ( $isMobile) )
         	<a href="b247://redeem/{{ $article['promotion'][0]['code'] }}">Email me a voucher</a>
         @else

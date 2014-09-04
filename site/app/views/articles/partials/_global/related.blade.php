@@ -37,6 +37,7 @@
                                 </div>
                             </div>
                         </div>
+                        <?php $counter++ ?>
                     @endforeach
                 @endif
             </div>

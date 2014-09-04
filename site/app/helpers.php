@@ -5,7 +5,7 @@ function getPublishedDate($date)
 {
 	$date = getEventDate(strtotime($date));
 
-	return $date->day.'.'.$date->monthNumber.'.'.$date->shortYear;
+	return $date->month['full'].' '.$date->day.', '.$date->fullYear;
 }
 
 function cleanup()
@@ -174,6 +174,7 @@ function getEventDate($timestamp)
 	$dt->time = $date->format('H:i');
 	$dt->year = $date->year;
 	$dt->shortYear = $date->format('y');
+	$dt->fullYear = $date->format('Y');
 	$dt->dateStamp = $date->toDateString();
 	$dt->timeStamp = $timestamp;
 	$dt->daysInMonth = $date->daysInMonth;

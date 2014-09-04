@@ -10,7 +10,7 @@ Class PagesController extends BaseController {
 	public function appDownload()
 	{
 		# grab the data for the page
-		return $this->getContent("download");
+		return $this->getContent("download-the-app");
 	}
 
 	/**

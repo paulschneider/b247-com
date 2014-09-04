@@ -7,6 +7,6 @@
             <a href="{{ baseUrl() }}/your-b247">Your B24/7</a>
         </li>        
         <li class="{{ $activeNav == 'password' ? 'active' : '' }}">
-            <a href="{{ baseUrl() }}/password">Change My Password</a>
+            <a href="{{ baseUrl() }}/change-my-password">Change My Password</a>
         </li>
 </nav>

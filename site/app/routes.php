@@ -33,6 +33,7 @@ Route::group(array('before' => 'recordPevious'), function(){
 	*/
 	Route::get('contact-us', [ 'as' => 'contact-us', 'uses' => 'ContactController@showContactForm' ]);
 	Route::post('contact-us', [ 'as' => 'contact-us', 'uses' => 'ContactController@submitNewEnquiry' ]);
+
 	/*
 	|--------------------------------------------------------------------------
 	| Register / Log-in / Profile
@@ -46,7 +47,8 @@ Route::group(array('before' => 'recordPevious'), function(){
 	Route::post('profile', 'UserController@storeProfile'); 
 	Route::get('your-b247', 'UserController@showPreferences');
 	Route::post('your-b247', 'UserController@storePreferences'); 
-	
+	Route::get('change-my-password', 'UserController@showChangePassword'); 
+	Route::post('password/change', 'UserController@changeUserPassword'); 
 
 	/*
 	|--------------------------------------------------------------------------

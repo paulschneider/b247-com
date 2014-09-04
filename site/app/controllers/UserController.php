@@ -179,4 +179,84 @@ Class UserController extends BaseController {
 
 		return Redirect::back();
 	}
+
+	/**
+	 * show the form to allow the user to change their password
+	 * 
+	 * @return View
+	 */
+	public function showChangePassword()
+	{
+		# if there is no authenticated user return them to the log in screen
+		if( ! userIsAuthenticated() ) 
+		{
+			# save the current path as the redirect path so the system brings us back here
+			# after the authentication is successful
+			Session::flash('redirectPath', Session::put('previousPage', URL::current()));
+
+			# and redirect to the login screen
+			return Redirect::to('login');
+		}
+
+		# the submission went well
+		if(Session::has('success')) {
+			# set some success vars
+			$data['message'] = Session::get('success')['public'];
+			$data['messageClass'] = "success";			
+		}
+
+		# something went wrong
+		elseif(Session::has('error')) {
+			# set some error vars
+			$error = Session::get('error');
+			if(isset($error['errors'])) {
+				$data['errors'] = reformatErrors($error['errors']);		
+			}
+
+			$data['message'] = $error['public'];
+			$data['messageClass'] = "danger";
+		}
+
+		# which sub-nav option do we want to make active
+		$data['activeNav'] = "password";
+
+		cleanup();
+
+		# send the data to the view and render!
+		return View::make('user.password')->with($data);
+	}
+
+	/**
+	 * process the submission of a user password change request
+	 * 
+	 * @return Redirect
+	 */
+	public function changeUserPassword()
+	{
+		$data = [
+			'email' => Session::get('user.email'),
+			'password' => Input::get('password'),
+			'newPassword' => Input::get('newPassword'),
+		];
+
+		# POST the submitted data to the API
+		$response = App::make("ApiClient")->post("user/password", $data, ['accessKey' => getAccessKey()]);
+
+		if(isset($response['success']))
+		{
+			# store the success data in the session so we can use it on subsequent page loads
+			Session::put('user', $response['success']['data']['user']);
+
+			# flash the session with some data so we can provide feedback to the user
+			Session::flash('success', $response['success']['data']);
+		}
+		else
+		{
+			# save the error response to the session
+			Session::flash('error', $response['error']['data']);	
+		}
+		
+		# ... redirect back to the form
+		return Redirect::back();
+	}
 }

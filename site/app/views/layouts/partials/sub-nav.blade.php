@@ -8,6 +8,6 @@
 		    @endforeach
 		</ul>
 	</nav>
-@elseif($activeNav == "profile" || $activeNav == "prefs")
+@elseif($activeNav == "profile" || $activeNav == "prefs" || $activeNav == "password")
 	@include("user.partials.sub-nav") 
 @endif

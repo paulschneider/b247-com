@@ -13,6 +13,7 @@ function cleanup()
 	Session::forget('registration-errors');
 	Session::forget('login-errors');
 	Session::forget('ignoreRedirect');
+	Session::forget('error');
 }
 
 function getErrorMessage($data)

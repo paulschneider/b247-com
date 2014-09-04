@@ -4,12 +4,20 @@
 
 @section('content')
 
-<section id="user-preferences">
+<section id="user-preferences" class="user-account">
 	<form name="districts" method="post">
 		<input type="hidden" name="id" value="1" />
-		<header class="centralHeader grid">
-			<h1 class="primaryHeader">Profile</h1>
-		</header>
+		<header class="modalHeader">
+	        <div class="grid">
+	            <div class="headerContent column col-16-20 colSpacing2 mobColFirst">
+	                <h2 class="secondaryHeader">
+	                    <strong class="blackHighlight">Your Profile</strong>
+	                </h2>
+	            </div>
+	        </div>
+	        
+	        <hr>
+	    </header>
 
 		<div class="grid">
 			<aside class="column col-4-20 colFirst tabCol-18-20 tabColFirst mobColFirst">

@@ -4,9 +4,17 @@
 
 @section('content')
 
-<section class="featureArea">
-    <header class="centralHeader grid">
-        <h1 class="primaryHeader">Profile</h1>
+<section class="featureArea user-account">
+    <header class="modalHeader">
+        <div class="grid">
+            <div class="headerContent column col-16-20 colSpacing2 mobColFirst">
+                <h2 class="secondaryHeader">
+                    <strong class="blackHighlight">Your Profile</strong>
+                </h2>
+            </div>
+        </div>
+        
+        <hr>
     </header>
 
     <div class="pageForm">

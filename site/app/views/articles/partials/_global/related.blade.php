@@ -2,10 +2,10 @@
     <p class="secondaryHeader tabColSpacing1">Like this? You might be interested in...</p>
 
     <div class="carouselContainer">
-        <div class="carouselArticleListSide">
+        <div>
             <div class="articleList">
 
-                <?php $counter = 0; ?>
+                <?php $counter = 1; ?>
                 @if( count($related) > 0 )
                     @foreach( $related AS $r )
 
@@ -14,7 +14,7 @@
                             $category = getArticleCategory($r);
                         ?>
 
-                        <div class="articleListItem column artCol-1-3 <?php echo $counter == 0 ? 'artColFirst' : '' ?>">
+                        <div class="articleListItem column artCol-1-3 <?php echo $counter == 1 ? 'artColFirst' : '' ?>">
                             <a href="{{ $subChannel->path }}" class="articleListSubChannel">{{ $subChannel->name }}</a>
                             <div class="articleListSynopsis">
                                 @if(isset($r['media']))
@@ -37,7 +37,13 @@
                                 </div>
                             </div>
                         </div>
+
                         <?php $counter++ ?>
+
+                        @if($counter == 4 )
+                            <?php $counter = 1 ?>
+                        @endif
+                        
                     @endforeach
                 @endif
             </div>

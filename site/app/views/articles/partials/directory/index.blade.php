@@ -1,4 +1,4 @@
-@if ( ! $isMobile)
+
     <script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?key={{ $apiKey }}"></script>
 
     <script type="text/javascript">
@@ -41,7 +41,7 @@
         google.maps.event.addDomListener(window, 'load', initialize);
 
     </script>
-@endif
+
 
 @if (isset($adverts[0]))
     <?php $advert = $adverts[0] ?>

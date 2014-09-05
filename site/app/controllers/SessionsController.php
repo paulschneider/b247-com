@@ -19,9 +19,10 @@ Class SessionsController extends BaseController {
 
 		# error vars, something went wrong!
 		if(Session::has('login-errors')) 
-		{
+		{	
+			$errors = Session::get('login-errors');
 			# there might be specific validation errors
-			if(Session::has('login-errors')) {
+			if(isset($errors['errors'])) {
 				$errors = reformatErrors(Session::get('login-errors')['errors']);	
 			}
 	

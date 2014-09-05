@@ -125,6 +125,12 @@
             <div class="mapContainer" id="map"></div>
 
             {{ $article['bodyContinued'] }}
+
+            @if($isMobile)
+                <div class="comment-btn">
+                    <a href="{{ $commentRoute }}" class="primaryButton">Article Comments</a>
+                </div>
+            @endif
         </div>
 
         <!-- Lower Carousel -->   

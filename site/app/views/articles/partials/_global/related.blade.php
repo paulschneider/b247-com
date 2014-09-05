@@ -32,7 +32,7 @@
                                     <a class="articleListTitle" href="{{ $r['path'] }}">
                                         {{ $r['title'] }}
                                     </a>
-                                    <p class="articleListSummary">{{ str_limit($r['subHeading'], $limit = 60, $end = '...') }}</p>
+                                    <p class="articleListSummary">{{ str_limit($r['subHeading'], $limit = 30, $end = '...') }}</p>
                                     <a href="{{ $category->path }}" class="articleListCategories">{{ $category->name }}</a>
                                 </div>
                             </div>

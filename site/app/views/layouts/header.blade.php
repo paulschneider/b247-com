@@ -3,7 +3,7 @@
 <header role="banner" id="top">      
   <div class="headerBar">
     <a class="visuallyHidden skipNavigation" href="#main">Skip to content</a>        
-    <a id="logo" href="/"><img alt="Bristol 24/7" src="{{ assetPath() }}i/layout/bristol-24-7.png"></a>      
+    <a id="logo" href="/"><img alt="Bristol 24/7" src="{{ assetPath() }}a/i/layout/bristol-24-7.png"></a>      
     <a class="toggleMenuOn" href="#">Show menu<span class="icoMenu"></span></a>        
     <nav class="primaryNav" role="navigation">
         <ul>

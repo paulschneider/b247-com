@@ -125,6 +125,14 @@ function anExternalUrl($string)
     }    
 }
 
+function getStartDay($days)
+{
+	$date = Carbon::createFromTimeStamp($days[0]['publication']['epoch']);
+	$date->timezone = new DateTimeZone('Europe/London');
+
+	return $date->format('m/d/Y');
+}
+
 function getListingInWeek($listOfDays, $week)
 {
 	return getEventDate($listOfDays[$week]['publication']['epoch']);

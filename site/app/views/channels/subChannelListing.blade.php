@@ -23,7 +23,8 @@
 		
 		<p class="backTo column col-5-20 colFirst tabCol-9-20 tabColFirst mobCol-18-20 mobColFirst">Back to: <a href="{{ getSubChannelPath($channel) }}">{{ getSubChannelName($channel) }}</a></p>
 		<p class="backTo column col-6-20 tabCol-9-20 totalResults mobCol-18-20 mobColFirst">
-			<a href="#" class="highlight">Select date</a>
+			<input type="text" name="date" value="{{ getStartDay($days) }}" data-date-format="mm/dd/yyyy" data-date="{{ getStartDay($days) }}" data-path="{{ getSubChannelPath($channel) }}week/" style="width:1px; border: none" class="datepicker" />	
+			<a href="#" class="highlight dp">Select date</a>
 		</p>
 		<p class="backTo column col-5-20 showResults">
 			<?php $less = getNewTimestamp($start, '-', '7 days'); ?>
@@ -63,7 +64,7 @@
 			</header>
 			
 			<div class="carouselContainer">
-				<div class="carouselArticleList">
+				<div class="{{ count($articles) > 0 && count($articles) > 3 ? 'carouselArticleList' : '' }}">
 					<div class="articleList">
 						<?php $s = 0; /* row item counter */ $j = 0 /* total items counter */ ?>
 						@for($i=1; $i <= count($articles); $i++)

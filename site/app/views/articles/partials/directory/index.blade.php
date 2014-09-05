@@ -5,7 +5,7 @@
 
         function initialize() {
 
-            var mapItems = <?php echo $mapItems ?>
+            var mapItems = <?php echo json_encode($mapItems) ?>
 
             var infowindow = new google.maps.InfoWindow({
                 content: "holding"
@@ -15,7 +15,7 @@
 
             var mapOptions = {
                 center: centre,
-                zoom: 14
+                zoom: 16
             };
 
             var map = new google.maps.Map(document.getElementById("map"), mapOptions);
@@ -122,7 +122,11 @@
         <!-- Main Content Area (continued) -->   
         <div class="fr col-75 mobCol-18-20 mobColLast cmsSecondaryContent">
 
-            <div class="mapContainer" id="map"></div>
+            @if( $isMobile )
+                <img src="http://maps.googleapis.com/maps/api/staticmap?center={{ $mapItems['lat'] }},{{ $mapItems['lon'] }}&zoom=15&size=225x225&scale=2&markers=|color:red|label:{{ $mapItems['title'] }}|{{ $mapItems['lat'] }},{{ $mapItems['lon'] }}">
+            @else
+                <div class="mapContainer" id="map"></div>
+            @endif
 
             {{ $article['bodyContinued'] }}
 

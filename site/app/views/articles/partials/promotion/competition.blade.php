@@ -17,7 +17,7 @@
                     @endforeach
                 </div>
             </div>
-            <div class="formAction cf">
+            <div class="cf">
                 <input type="submit" class="primaryButton" value="Enter competition" />
             </div>
         </fieldset>

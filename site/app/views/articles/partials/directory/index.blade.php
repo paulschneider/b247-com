@@ -122,8 +122,8 @@
         <!-- Main Content Area (continued) -->   
         <div class="fr col-75 mobCol-18-20 mobColLast cmsSecondaryContent">
 
-            @if( $isMobile )
-                <img src="http://maps.googleapis.com/maps/api/staticmap?center={{ $mapItems['lat'] }},{{ $mapItems['lon'] }}&zoom=15&size=225x225&scale=2&markers=|color:red|label:{{ $mapItems['title'] }}|{{ $mapItems['lat'] }},{{ $mapItems['lon'] }}">
+            @if( ! $isMobile && !empty($mapItems['lon']) && !empty($mapItems['lat']))
+                <img src="http://maps.googleapis.com/maps/api/staticmap?center={{ $mapItems['lat'] }},{{ $mapItems['lon'] }}&zoom=15&size=225x90&scale=2&markers=|color:red|label:{{ $mapItems['title'] }}|{{ $mapItems['lat'] }},{{ $mapItems['lon'] }}">
             @else
                 <div class="mapContainer" id="map"></div>
             @endif

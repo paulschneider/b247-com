@@ -110,113 +110,41 @@
 							<p class="moreSectionInto">Choose what categories are <span class="optionStateVisible">visible<span></span></span> and <span class="optionStateHidden">hidden</span> :</p>
 
 							@foreach($subChannels AS $subChannel)
-								<?php $cats = $subChannel['categories'] ?>
-								<div class="cat-list" id="sub-channel-{{ $subChannel['id'] }}">
-									<h2><strong>Categories</strong>: {{ $subChannel['name'] }}</h2>
-									<ul class="optionList">
-										<li>
-											<ul>
-												<?php 
-													$cats = array_values($cats);
-													$perColumn = Ceil(count($cats)/3); $s=1; 
-												?>
+								@if(isset($subChannel['categories']))
+									<?php $cats = $subChannel['categories'] ?>
+									<div class="cat-list" id="sub-channel-{{ $subChannel['id'] }}">
+										<h2><strong>Categories</strong>: {{ $subChannel['name'] }}</h2>
+										<ul class="optionList">
+											<li>
+												<ul>
+													<?php 
+														$cats = array_values($cats);
+														$perColumn = Ceil(count($cats)/3); $s=1; 
+													?>
 
-												@for($i = 0; $i <= count($cats)-1; $i++)
-										
-												<li class="category-option {{ $cats[$i]['isEnabled'] ? 'optionOn' : '' }}">
-													<span class="icoVis"></span>
-													<a href="#">{{ $cats[$i]['name'] }}</a>
-													<input type="checkbox" name="categories[sub-channel-{{ $subChannel['id'] }}][]" value="{{ $cats[$i]['id'] }}" {{ ! $cats[$i]['isEnabled'] ? 'checked="checked"' : '' }}>
-												</li>
+													@for($i = 0; $i <= count($cats)-1; $i++)
+											
+													<li class="category-option {{ $cats[$i]['isEnabled'] ? 'optionOn' : '' }}">
+														<span class="icoVis"></span>
+														<a href="#">{{ $cats[$i]['name'] }}</a>
+														<input type="checkbox" name="categories[sub-channel-{{ $subChannel['id'] }}][]" value="{{ $cats[$i]['id'] }}" {{ ! $cats[$i]['isEnabled'] ? 'checked="checked"' : '' }}>
+													</li>
 
-											@if($s == $perColumn || $s == count($cats))
-											</ul>
-										</li>
-										<li>
-											<ul>
-												<?php $s = 0 ?>
-											@endif
-											<?php $s++; ?>
-										@endfor
-									</ul>
-								</div>
+												@if($s == $perColumn || $s == count($cats))
+												</ul>
+											</li>
+											<li>
+												<ul>
+													<?php $s = 0 ?>
+												@endif
+												<?php $s++; ?>
+											@endfor
+										</ul>
+									</div>
+								@endif
 							@endforeach
+							
 						</div>
-
-						<?php 
-						/*<div class="optionMoreGreat">
-							<p class="moreSectionInto">More great Food &amp; Drink</p>
-							<div class="carouselContainer">
-								<div class="moreGreatList">
-									<div class="articleList">
-
-										<div class="column col-10-20 mobCol-18-20 mobColFirst">
-											<h3 class="tertiaryHeader">Feature 1</h3>
-											<div class="moreFeatureBox">
-												<img width="80px" alt="Bristol Foodie" src="/a/i/placeholders/more-great/bristol-foodie.jpg">
-												<p class="moreText">Founded over a bottle of Pinot and a mutual love of all things edible, Becci and Gemma hope to bring you an eclectic mix.</p>
-												<div class="optionToggle">
-													<a class="optionOff" data-input="moreGreat1" href="#">Off</a>
-													<a class="optionOn" data-input="moreGreat1" href="#">On</a>
-												</div>
-												<!--<form class="hidden" action="" method="">
-													<input id="moreGreat1" type="checkbox" value="0" name="moreGreat1">
-												</form>-->
-											</div>
-										</div>
-
-										<div class="column col-10-20 mobCol-18-20 mobColFirst">
-											<h3 class="tertiaryHeader">Feature 1</h3>
-											<div class="moreFeatureBox">
-												<img width="80px" alt="Eat Drink Bristol Fashion" src="/a/i/placeholders/more-great/eat-drink.jpg">
-												<p class="moreText">A collaborative project that champions sustainable food production, ethical food systems and food traceability.</p>
-												<div class="optionToggle">
-													<a class="optionOff" data-input="moreGreat2" href="#">Off</a>
-													<a class="optionOn" data-input="moreGreat2" href="#">On</a>
-												</div>
-												<!--<form class="hidden" action="" method="">
-													<input id="moreGreat2" type="checkbox" value="0" name="moreGreat2">
-												</form>-->                                
-											</div>
-										</div>
-
-									</div> <!-- .articleList -->
-
-									<div class="articleList">
-										<div class="column col-10-20 mobCol-18-20 mobColFirst">
-											<h3 class="tertiaryHeader">Feature 1</h3>
-											<div class="moreFeatureBox">
-												<img width="80px" alt="Bristol Foodie" src="/a/i/placeholders/more-great/bristol-foodie.jpg">
-												<p class="moreText">Founded over a bottle of Pinot and a mutual love of all things edible, Becci and Gemma hope to bring you an eclectic mix.</p>
-												<div class="optionToggle">
-													<a class="optionOff" data-input="moreGreat1" href="#">Off</a>
-													<a class="optionOn" data-input="moreGreat1" href="#">On</a>
-												</div>
-												<!--<form class="hidden" action="" method="">
-													<input id="moreGreat1" type="checkbox" value="0" name="moreGreat1">
-												</form>-->
-											</div>
-										</div>
-
-										<div class="column col-10-20 mobCol-18-20 mobColFirst">
-											<h3 class="tertiaryHeader">Feature 1</h3>
-											<div class="moreFeatureBox">
-												<img width="80px" alt="Eat Drink Bristol Fashion" src="/a/i/placeholders/more-great/eat-drink.jpg">
-												<p class="moreText">A collaborative project that champions sustainable food production, ethical food systems and food traceability.</p>
-												<div class="optionToggle">
-													<a class="optionOff" data-input="moreGreat2" href="#">Off</a>
-													<a class="optionOn" data-input="moreGreat2" href="#">On</a>
-												</div>
-												<!--<form class="hidden" action="" method="">
-													<input id="moreGreat2" type="checkbox" value="0" name="moreGreat2">
-												</form>-->                                
-											</div>
-										</div>
-									</div> <!-- .articleList -->
-								</div>
-							</div> <!-- /.carouselContainer -->
-						</div>
-						*/?>
 					</div>
 				</section>
 				<?php $s++ ?>

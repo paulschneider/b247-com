@@ -20,7 +20,6 @@
             </aside>
 
         <div class="fr col-75 mobCol-18-20 mobColLast">
-            <h2>{{ $article['subHeading'] }}</h2>
             <p class="author">{{ $article['author'] }}, {{ getPublishedDate($article['published']) }}</p>
 
             {{ $article['body'] }}

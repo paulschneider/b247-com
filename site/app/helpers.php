@@ -88,7 +88,7 @@ function clog($data)
 
 function userIsAuthenticated()
 {
-    if( array_key_exists('accessKey', getallheaders()) || Session::has('user.accessKey'))
+    if( array_key_exists('accessKey', getallheaders()) || Session::has('user.accessKey') || Request::header("accessKey"))
     {
         return true;
     }

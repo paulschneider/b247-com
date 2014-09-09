@@ -1,8 +1,10 @@
 <div class="dateBlock">
 
-    @if( ! $article['event']['details']['performances']['summary']['isMultiDate'] )
+    <?php $event = $article['event']['details']['performances']['summary'] ?>
 
-        <?php $date = getEventDate($article['event']['details']['epoch']) ?>
+    @if( ! $event['isMultiDate'] )
+
+        <?php $date = getEventDate($event['details']['epoch']) ?>
 
         <div class="dateEntry">
             {{ $date->dayOfWeek['short'] }} {{ $date->day }}<br>
@@ -10,7 +12,7 @@
         </div>
         
     @else                    
-        <?php $date = getEventDate($article['event']['details']['performances']['summary']['firstPerformance']['start']['epoch']) ?>
+        <?php $date = getEventDate($event['firstPerformance']['start']['epoch']) ?>
 
         <div class="dateEntry">
             {{ $date->dayOfWeek['short'] }} {{ $date->day }}<br>
@@ -19,7 +21,7 @@
 
         <div class="dateDivider">-</div>
 
-        <?php $date = getEventDate($article['event']['details']['performances']['summary']['lastPerformance']['start']['epoch']) ?>
+        <?php $date = getEventDate($event['lastPerformance']['start']['epoch']) ?>
 
         <div class="dateEntry">
             {{ $date->dayOfWeek['short'] }} {{ $date->day }}<br>
@@ -39,3 +41,11 @@
     from &pound;{{ $article['event']['details']['price'] }}<br>
     <a href="{{ $article['event']['details']['url'] }}">Tickets</a>
 </p>
+@if(!is_null($event['showingToday']))
+    <h3>Showing Today</h3>
+    <ul>
+        @foreach($event['showingToday'] AS $show)
+            <li>{{ $show['start']['time'] }}</li> 
+        @endforeach
+    </ul>
+@endif

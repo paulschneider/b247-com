@@ -98,7 +98,7 @@ class UserPreferenceOrganiser {
 			$subChannel['isEnabled'] = ! in_array($subChannel['id'], $this->form['subChannel']);
 
 			# also update this sub-channels category preferences
-			$subChannel['categories'] = $this->setCategories($subChannel);			
+			$subChannel['categories'] = $this->setCategories($channel, $subChannel);			
 
 			# over-write the original sub-channel data with this new, updated stuff
 			$channel['subChannels'][$key] = $subChannel;
@@ -111,7 +111,7 @@ class UserPreferenceOrganiser {
 	/**
 	 * work out whether the user has turned individual categories on or off
 	 */
-	public function setCategories($subChannel)
+	public function setCategories($channel, $subChannel)
 	{
 		# if the user turned on categories, we need to create the category array
 		# as it won't be submitted with all sub-channel categories unchecked
@@ -119,25 +119,31 @@ class UserPreferenceOrganiser {
 			$categories = [];
 		}
 
-		$id = $subChannel['id'];
+		$id = $channel['id'];
 
 		# we had to set the form up with pre-fixed subChannel identifiers for the categories 
 		# so we know which subChannel the category belongs to. Hence the sub-channel-<id> thing.
-		if(isset($this->form['categories']['sub-channel-'.$id]))
+		if(isset($this->form['categories']['channel-'.$id]))
 		{
 			# we only want to turn a sub-set of this subChannel's categories off
-			$categories = $this->form['categories']['sub-channel-'.$id];
+			$categories = $this->form['categories']['channel-'.$id];
 		}
-		# otherwise we just need an empty array to check against.
+		# otherwise there are no categories to turn off within this channel
 		else {
-			$categories = [];
+			return $subChannel;
 		}
-	
+
 		# go through the subChannel categories and set isEnabled
 		foreach($subChannel['categories'] AS $key => $category)
-		{
-			# turn the category on
-			$category['isEnabled'] = ! in_array($category['id'], $categories);
+		{			
+			$category['isEnabled'] = true;
+			
+			# this is terrible. The apps were developed differently so we have to fall in line
+			# with the way they do it. Correct this as soon as possible
+			if(in_array($category['name'], $categories)) {
+				# turn the category off
+				$category['isEnabled'] = false;
+			}
 
 			# over-write the subChannel category with the updated category data
 			$subChannel['categories'][$key]	= $category;

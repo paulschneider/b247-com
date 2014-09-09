@@ -83,11 +83,11 @@
 
 								<?php 
 									$perColumn = Ceil(count($channel['subChannels'])/3); $s=1; 
-									$subChannels = [];
+									$subChannelCats = [];
 								?>
 								@for($i = 0; $i <= count($channel['subChannels'])-1; $i++)
 
-										<?php $subChannels[] = $channel['subChannels'][$i]; ?>
+										<?php $subChannelCats[] = $channel['subChannels'][$i]['categories']; ?>
 
 										<li class="{{ $channel['subChannels'][$i]['isEnabled'] ? 'optionOn' : '' }}">
 											<span class="icoVis"></span>
@@ -108,42 +108,45 @@
 
 						<div class="optionCategory">
 							<p class="moreSectionInto">Choose what categories are <span class="optionStateVisible">visible<span></span></span> and <span class="optionStateHidden">hidden</span> :</p>
+							<ul class="optionList">
 
-							@foreach($subChannels AS $subChannel)
-								@if(isset($subChannel['categories']))
-									<?php $cats = $subChannel['categories'] ?>
-									<div class="cat-list" id="sub-channel-{{ $subChannel['id'] }}">
-										<h2><strong>Categories</strong>: {{ $subChannel['name'] }}</h2>
-										<ul class="optionList">
-											<li>
-												<ul>
-													<?php 
-														$cats = array_values($cats);
-														$perColumn = Ceil(count($cats)/3); $s=1; 
-													?>
+							<?php 
+								$sCategories = []; // sorted categories
 
-													@for($i = 0; $i <= count($cats)-1; $i++)
-											
-													<li class="category-option {{ $cats[$i]['isEnabled'] ? 'optionOn' : '' }}">
-														<span class="icoVis"></span>
-														<a href="#">{{ $cats[$i]['name'] }}</a>
-														<input type="checkbox" name="categories[sub-channel-{{ $subChannel['id'] }}][]" value="{{ $cats[$i]['id'] }}" {{ ! $cats[$i]['isEnabled'] ? 'checked="checked"' : '' }}>
-													</li>
+								foreach($subChannelCats AS $categoryList)
+								{
+									foreach($categoryList AS $item)
+									{
+										if(!array_key_exists($item['sefName'], $sCategories)) {
+											$sCategories[$item['sefName']] = $item;		
+										}										
+									}		
+								}
+							?>										
+								<li>
+									<ul>
+										<?php 
+											$cats = array_values($sCategories);											
+											$perColumn = Ceil(count($sCategories)/3); $s=0; 
+										?>
 
-												@if($s == $perColumn || $s == count($cats))
-												</ul>
+										@foreach($sCategories AS $category)		
+								
+											<li class="category-option {{ $category['isEnabled'] ? 'optionOn' : '' }}">
+												<span class="icoVis"></span>
+												<a href="#">{{ $category['name'] }}</a>
+												<input type="checkbox" name="categories[channel-{{ $channel['id'] }}][]" value="{{ $category['name'] }}" {{ ! $category['isEnabled'] ? 'checked="checked"' : '' }}>
 											</li>
-											<li>
-												<ul>
-													<?php $s = 0 ?>
-												@endif
-												<?php $s++; ?>
-											@endfor
-										</ul>
-									</div>
-								@endif
-							@endforeach
-							
+									<?php $s++; ?>
+									@if($s == $perColumn || $s == count($sCategories))
+									</ul>
+								</li>
+								<li>
+									<ul>
+										<?php $s = 0 ?>
+									@endif											
+									@endforeach						
+							</ul>
 						</div>
 					</div>
 				</section>

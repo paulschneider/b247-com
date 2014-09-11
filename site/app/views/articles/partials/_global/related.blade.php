@@ -1,12 +1,12 @@
-<aside class="column col-4-20 tabCol-20-20 leftColumnLine">
-    <p class="secondaryHeader tabColSpacing1">Like this? You might be interested in...</p>
+@if( isset($related) and count($related) > 0) 
+    <aside class="column col-4-20 tabCol-20-20 leftColumnLine">
+        <p class="secondaryHeader tabColSpacing1">Like this? You might be interested in...</p>
 
-    <div class="carouselContainer">
-        <div>
-            <div class="articleList">
+        <div class="carouselContainer">
+            <div>
+                <div class="articleList">
 
-                <?php $counter = 1; ?>
-                @if( count($related) > 0 )
+                    <?php $counter = 1; ?>
                     @foreach( $related AS $r )
 
                         <?php 
@@ -45,11 +45,10 @@
 
                         @if($counter == 4 )
                             <?php $counter = 1 ?>
-                        @endif
-                        
+                        @endif                        
                     @endforeach
-                @endif
+                </div>
             </div>
-        </div>
-    </div> <!-- /.carouselContainer -->                
-</aside>
+        </div> <!-- /.carouselContainer -->                
+    </aside>
+@endif

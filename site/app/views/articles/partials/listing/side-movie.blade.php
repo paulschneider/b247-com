@@ -34,7 +34,7 @@
     <ul>  
         @foreach($performances AS $performance)                    
             <li>
-                @if(!empty($venue['website']))
+                @if(!empty($performance['venue']['website']))
                     <a href="{{ $performance['venue']['website'] }}">{{ $performance['venue']['name'] }}</a>
                 @else
                     {{ $performance['venue']['name'] }}

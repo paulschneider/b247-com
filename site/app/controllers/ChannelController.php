@@ -128,5 +128,9 @@ Class ChannelController extends BaseController {
 			#show the view
 			return View::make("channels.subChannelListingDay", $this->data);
 		}
+		# otherwise respond to the error (BaseController::respond())
+		else {
+			return parent::respond($response);
+		}
 	}
 }

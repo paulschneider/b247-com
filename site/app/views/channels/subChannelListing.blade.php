@@ -47,7 +47,8 @@
 		<section class="pageSection grid">
 			<div class="dateCategoryHeader">
 				<div class="column artCol-1-3 artColFirst dateCategoryDate">
-					{{ $date->dayOfWeek['short'] .' '. $date->day  }} <span class="icoArrowRight"></span>
+					<a href="{{ baseUrl().$route }}/day/{{ $date->timeStamp }}">{{ $date->dayOfWeek['short'] .' '. $date->day  }}</a>
+					<a href="{{ baseUrl().$route }}/day/{{ $date->timeStamp }}"><span class="icoArrowRight"></span></a>
 				</div>
 				<div class="column artCol-2-3 artColLast dateCategoryCategories">
 					<ul class="linkList">					

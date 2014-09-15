@@ -32,14 +32,16 @@
 
 <h5>
     @if(!empty($article['event']['venue']['website']))
-        <a href="{{ $article['event']['venue']['website'] }}">$article['event']['venue']['name']</a>
+        <a href="{{ $article['event']['venue']['website'] }}">{{ $article['event']['venue']['name'] }}</a>
     @else
         {{ $article['event']['venue']['name'] }}
     @endif
 </h5>
 <p>
     from &pound;{{ $article['event']['details']['price'] }}<br>
-    <a href="{{ $article['event']['details']['url'] }}">Tickets</a>
+    @if(isset($article['event']['details']['url']))
+        <a href="{{ $article['event']['details']['url'] }}">Tickets</a>
+    @endif
 </p>
 @if(!is_null($event['showingToday']))
     <h3>Showing Today</h3>

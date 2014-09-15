@@ -55,7 +55,9 @@
 								</div>
 								<div class="articleListContent">
 									<a class="articleListTitle" href="{{ $article['path'] }}">{{ $article['title'] }}</a>
-									<p class="articleListDetails">{{ $article['event']['venue']['name'] }}, from &pound;{{ $article['event']['details']['price'] }}</p>
+									<p class="articleListDetails">{{ $article['event']['venue']['name'] }}
+										{{ isset($article['event']['details']['price']) ? ', from &pound;'. $article['event']['details']['price'] : '' }}
+									</p>
 									<p class="articleListSummary">{{ $article['subHeading'] }}</p>
 									<a href="{{ $category->path }}" class="articleListCategories">{{ $category->name }}</a>
 								</div>
@@ -101,7 +103,9 @@
 					</div>
 					<div class="articleListContent">
 						<a class="articleListTitle" href="{{ $article['path'] }}">{{ $article['title'] }}</a>
-						<p class="articleListDetails">{{ $article['event']['venue']['name'] }}, from &pound;{{ $article['event']['details']['price'] }}</p>
+						<p class="articleListDetails">{{ $article['event']['venue']['name'] }}
+							{{ isset($article['event']['details']['price']) ? ', from &pound;'. $article['event']['details']['price'] : '' }}
+						</p>
 						<p class="articleListSummary">{{ $article['subHeading'] }}</p>
 						<a href="{{ $category->path }}" class="articleListCategories">{{ $category->name }}</a>
 					</div>

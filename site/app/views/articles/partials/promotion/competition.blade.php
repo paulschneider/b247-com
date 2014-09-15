@@ -24,9 +24,9 @@
     </form> 
 
 @else
-    @if ( $isMobile) )
-        <a href="b247://signin">Log-In to enter this competition!</a>
+    @if($isMobile)
+        <a href="b247://signin" class="primaryButton">Log-In to enter this competition!</a>
     @else
-        <a href="{{ route('login') }}">Log-In to enter this competition!</a>
+        <a href="{{ route('login') }}" class="primaryButton">Log-In to enter this competition!</a>
     @endif    
 @endif

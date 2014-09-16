@@ -27,6 +27,7 @@ class BaseController extends Controller {
 		View::share('message', null);
 		View::share('messageClass', null);
 		View::share('activeNav', null);
+		View::share('apiKey', null);
 	}
 
 	/**

@@ -60,8 +60,6 @@
     <link rel="apple-touch-icon-precomposed" href="{{ assetPath() }}a/i/icons/favicon-57.png">
     
 <!-- Files -->
-    <link href="//netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap.min.css" rel="stylesheet">
-   
     <link rel="stylesheet" href="{{ assetPath() }}a/c/live.min.css">
     <link rel="stylesheet" href="{{ assetPath() }}a/c/additional.css">
     <link rel="stylesheet" href="{{ assetPath() }}a/c/datepicker.css">

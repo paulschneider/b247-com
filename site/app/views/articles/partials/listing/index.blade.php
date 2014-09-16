@@ -27,7 +27,6 @@
 
         <div class="fr col-75 mobCol-18-20 mobColLast">
             <div>
-                <p class="author">{{ $article['author'] }}, {{ getPublishedDate($article['published']) }}</p>
                 {{ $article['body'] }}
             </div>
         </div>

@@ -82,13 +82,17 @@ h2.category-subChannel {
 
 /** GOOGLE MAP CONTAINER ON DIRECTORY TYPE ARTICLES */
 #map {
-	width: 900px;
+	width: 100%;
 	height: 500px;
 	margin: 0 auto 0 auto;
-	margin-bottom: 50px;
-	margin-top: 50px;
+	margin-bottom: 21px;
 }
 
 .cmsContent .cmsSecondaryContent .mapContainer {
 	max-width: 100% !important;
+}
+
+.gm-style .gm-style-iw {
+	height: auto !important;
+	width: auto !important;
 }

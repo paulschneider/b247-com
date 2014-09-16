@@ -4,7 +4,7 @@
 
     @if( ! $event['isMultiDate'] )
 
-        <?php $date = getEventDate($event['details']['epoch']) ?>
+        <?php $date = getEventDate($article['event']['details']['epoch']) ?>
 
         <div class="dateEntry">
             {{ $date->dayOfWeek['short'] }} {{ $date->day }}<br>

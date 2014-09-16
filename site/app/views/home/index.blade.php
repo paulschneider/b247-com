@@ -99,7 +99,7 @@
 				@foreach($picks AS $article)
 					<?php $i += displayStyle($article) ?>
 
-					<div class="articleListItem <?php echo getTheme($article) ?> column <?php echo $s == 1 ? 'artColFirst' : '' ?> <?php echo $i == 3 || $i == 6 ? 'artColLast' : '' ?> <?php echo displayStyle($article) == 2 ? 'artCol-2-3' : 'artCol-1-3' ?> mobArtCol-3-3">
+					<div class="articleListItem <?php echo getTheme($article) ?> column <?php echo $s == 1 ? 'artColFirst' : '' ?> <?php echo $i == 3 || $i == 6 ? 'artColLast' : '' ?> <?php echo displayStyle($article) == 2 ? 'artCol-2-3' : 'artCol-1-3' ?> <?php echo displayStyle($article) == 2 ? 'mobArtCol-3-3' : '' ?>">
 						@if($article['isAdvert'])
 							<div class="articleListBlockAdvert advert">
 								<figure>

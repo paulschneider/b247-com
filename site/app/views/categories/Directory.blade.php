@@ -85,9 +85,6 @@
 		<div class="col-16-20 colFirst tabCol-20-20">
 			<div class="mapContainer">
 				<div class="mapBox" id="map"></div>
-				<a class="viewMap" href="#">
-					<img alt="View map" src="a/i/layout/view-map.png">
-				</a>
 				<a class="hideMap" href="#">Back</a>
 			</div>
 		</div>

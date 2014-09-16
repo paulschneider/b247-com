@@ -64,6 +64,7 @@
    
     <link rel="stylesheet" href="{{ assetPath() }}a/c/live.min.css">
     <link rel="stylesheet" href="{{ assetPath() }}a/c/additional.css">
+    <link rel="stylesheet" href="{{ assetPath() }}a/c/datepicker.css">
     <!--[if lt IE 9]><script src="{{ assetPath() }}j/vendor/html5shiv-printshiv.js"></script><![endif]-->
 
   </head>

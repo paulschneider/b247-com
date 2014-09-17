@@ -18,11 +18,13 @@
         <?php $counter = 0 ?>
         <li class="artCol-1-3 <?php echo $counter == 0 ? 'artColFirst' : '' ?>">    
             <ul>
+                <?php $perColumn = ceil(count($categories)/3) ?>
+
                 @foreach( $categories AS $category )
                     <li><a href="{{ $category['path'] }}">{{ $category['name'] }} <span>({{ $category['numberOfArticles'] }})</span></a></li>
                     <?php $counter++ ?>
 
-                    @if( $counter == 5 )
+                    @if( $counter == $perColumn )
                             </ul>
                         </li>
                         <li class="artCol-1-3">   

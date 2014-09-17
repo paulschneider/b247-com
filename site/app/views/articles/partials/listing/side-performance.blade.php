@@ -43,7 +43,7 @@
         <a href="{{ $article['event']['details']['url'] }}">Tickets</a>
     @endif
 </p>
-@if(!is_null($event['showingToday']))
+@if(isset($event['showingToday']) && !is_null($event['showingToday']))
     <h3>Showing Today</h3>
     <ul>
         @foreach($event['showingToday'] AS $show)

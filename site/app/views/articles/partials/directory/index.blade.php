@@ -129,6 +129,14 @@
 
             {{ $article['bodyContinued'] }}
 
+            @if(isset($article['categoryAssignment']))
+                <ul class="categoryList">
+                    @foreach($article['categoryAssignment'] AS $assignment)
+                        <li><a href="{{ baseUrl().$assignment['path'] }}">{{ $assignment['name'] }}</a></li>
+                    @endforeach
+                </ul>
+            @endif
+
             @if($isMobile)
                 <div class="comment-btn">
                     <a href="{{ $commentRoute }}" class="primaryButton">Article Comments</a>

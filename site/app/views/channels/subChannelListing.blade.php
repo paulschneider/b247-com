@@ -83,7 +83,7 @@
 		      									<img alt="{{ $article['media']['alt'] }}" src="{{ $article['media']['filepath'] }}" />
 		      								@endif
 		    							</a>
-		    							<a href="{{ $category->path }}" class="articleListCategories">{{ $category->name }}</a>
+		    							<a href="{{ $category->path }}?time={{ $date->timeStamp }}" class="articleListCategories">{{ $category->name }}</a>
 		  							</div>
 		  							<div class="articleListContent">
 		    							<a href="{{ $subChannel->path }}" class="articleListSubChannel">{{ $subChannel->name }}</a> 
@@ -96,7 +96,7 @@
 										@endif
 		    							<a class="articleListTitle" href="{{ $article['path'] }}">{{ $article['title'] }}</a>
 		    							<p class="articleListSummary">{{ $article['subHeading'] }}</p>
-		    							<a href="{{ $category->path }}" class="articleListCategories">{{ $category->name }}</a>
+		    							<a href="{{ $category->path }}?time={{ $date->timeStamp }}" class="articleListCategories">{{ $category->name }}</a>
 		  							</div>
 								</div>
 							</div>

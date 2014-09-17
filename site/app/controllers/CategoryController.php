@@ -4,7 +4,7 @@ Class CategoryController extends BaseController {
 
 	public function show($channel, $subChannel, $category, $page = 1)
 	{
-		$response = App::make("ApiClient")->get("category/$category/articles", ['subChannel' => $subChannel, 'page' => $page]);
+		$response = App::make("ApiClient")->get("category/$category/articles", ['subChannel' => $subChannel, 'page' => $page, 'time' => Input::get('time')]);
 
 		if(isset($response['success']))
 		{

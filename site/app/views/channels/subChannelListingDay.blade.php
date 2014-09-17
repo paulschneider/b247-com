@@ -13,6 +13,7 @@
 	$day = $days[0];
 	$date = getEventDate($day['publication']['epoch']);
 	$lastWeek = $date->timeStamp;
+	$epochToday = $day['publication']['epoch'];
 ?>
 
 <section class="pageSection">
@@ -68,13 +69,15 @@
 											<img alt="{{ $article['media']['alt'] }}" src="{{ $article['media']['filepath'] }}" />
 										@endif
 									</a>
-									<a href="{{ $category->path }}" class="articleListCategories">{{ $category->name }}</a>	
+									<a href="{{ $category->path }}?time={{ $epochToday }}" class="articleListCategories">{{ $category->name }}</a>	
 								</div>
 								<div class="articleListContent">
 									<a class="articleListTitle" href="{{ $article['path'] }}">{{ $article['title'] }}</a>
-									<p class="articleListDetails">{{ $article['event']['venue']['name'] }}, from &pound;{{ $article['event']['details']['price'] }}</p>
+									<p class="articleListDetails">{{ $article['event']['venue']['name'] }}
+										{{ isset($article['event']['details']['price']) && !empty($article['event']['details']['price']) ? ', from &pound;'. $article['event']['details']['price'] : '' }}
+									</p>
 									<p class="articleListSummary">{{ $article['subHeading'] }}</p>
-									<a href="{{ $category->path }}" class="articleListCategories">{{ $category->name }}</a>
+									<a href="{{ $category->path }}?time={{ $epochToday }}" class="articleListCategories">{{ $category->name }}</a>
 								</div>
 							</div>
 						</div>
@@ -117,7 +120,9 @@
 					</div>
 					<div class="articleListContent">
 						<a class="articleListTitle" href="{{ $article['path'] }}">{{ $article['title'] }}</a>
-						<p class="articleListDetails">{{ $article['event']['venue']['name'] }}, from &pound;{{ $article['event']['details']['price'] }}</p>
+						<p class="articleListDetails">{{ $article['event']['venue']['name'] }}
+							{{ isset($article['event']['details']['price']) && !empty($article['event']['details']['price']) ? ', from &pound;'. $article['event']['details']['price'] : '' }}
+						</p>
 						<p class="articleListSummary">{{ $article['subHeading'] }}</p>
 						<a href="{{ $category->path }}" class="articleListCategories">{{ $category->name }}</a>
 					</div>

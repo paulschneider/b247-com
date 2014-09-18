@@ -8,7 +8,7 @@
             var mapItems = <?php echo json_encode($mapItems) ?>
 
             var infowindow = new google.maps.InfoWindow({
-                content: "holding"
+                content: mapItems.title
             });
 
             var centre = new google.maps.LatLng(51.4714686, -2.6001674);
@@ -28,10 +28,7 @@
                 title: mapItems.title
             });
 
-            google.maps.event.addListener(marker, 'click', function () {
-                infowindow.setContent(this.title);
-                infowindow.open(map, this);
-            });
+            infowindow.open(map, marker);
 
             marker.setMap(map);
 

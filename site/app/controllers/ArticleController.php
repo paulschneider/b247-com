@@ -4,7 +4,7 @@ Class ArticleController extends BaseController {
 
 	public function show($channel, $subChannel, $category, $article)
 	{
-		$response = App::make("ApiClient")->get("articles", [ 'subchannel' => $subChannel, 'category' => $category, 'article' => $article, 'dataOnly' => true ]);
+		$response = App::make("ApiClient")->get("articles", [ 'subchannel' => $subChannel, 'category' => $category, 'article' => $article, 'dataOnly' => true, 'time' => Input::get('time') ]);
 
 		if(isset($response['success']))
 		{

@@ -13,6 +13,7 @@
 <?php 
 	$day = $days[0];
 	$date = getEventDate($day['publication']['epoch']);
+	$epochToday = $day['publication']['epoch'];
 	$lastWeek = $date->timeStamp;
 ?>
 
@@ -54,7 +55,7 @@
 									<a href="{{ $category->path }}" class="articleListCategories">{{ $category->name }}</a>	
 								</div>
 								<div class="articleListContent">
-									<a class="articleListTitle" href="{{ $article['path'] }}">{{ $article['title'] }}</a>
+									<a class="articleListTitle" href="{{ $article['path'] }}?time={{ $epochToday }}">{{ $article['title'] }}</a>
 									<p class="articleListDetails">{{ $article['event']['venue']['name'] }}
 										{{ isset($article['event']['details']['price']) && !empty($article['event']['details']['price']) ? ', from &pound;'. $article['event']['details']['price'] : '' }}
 									</p>
@@ -102,7 +103,7 @@
 						<a href="{{ $category->path }}" class="articleListCategories">{{ $category->name }}</a>	
 					</div>
 					<div class="articleListContent">
-						<a class="articleListTitle" href="{{ $article['path'] }}">{{ $article['title'] }}</a>
+						<a class="articleListTitle" href="{{ $article['path'] }}?time={{ $epochToday }}">{{ $article['title'] }}</a>
 						<p class="articleListDetails">{{ $article['event']['venue']['name'] }}
 							{{ isset($article['event']['details']['price']) ? ', from &pound;'. $article['event']['details']['price'] : '' }}
 						</p>

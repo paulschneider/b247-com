@@ -87,7 +87,7 @@
 								?>
 								@for($i = 0; $i <= count($channel['subChannels'])-1; $i++)
 
-										<?php $subChannelCats[] = $channel['subChannels'][$i]['categories']; ?>
+										<?php $subChannelCats[] = isset($channel['subChannels'][$i]['categories']) ? $channel['subChannels'][$i]['categories'] : [] ?>
 
 										<li class="{{ $channel['subChannels'][$i]['isEnabled'] ? 'optionOn' : '' }}">
 											<span class="icoVis"></span>

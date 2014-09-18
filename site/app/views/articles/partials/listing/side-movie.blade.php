@@ -1,4 +1,10 @@
 <div class="dateBlock">   
+
+    @if(Input::get('time'))
+        <?php $date = getEventDate(Input::get('time')) ?>
+        <h2>{{ $date->dayOfWeek['short'] }} {{ $date->day }} {{ $date->month['short'] }}</h2>
+    @endif
+
     @if( ! $article['event']['summary']['isMultiDate'] )
         
         <?php $date = getEventDate($article['event']['details']['epoch']) ?>

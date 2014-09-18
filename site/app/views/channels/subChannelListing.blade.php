@@ -94,7 +94,7 @@
 												@endif 
 											</p>
 										@endif
-		    							<a class="articleListTitle" href="{{ $article['path'] }}">{{ $article['title'] }}</a>
+		    							<a class="articleListTitle" href="{{ $article['path'] }}?time={{ $date->timeStamp }}">{{ $article['title'] }}</a>
 		    							<p class="articleListSummary">{{ $article['subHeading'] }}</p>
 		    							<a href="{{ $category->path }}?time={{ $date->timeStamp }}" class="articleListCategories">{{ $category->name }}</a>
 		  							</div>

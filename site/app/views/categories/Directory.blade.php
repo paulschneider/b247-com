@@ -27,17 +27,6 @@
 
 		var calviumPos = new google.maps.LatLng(51.451508, -2.598464);
 
-		var calvium = new google.maps.Marker({
-			position: calviumPos,
-			//map: map,
-			title: "Calvium"
-		});			
-
-	  	google.maps.event.addListener(calvium, 'click', function () {
-			infowindow.setContent(this.title);
-			infowindow.open(map, this);
-		});
-
 		for(var i = 0; i < mapItems.length; i++)
 		{
 			var position = new google.maps.LatLng(mapItems[i].lat, mapItems[i].lon);
@@ -45,12 +34,21 @@
 			var marker = new google.maps.Marker({
 				position: position,
 				map: map,
-				title: mapItems[i].title
+				title: mapItems[i].title,
+				url: mapItems[i].path
 			});
 
-			google.maps.event.addListener(marker, 'click', function () {
+			google.maps.event.addListener(marker, 'mouseover', function () {
 				infowindow.setContent(this.title);
 				infowindow.open(map, this);
+			});
+
+			google.maps.event.addListener(marker, 'mouseout', function () {
+				infowindow.close(map, this);
+			});
+
+			google.maps.event.addListener(marker, 'click', function() {
+			    window.location.href = this.url;
 			});
 
 			marker.setMap(map);

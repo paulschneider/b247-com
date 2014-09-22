@@ -56,14 +56,15 @@
                 </div>
             @endif
     </div>   
+
+    <!-- Lower Carousel -->   
+
+    @include('articles.partials._global.gallery-bottom')    
+
+    <hr class="spacerUp">
+
+    @include("articles.partials._global.horizontal-related")
+    
 </article>
-
-<!-- Lower Carousel -->   
-
-@include('articles.partials._global.gallery-bottom')    
-
-<hr class="spacerUp">
-
-@include("articles.partials._global.horizontal-related")
 
 @include("articles.partials._global.comments")

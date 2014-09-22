@@ -1,27 +1,34 @@
 <?php $competition = $article['competition'][0] ?>
 
-@if( userIsAuthenticated() ) 
+@if( userIsAuthenticated()) 
+    
+    @if($competition['isValid'])
+        <h2>{{ $competition['question'] }}</h2>
 
-    <h2>{{ $competition['question'] }}</h2>
+        <form class="secondaryForm" action="<?php echo $isMobile ? Config::get('api.baseUrl').'user/competition/enter' : '/promotion/competition/enter' ?>" method="post">
+            <input type="hidden" name="competitionId" value="{{ $competition['id'] }}" />
+            <input type="hidden" name="accessKey" value="{{ getAccessKey() }}" />
 
-    <form class="secondaryForm" action="<?php echo $isMobile ? Config::get('api.baseUrl').'user/competition/enter' : '/promotion/competition/enter' ?>" method="post">
-        <input type="hidden" name="competitionId" value="{{ $competition['id'] }}" />
-        <input type="hidden" name="accessKey" value="{{ getAccessKey() }}" />
-
-        <fieldset>             
-            <div class="formRow cf">
-                <div class="formElement formRadioGroup">
-                    @foreach($competition['answers'] AS $answer) 
-                        <input id="answer{{ $answer['id'] }}" type="radio" class="radio" value="{{ $answer['id'] }}" name="answerId" />
-                        <label for="answer{{ $answer['id'] }}">{{ $answer['answer'] }}</label>                
-                    @endforeach
+            <fieldset>             
+                <div class="formRow cf">
+                    <div class="formElement formRadioGroup">
+                        @foreach($competition['answers'] AS $answer) 
+                            <input id="answer{{ $answer['id'] }}" type="radio" class="radio" value="{{ $answer['id'] }}" name="answerId" />
+                            <label for="answer{{ $answer['id'] }}">{{ $answer['answer'] }}</label>                
+                        @endforeach
+                    </div>
                 </div>
-            </div>
-            <div class="cf formAction">
-                <input type="submit" class="primaryButton" value="Enter competition" />
-            </div>
-        </fieldset>
-    </form> 
+                <div class="cf formAction">
+                    <input type="submit" class="primaryButton" value="Enter competition" />
+                </div>
+            </fieldset>
+        </form> 
+    @else 
+        <div class="formAction cf">
+            <h2 class="primaryButton" >This competition has now ended.</h2>
+        </div>
+        
+    @endif
 
 @else
     @if($isMobile)

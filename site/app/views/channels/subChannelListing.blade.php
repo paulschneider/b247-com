@@ -18,18 +18,27 @@
 			$end = getListingInWeek($days, 6);
 		?>
 
-			<h1 class="primaryHeader"><span class="subPrimaryHeader">Listings:</span> {{ $start->day .' '. $start->month['full'] .' '. $start->year }} - {{ $end->day .' '. $end->month['full'] .' '. $end->year }}</h1>
+			<h1 class="primaryHeader">
+				<span class="subPrimaryHeader">Listings:</span> 
+				{{ $start->day .' '. $start->month['full'] .' '. $start->year }} - {{ $end->day .' '. $end->month['full'] .' '. $end->year }}
+			</h1>
 		</header>
 		
-		<p class="backTo column col-5-20 colFirst tabCol-9-20 tabColFirst mobCol-18-20 mobColFirst">Back to: <a href="{{ getSubChannelPath($channel) }}">{{ getSubChannelName($channel) }}</a></p>
-		<p class="backTo column col-6-20 tabCol-9-20 totalResults mobCol-18-20 mobColFirst">
-			<input type="text" name="date" value="{{ getStartDay($days) }}" data-date-format="mm/dd/yyyy" data-date="{{ getStartDay($days) }}" data-path="{{ getSubChannelPath($channel) }}week/" style="width:1px; border: none" class="datepicker" />	
-			<a href="#" class="highlight dp">Select date</a>
+		<p class="backTo column col-5-20 colFirst tabCol-7-20 tabColFirst mobCol-7-20 mobColFirst">
+			<span class="dateMobileOff">Back to: <a href="{{ getSubChannelPath($channel) }}">{{ getSubChannelName($channel) }}</a></span>
+			<span class="dateMobileOn"><a href="#">< previous 7 days</a></span>
 		</p>
-		<p class="backTo column col-5-20 showResults">
+		<p class="backTo column col-6-20 tabCol-4-20 totalResults mobCol-4-20 selectDate">
+			<input type="text" name="date" value="{{ getStartDay($days) }}" data-date-format="mm/dd/yyyy" data-date="{{ getStartDay($days) }}" data-path="{{ getSubChannelPath($channel) }}week/" style="width:1px; border: none" class="datepicker" />	
+			<a class="dateMobileOff dp" href="#" class="">Select date</a>
+			<span class="icoCalendar"></span>
+		</p>
+		<p class="backTo column col-5-20 tabCol-7-20  mobCol-7-20 moveSeven">
 			<?php $less = getNewTimestamp($start, '-', '7 days'); ?>
-			<a href="{{ baseUrl().$route }}/week/{{ $less }}">< previous 7 days</a>
+			<span class="dateMobileOff">
+				<a href="{{ baseUrl().$route }}/week/{{ $less }}">< previous 7 days</a>
 			&nbsp; | &nbsp;
+			</span>
 			<?php $more = getNewTimestamp($start, '+', '7 days'); ?>
 			<a href="{{ baseUrl().$route }}/week/{{ $more }}">next 7 days ></a></p>
 	</div>

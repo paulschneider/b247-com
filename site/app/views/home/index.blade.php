@@ -66,7 +66,7 @@
 	</div>
 </section>
           
-<hr>
+<hr class="upOnePixel">
 
 @if( isset($adverts[0]) )
 	<div class="advert">

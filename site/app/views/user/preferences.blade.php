@@ -35,7 +35,7 @@
 							@endforeach					
 						</ul>
 					</li>
-				<ul>
+				</ul>
 
 				<hr />
 

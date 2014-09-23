@@ -56,21 +56,16 @@
       
       <ul class="footerSocial">
         <li>
-          <a href="#" class="icoTwitter">Twitter<span></span></a>
+          <a href="https://twitter.com/bristol247" class="icoTwitter">Twitter<span></span></a>
         </li>
         <li>
-          <a href="#" class="icoFacebook">Facebook<span></span></a>
+          <a href="https://www.facebook.com/bristol247" class="icoFacebook">Facebook<span></span></a>
         </li>
         <li>
-          <a href="#" class="icoGooglePlus">Google+<span></span></a>
+          <a href="https://plus.google.com/u/0/+Bristol247/about" class="icoGooglePlus">Google+<span></span></a>
         </li>
       </ul>
       
-      <ul class="footerRSS">
-        <li>
-          <a href="#" class="icoRSS">RSS<span></span></a>
-        </li>
-      </ul>
     </div>
 
     <div class="footerTerms column col-4-20 colLast tabCol-12-20 tabColLast mobCol-18-20 mobColFirst">

@@ -25,6 +25,9 @@ Class ArticleController extends BaseController {
 			# show the category list when we're viewing an article
 			$data['showCategory'] = true;
 
+			# which top level channel should be showing
+			$data['activeChannel'] = $channel;
+
 			# grab any subChannels so we can create a sub-nav 
 			$data['subChannels'] = getChannelSubChannels(getApplicationNav(), $channel);
 

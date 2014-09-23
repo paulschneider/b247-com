@@ -1,9 +1,9 @@
-@if( isset($activeChannel) )
+@if( isset($showSubChannel) || isset($showCategory))
 	<nav class="subHeader subHeaderFooter">
 	    <ul>
-	    @foreach($channel['subChannels'] AS $subChannel)
-	        <li class="<?php echo $subChannel['sefName'] == $activeChannel ? 'active' : '' ?>">
-	            <a href="{{ baseUrl().$subChannel['path'] }}">{{ $subChannel['name'] }}</a>
+	    @foreach($channel['subChannels'][0]['categories'] AS $category)
+	        <li>
+	            <a href="{{ baseUrl().$category['path'] }}">{{ $category['name'] }}</a>
 	        </li>
 	    @endforeach
 	</nav>

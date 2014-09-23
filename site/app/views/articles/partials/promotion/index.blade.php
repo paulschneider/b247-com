@@ -27,7 +27,7 @@
             <!-- there has to be a promotion attached to the article -->
             @if( isset($article['promotion'][0]['code']) )
                 @include("articles.partials.promotion.voucher")
-            <!-- of a competition  -->
+            <!-- or a competition  -->
             @elseif( isset($article['competition'][0]['id']) )
                  @include("articles.partials.promotion.competition")
             <!-- or we tell the user the voucher is unavailable at this time -->

@@ -142,6 +142,8 @@
 	@include("adverts.partials.letterbox")
 @endif
 
+@include('channels.partials.sub-nav')
+
 @endsection
 
 @include('layouts.footer')

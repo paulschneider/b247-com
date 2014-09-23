@@ -99,6 +99,8 @@
 
 @include('partials.pagination')
 
+@include('channels.partials.sub-nav')
+
 @endsection
 
 @include('layouts.footer')

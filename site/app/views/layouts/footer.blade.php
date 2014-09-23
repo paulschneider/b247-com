@@ -1,6 +1,8 @@
 @section('footer')
 
-@include('layouts.partials.sub-nav')
+@if(isset($activeChannel))
+  @include('layouts.partials.sub-nav')
+@endif
 
 <footer id="bottom">
   <div class="grid">          

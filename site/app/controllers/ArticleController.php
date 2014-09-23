@@ -22,8 +22,8 @@ Class ArticleController extends BaseController {
 			# we need to work out what type of page to display based on the channel type (e.g listing, promotion, directory or article)
 			$data['channelType'] = strtolower(getChannelType($data['channel']));
 
-			# whatever channel we're on set it as the active channel
-			$data['activeChannel'] = $channel;
+			# show the category list when we're viewing an article
+			$data['showCategory'] = true;
 
 			# grab any subChannels so we can create a sub-nav 
 			$data['subChannels'] = getChannelSubChannels(getApplicationNav(), $channel);

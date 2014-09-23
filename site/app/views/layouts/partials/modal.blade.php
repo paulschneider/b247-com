@@ -13,7 +13,7 @@
         </header>
 
         <div class="modalBody">
-            <form class="primaryForm" action="/register/user" method="post">
+            <form class="primaryForm" action="{{ baseUrl() }}/register/user" method="post">
                 @if( isset($redirect) and ! is_null($redirect) )
                     <input type="hidden" name="redirect" value="{{ $redirect }}" />
                 @endif

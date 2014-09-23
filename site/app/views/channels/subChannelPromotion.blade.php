@@ -99,6 +99,8 @@
 </section>
 
 @include("partials.pagination")
+
+@include('channels.partials.sub-nav')
     
 @endsection
 

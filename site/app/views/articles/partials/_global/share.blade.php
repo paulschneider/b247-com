@@ -4,6 +4,7 @@
         <a href="https://twitter.com/bristol247" class="icoTwitter" target="_blank">Twitter<span></span></a>
     </li>
     <li>
+        <div class="fb-like" data-href="{{ baseUrl().'/'.$article['path'] }}" data-layout="button" data-action="like" data-show-faces="false" data-share="true"></div>
         <a href="https://www.facebook.com/bristol247" class="icoFacebook" target="_blank">Facebook<span></span></a>
     </li>
     <li>

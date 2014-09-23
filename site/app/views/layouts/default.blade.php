@@ -14,13 +14,18 @@
 <!-- SEO/Social -->
     <!-- Meta -->
     <meta name="description" content="">
+    
     <!-- Open Graph -->
-    <meta property="og:image" content="{{ assetPath() }}a/i/icons/opengraph.png" />
-    <meta property="og:url" content="" />
-    <meta property="og:site_name" content="" />
-    <meta property="og:title" content="" />
-    <meta property="og:description" content="" />
-    <meta property="og:type" content="website" />
+    @if(isset($article))
+        <meta property="og:image" content="{{ assetPath() }}a/i/icons/opengraph.png" />
+        <meta property="og:url" content="{{ baseUrl().'/'.$article['path'] }}" />
+        <meta property="og:site_name" content="Bristol 24/7" />
+        <meta property="og:title" content="{{ $article['title'] }}" />
+        <meta property="og:description" content="{{ $article['subHeading'] }}" />
+        <meta property="og:type" content="website" />
+        <meta property="fb:app_id" content="1514896978748938" />
+    @endif
+
     <!-- Twitter Cards -->
     <meta name="twitter:card" content="summary">
     <meta name="twitter:site" content="@">
@@ -59,7 +64,7 @@
     <!-- For non-Retina iPhone, iPod Touch, and Android 2.1+ devices: -->
     <link rel="apple-touch-icon-precomposed" href="{{ assetPath() }}a/i/icons/favicon-57.png">
     
-<!-- Files -->
+    <!-- Files -->
     <link href="//netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" href="{{ assetPath() }}a/c/live.min.css">
     <link rel="stylesheet" href="{{ assetPath() }}a/c/additional.css">
@@ -68,6 +73,15 @@
 
   </head>
   <body class="{{ isset($activeChannel) ? themeClass($activeChannel) : 'homePage' }}">
+
+    <div id="fb-root"></div>
+    <script>(function(d, s, id) {
+    var js, fjs = d.getElementsByTagName(s)[0];
+    if (d.getElementById(id)) return;
+    js = d.createElement(s); js.id = id;
+    js.src = "//connect.facebook.net/en_US/all.js#xfbml=1&appId=1514896978748938";
+    fjs.parentNode.insertBefore(js, fjs);
+    }(document, 'script', 'facebook-jssdk'));</script>
 
     <div id="pageWrapper">
         <div id="outerContainer"> 

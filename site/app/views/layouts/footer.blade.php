@@ -81,6 +81,9 @@
         <li>
           <a href="{{ baseUrl() }}/privacy-policy">Privacy Policy</a>
         </li>
+        <li>
+          <a href="{{ baseUrl() }}/cookie-policy">Cookie Policy</a>
+        </li>
       </ul>
       <p>
         <span class="copyArea">

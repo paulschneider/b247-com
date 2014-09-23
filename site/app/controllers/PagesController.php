@@ -58,6 +58,17 @@ Class PagesController extends BaseController {
 	}
 
 	/**
+	 * show the cookie policy page
+	 * 
+	 * @return View
+	 */
+	public function cookie()
+	{		
+		# grab the data for the page
+		return $this->getContent("cookie-policy");	
+	}
+
+	/**
 	 * make a call to the API to retrieve content for a specified page
 	 * 
 	 * @param  string $pageSefName [search engine friendly name for the article]

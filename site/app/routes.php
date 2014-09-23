@@ -83,6 +83,7 @@ Route::group(array('before' => 'recordPevious'), function(){
 	Route::get('advertise', 'PagesController@advertise');
 	Route::get('terms-and-conditions', 'PagesController@terms');
 	Route::get('privacy-policy', 'PagesController@privacy');
+	Route::get('cookie-policy', 'PagesController@cookie');
 	
 	/*
 	|--------------------------------------------------------------------------

@@ -22,6 +22,9 @@ Class CategoryController extends BaseController {
 			# we need to work out what type of page to display based on the channel type (e.g listing, promotion, directory or article)
 			$channelType = getChannelType($data['channel']);
 
+			# which top level channel should be showing
+			$data['activeChannel'] = $channel;
+
 			# tell the view what we're looking at
 			$data['showCategory'] = true;
 

@@ -4,6 +4,8 @@
 
 @section('content')      
 
+@include('channels.partials.sub-nav')
+
 <!-- Letterbox advert - top -->
 @if( isset($adverts[0]) )
 	<?php $advert = $adverts[0] ?>

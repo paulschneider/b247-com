@@ -4,6 +4,8 @@
 
 @section('content')      
 
+@include('channels.partials.sub-nav')
+
 @if (isset($adverts[0]))
     <?php $advert = $adverts[0] ?>
     @include("adverts.partials.letterbox")

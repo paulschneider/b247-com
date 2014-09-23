@@ -1,6 +1,6 @@
 @section('footer')
 
-@if(isset($activeChannel))
+@if(isset($activeChannel) and !isset($showSubChannel) and !isset($showCategory))
   @include('layouts.partials.sub-nav')
 @endif
 

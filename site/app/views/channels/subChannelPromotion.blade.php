@@ -4,6 +4,8 @@
 
 @section('content')
 
+@include('channels.partials.sub-nav')
+
 @if (isset($adverts[0]))
 <div class="advert">
     <figure>

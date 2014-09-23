@@ -4,6 +4,8 @@
 
 @section('content')
 
+@include('channels.partials.sub-nav')
+
 <script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?key={{ $apiKey }}"></script>
 
 <script type="text/javascript">

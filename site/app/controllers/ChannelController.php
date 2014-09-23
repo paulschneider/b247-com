@@ -73,6 +73,9 @@ Class ChannelController extends BaseController {
 		# pass the subChannel sefName to the view so we know which channel we're viewing
 		$this->data['showSubChannel'] = true;
 
+		# which top level channel should be showing
+		$this->data['activeChannel'] = $channel;
+
 		# grab any subChannels so we can create a sub-nav 
 		$this->data['subChannels'] = getChannelSubChannels(getApplicationNav(), $channel);
 

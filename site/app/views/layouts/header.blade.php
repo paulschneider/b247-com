@@ -46,4 +46,8 @@
     </div>      
 </header>    
 
+@if(isset($activeChannel) and !isset($showSubChannel) and !isset($showCategory))
+  @include('layouts.partials.sub-nav')
+@endif
+
 @endsection

@@ -1,4 +1,4 @@
-@if( isset($showSubChannel) || isset($showCategory))
+@if( isset($showSubChannel) || isset($showCategory) )
 	<nav class="subHeader subHeaderFooter">
 	    <ul>
 	    @foreach($channel['subChannels'][0]['categories'] AS $category)

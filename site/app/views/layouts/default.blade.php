@@ -97,5 +97,13 @@
         <script src="{{ assetPath() }}a/j/live.min.js"></script>
         <script src="{{ assetPath() }}a/j/preferences.js"></script>
         <script src="{{ assetPath() }}a/j/listings.js"></script>
+
+        <div id="getTheApp">
+            <a href="#">
+                <span class="phoneIcon"></span>
+                Download the app for iOS7
+            </a>
+            <a href="#" class="phoneClose"></a>
+        </div>
     </body>
 </html>

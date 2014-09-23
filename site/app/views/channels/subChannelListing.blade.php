@@ -30,8 +30,10 @@
 		</p>
 		<p class="backTo column col-6-20 tabCol-4-20 totalResults mobCol-4-20 selectDate">
 			<input type="text" name="date" value="{{ getStartDay($days) }}" data-date-format="mm/dd/yyyy" data-date="{{ getStartDay($days) }}" data-path="{{ getSubChannelPath($channel) }}week/" style="width:1px; border: none" class="datepicker" />	
-			<a class="dateMobileOff dp" href="#" class="">Select date</a>
-			<span class="icoCalendar"></span>
+			<a href="#" class="highlight dp">
+				<span class="dateMobileOff">Select date</span>
+				<span class="icoCalendar"></span>
+			</a>
 		</p>
 		<p class="backTo column col-5-20 tabCol-7-20  mobCol-7-20 moveSeven">
 			<?php $less = getNewTimestamp($start, '-', '7 days'); ?>
@@ -84,10 +86,10 @@
 								$category = getArticleCategory($article);
 							?>
 							<div class="articleListItem column artCol-1-3 <?php echo $s == 0 ? 'artColFirst' : '' ?>">
-								<a href="{{ $subChannel->path }}" class="articleListSubChannel">{{ $subChannel->name }}</a>
+								<a href="{{ $subChannel->path }}?time={{ $date->timeStamp }}" class="articleListSubChannel">{{ $subChannel->name }}</a>
 								<div class="articleListSynopsis">
 		  							<div class="articleListImage">
-		    							<a href="{{ $article['path'] }}">
+		    							<a href="{{ $article['path'] }}?time={{ $date->timeStamp }}">
 		    								@if( isset($article['media']['filepath']) )
 		      									<img alt="{{ $article['media']['alt'] }}" src="{{ $article['media']['filepath'] }}" />
 		      								@endif

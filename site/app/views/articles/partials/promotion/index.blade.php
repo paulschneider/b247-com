@@ -15,7 +15,7 @@
             
             <aside class="column col-25 mobCol-18-20 mobColFirst">
                 @if (! $isMobile) <!-- only show for the web version -->
-                    <input type="button" value="Share" class="primaryButton">
+                    @include('articles.partials._global.share')
                 @endif
             </aside>
 

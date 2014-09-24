@@ -18,10 +18,10 @@
     <!-- Open Graph -->
     @if(isset($article))
         <meta property="og:image" content="{{ $article['media']['filepath'] }}" />
-        <meta property="og:url" content="{{ baseUrl().'/'.$article['path'] }}" />
+        <meta property="og:url" content="{{ baseUrl().$article['path'] }}" />
         <meta property="og:site_name" content="Bristol 24/7" />
         <meta property="og:title" content="{{ $article['title'] }}" />
-        <meta property="og:description" content="{{ $article['subHeading'] }}" />
+        <meta property="og:description" content="{{ str_limit($article['body'], $limit = 250, $end = '...') }}" />
         <meta property="og:type" content="website" />
         <meta property="fb:app_id" content="1514896978748938" />
     @endif

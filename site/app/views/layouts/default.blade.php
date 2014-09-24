@@ -17,7 +17,7 @@
     
     <!-- Open Graph -->
     @if(isset($article))
-        <meta property="og:image" content="{{ assetPath() }}a/i/icons/opengraph.png" />
+        <meta property="og:image" content="{{ $article['media']['filepath'] }}" />
         <meta property="og:url" content="{{ baseUrl().'/'.$article['path'] }}" />
         <meta property="og:site_name" content="Bristol 24/7" />
         <meta property="og:title" content="{{ $article['title'] }}" />
@@ -111,6 +111,7 @@
         <script src="{{ assetPath() }}a/j/live.min.js"></script>
         <script src="{{ assetPath() }}a/j/preferences.js"></script>
         <script src="{{ assetPath() }}a/j/listings.js"></script>
+        <script src="{{ assetPath() }}a/j/social.js"></script>
 
         <div id="getTheApp">
             <a href="#">

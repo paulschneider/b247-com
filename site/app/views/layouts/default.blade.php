@@ -16,12 +16,13 @@
     <meta name="description" content="">
     
     <!-- Open Graph -->
-    @if(isset($article))
+    @if(isset($article['body']))
+
         <meta property="og:image" content="{{ $article['media']['filepath'] }}" />
-        <meta property="og:url" content="{{ baseUrl().$article['path'] }}" />
+        <meta property="og:url" content="{{ baseUrl().$article['path'] }}" />        
         <meta property="og:site_name" content="Bristol 24/7" />
         <meta property="og:title" content="{{ $article['title'] }}" />
-        <meta property="og:description" content="{{ str_limit($article['body'], $limit = 250, $end = '...') }}" />
+        <meta property="og:description" content="{{ str_limit(strip_tags($article['body']), $limit = 250, $end = '...') }}" />
         <meta property="og:type" content="website" />
         <meta property="fb:app_id" content="1514896978748938" />
     @endif
@@ -74,15 +75,6 @@
   </head>
   <body class="{{ isset($activeChannel) ? themeClass($activeChannel) : 'homePage' }}">
 
-    <div id="fb-root"></div>
-    <script>(function(d, s, id) {
-    var js, fjs = d.getElementsByTagName(s)[0];
-    if (d.getElementById(id)) return;
-    js = d.createElement(s); js.id = id;
-    js.src = "//connect.facebook.net/en_US/all.js#xfbml=1&appId=1514896978748938";
-    fjs.parentNode.insertBefore(js, fjs);
-    }(document, 'script', 'facebook-jssdk'));</script>
-
     <div id="pageWrapper">
         <div id="outerContainer"> 
             @yield('header')
@@ -108,15 +100,16 @@
         <script src="//netdna.bootstrapcdn.com/bootstrap/3.1.1/js/bootstrap.min.js"></script>        
         <script>window.jQuery || document.write('<script src="{{ assetPath() }}j/vendor/jquery-1.10.2.min.js"><\/script>')</script>
         <script src="{{ assetPath() }}a/j/vendor/bootstrap-datepicker.js"></script>
+        <script src="{{ assetPath() }}a/j/vendor/jquery.cookie.js"></script>
         <script src="{{ assetPath() }}a/j/live.min.js"></script>
         <script src="{{ assetPath() }}a/j/preferences.js"></script>
         <script src="{{ assetPath() }}a/j/listings.js"></script>
-        <script src="{{ assetPath() }}a/j/social.js"></script>
+        <script src="{{ assetPath() }}a/j/cookie.js"></script>
 
-        <div id="getTheApp">
-            <a href="#">
+        <div id="getTheApp" style="display: none; opacity: 0">
+            <a href="{{ baseUrl() }}/download-the-app">
                 <span class="phoneIcon"></span>
-                Download the app for iOS7
+                Download the Bristol 24-7 App
             </a>
             <a href="#" class="phoneClose"></a>
         </div>

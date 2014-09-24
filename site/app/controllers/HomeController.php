@@ -22,7 +22,7 @@ class HomeController extends BaseController {
 			if (! Session::has('nav') ) {
 			    Session::put('nav', $data['channels']);
 			}
-			
+
 			# make the view
 			return View::make('home.index', $data);
 		}

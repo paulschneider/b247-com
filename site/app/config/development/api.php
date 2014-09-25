@@ -1,5 +1,5 @@
 <?php
 
 return [
-	"baseUrl" => "http://api.b247-co-uk/v1/"
+	"baseUrl" => $_ENV['B247_API']
 ];

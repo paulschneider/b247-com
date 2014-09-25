@@ -9,7 +9,7 @@
 		<div class="carouselFeatureList">              
 			<div class="featureList col-16-20 tabCol-20-20 colFirst colLast">
 
-              <?php $counter = 1 ?>
+              <?php $counter = 1; $j = 1; ?>
               
               @foreach( $features AS $feature )
 
@@ -53,12 +53,14 @@
 					</div>
               	@endif
               	
-              	@if( $counter == 3 )
+              	@if($counter == 3 and $j != count($features))
               		</div><div class="featureList col-16-20 tabCol-20-20 colFirst colLast">
               		<?php $counter = 1 ?>
               	@else
               		<?php $counter++ ?>
               	@endif
+
+              	<?php $j++ ?>
 
               @endforeach	 
 			</div>

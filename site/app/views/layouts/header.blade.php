@@ -47,7 +47,11 @@
 </header>    
 
 @if(isset($activeChannel) and !isset($showSubChannel) and !isset($showCategory))
-  @include('layouts.partials.sub-nav')
+    @include('layouts.partials.sub-nav')
+@endif
+
+@if(isset($showAccountNav))
+    @include('user.partials.sub-nav')
 @endif
 
 @endsection

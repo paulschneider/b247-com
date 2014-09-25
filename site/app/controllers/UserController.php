@@ -44,8 +44,10 @@ Class UserController extends BaseController {
 		# which sub-nav option do we want to make active
 		$activeNav = "profile";
 
+		$showAccountNav = true;
+
 		# send the data to the view and render!
-		return View::make('user.profile', compact('message', 'messageClass', 'activeNav'));
+		return View::make('user.profile', compact('message', 'messageClass', 'activeNav', 'showAccountNav'));
 	}
 
 	/**
@@ -142,6 +144,8 @@ Class UserController extends BaseController {
 
 		$data['activeNav'] = "prefs";
 
+		$data['showAccountNav']= true;
+
 		return View::make('user.preferences', $data);
 	}
 
@@ -161,10 +165,10 @@ Class UserController extends BaseController {
 			// to do
 		}
 
-		$preferences = App::make('Bristol247\Tools\UserPreferenceOrganiser')->set($preferences, Input::all());
+		$preferences = json_encode(App::make('Bristol247\Tools\UserPreferenceOrganiser')->set($preferences, Input::all()));
 
 		# POST the submitted and processed data to the API
-		$response = App::make("ApiClient")->post("user/preferences", $preferences, ['accessKey' => getAccessKey()]);
+		$response = App::make("ApiClient")->post("user/preferences", [$preferences], ['accessKey' => getAccessKey()]);
 
 		if(isset($response['success']))
 		{
@@ -219,6 +223,8 @@ Class UserController extends BaseController {
 
 		# which sub-nav option do we want to make active
 		$data['activeNav'] = "password";
+
+		$data['showAccountNav']= true;
 
 		cleanup();
 

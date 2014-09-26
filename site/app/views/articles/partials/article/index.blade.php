@@ -35,6 +35,7 @@
                         <li><a href="{{ baseUrl().$assignment['path'] }}">{{ $assignment['name'] }}</a></li>
                     @endforeach
                 </ul>
+                <br />
             @endif
 
             @if($isMobile and $article['allowComments'])

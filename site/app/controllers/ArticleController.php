@@ -75,7 +75,6 @@ Class ArticleController extends BaseController {
 		$data['isMobile'] = true;
 		$data['apiKey'] = Config::get('googlemaps.ApiKey');
 		$data['mapItems'] = $data['article']['mapItems'];
-		$data['allowComments'] = $data['article']['allowComments'];
 
 		# define a route for the current articles comment page. This is output only when the
 		# article is viewed on a mobile device

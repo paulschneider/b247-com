@@ -41,7 +41,9 @@ Class SessionsController extends BaseController {
 		# when viewing these pages
 		$page = "login";
 
-		return View::make('auth.log-in', compact('redirect', 'form', 'errors', 'message', 'messageClass', 'page'));
+		$pageTitle = "Log In";
+
+		return View::make('auth.log-in', compact('redirect', 'form', 'errors', 'message', 'messageClass', 'page', 'pageTitle'));
 	}
 
 	/**
@@ -118,7 +120,9 @@ Class SessionsController extends BaseController {
 		# when viewing these pages
 		$page = "register";
 
-		return View::make('register.index', compact('errors', 'message', 'messageClass', 'input', 'form', 'page'));
+		$pageTitle = "Register";
+
+		return View::make('register.index', compact('errors', 'message', 'messageClass', 'input', 'form', 'page', 'pageTitle'));
 	}
 
 	/**
@@ -190,7 +194,9 @@ Class SessionsController extends BaseController {
 			$input = Input::old();
 		}
 
-		return View::make('auth.password-reset', compact('errors', 'message', 'messageClass', 'input'));
+		$pageTitle = "Forgotten password";
+
+		return View::make('auth.password-reset', compact('errors', 'message', 'messageClass', 'input', 'pageTitle'));
 	}
 	/**
 	 * Make an API call to request a new password be sent to the user

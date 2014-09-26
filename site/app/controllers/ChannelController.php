@@ -35,6 +35,9 @@ Class ChannelController extends BaseController {
 			# grab the sub-channels so we can make a sub-nav out of them
 			$viewData['subChannels'] = getChannelSubChannels(getApplicationNav(), $channel);
 
+			# send a title to be used as the browser title
+			$viewData['pageTitle'] = $data['channel']['name'];
+
 			return View::make('home.index', $viewData);
 		}
 		else {
@@ -79,6 +82,9 @@ Class ChannelController extends BaseController {
 		# grab any subChannels so we can create a sub-nav 
 		$this->data['subChannels'] = getChannelSubChannels(getApplicationNav(), $channel);
 
+		# send a title to be used as the browser title
+		$this->data['pageTitle'] = getPageTitle($this->data);
+		
 		# we don't know what type of data we've had returned by the API so just throw it all at the view and let it decide what to use
 		return View::make("channels.subChannel{$channelType}", $this->data);
 	}

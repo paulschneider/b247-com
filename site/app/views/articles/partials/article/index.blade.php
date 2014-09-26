@@ -37,7 +37,7 @@
                 </ul>
             @endif
 
-            @if($isMobile)
+            @if($isMobile and $article['allowComments'])
                 <div class="comment-btn">
                     <a href="{{ $commentRoute }}" class="primaryButton">Article Comments</a>
                 </div>

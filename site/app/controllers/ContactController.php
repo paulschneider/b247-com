@@ -36,8 +36,10 @@ Class ContactController extends BaseController {
 			$messageClass = "success";
 		}
 
+		$pageTitle = "Contact Us";
+
 		# ... show the form
-		return View::make('contact.index', compact('message', 'errors', 'messageClass', 'input'));
+		return View::make('contact.index', compact('message', 'errors', 'messageClass', 'input', 'pageTitle'));
 	}
 
 	/**

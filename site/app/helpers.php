@@ -241,6 +241,39 @@ function getCategoryName($channel)
 	return $channel['subChannels'][0]['categories'][0]['name'];
 }
 
+# create a string showing the path to the current site page. Used in the browser tab / title bar
+function getPageTitle($data)
+{
+	$str = "";
+
+	# we should always have a channel
+	if(isset($data['channel']))
+	{
+		$str .= $data['channel']['name'];
+	}
+
+	# maybe a subchannel
+	if(isset($data['subChannels'][0]))
+	{
+		$str .= ' | '. $data['subChannels'][0]['name'];	
+	}
+
+	# or a category
+	if(isset($data['subChannels'][0]['categories']))
+	{
+		$str .= ' | '. $data['subChannels'][0]['categories'][0]['name'];	
+	}
+
+	# and finally an article
+	if(isset($data['article']))
+	{
+		$str .= ' | '. $data['article']['title'];
+	}
+
+	# send it back
+	return $str;
+}
+
 function getSubChannelName($channel)
 {
 	return $channel['subChannels'][0]['name'];

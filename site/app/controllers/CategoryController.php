@@ -28,6 +28,9 @@ Class CategoryController extends BaseController {
 			# tell the view what we're looking at
 			$data['showCategory'] = true;
 
+			# send a title to be used as the browser title
+			$data['pageTitle'] = getPageTitle($data);
+
 			# if there is a map object then we will be showing a map
 			if( isset($data['map']) ) {
 				$data['mapItems'] = json_encode($data['map']);	

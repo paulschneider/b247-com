@@ -51,6 +51,8 @@ Class SearchController extends BaseController {
 		# define the route for the view
 		$data['route'] = "/search";
 
+		$data['pageTitle'] = "Search Results";
+
 		# ... and show the view
 		return self::showResultsPage($data);		
 	}

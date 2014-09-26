@@ -49,6 +49,9 @@ Class ArticleController extends BaseController {
 			# article is viewed on a mobile device
 			$data['commentRoute'] = baseUrl().$data['article']['shareLink'].'comments';	
 
+			# send a title to be used as the browser title
+			$data['pageTitle'] = getPageTitle($data);
+
 			# we don't know what type of data we've had returned by the API so just throw it all at the view and let it decide what to use
 			return View::make("articles.template", $data);
 		}

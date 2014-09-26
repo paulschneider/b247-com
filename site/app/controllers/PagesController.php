@@ -10,7 +10,7 @@ Class PagesController extends BaseController {
 	public function appDownload()
 	{
 		# grab the data for the page
-		return $this->getContent("download-the-app");
+		return $this->getContent("download-the-app", "Download the App");
 	}
 
 	/**
@@ -21,7 +21,7 @@ Class PagesController extends BaseController {
 	public function aboutUs()
 	{
 		# grab the data for the page
-		return $this->getContent("about");	
+		return $this->getContent("about", "About Us");	
 	}
 
 	/**
@@ -32,7 +32,7 @@ Class PagesController extends BaseController {
 	public function advertise()
 	{
 		# grab the data for the page
-		return $this->getContent("advertise");	
+		return $this->getContent("advertise", "Advertise on B24/7");	
 	}
 
 	/**
@@ -43,7 +43,7 @@ Class PagesController extends BaseController {
 	public function terms()
 	{
 		# grab the data for the page
-		return $this->getContent("terms-conditions");
+		return $this->getContent("terms-conditions", "Terms and Conditions");
 	}
 
 	/**
@@ -54,7 +54,7 @@ Class PagesController extends BaseController {
 	public function privacy()
 	{
 		# grab the data for the page
-		return $this->getContent("privacy_policy");	
+		return $this->getContent("privacy_policy", "Privacy Policy");	
 	}
 
 	/**
@@ -65,7 +65,7 @@ Class PagesController extends BaseController {
 	public function cookie()
 	{		
 		# grab the data for the page
-		return $this->getContent("cookie-policy");	
+		return $this->getContent("cookie-policy", "Cookie Policy");	
 	}
 
 	/**
@@ -74,7 +74,7 @@ Class PagesController extends BaseController {
 	 * @param  string $pageSefName [search engine friendly name for the article]
 	 * @return array on success | Response on failure
 	 */
-	private function getContent($pageSefName)
+	private function getContent($pageSefName, $pageTitle = "test")
 	{
 		# call the API with the required parms
 		$response = App::make("ApiClient")->get("articles", ['article' => $pageSefName, 'static' => true]);
@@ -82,7 +82,7 @@ Class PagesController extends BaseController {
 		# it was successful, so send the data (article) back 
 		if(isset($response['success']))
 		{
-			return View::make('statics.index')->with($response['success']['data']['article']);
+			return View::make('statics.index')->with(['content' => $response['success']['data'], 'pageTitle' => $pageTitle]);
 		}
 		# it failed, so handle the error response
 		else

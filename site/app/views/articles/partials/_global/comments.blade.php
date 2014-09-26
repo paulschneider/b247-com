@@ -1,5 +1,5 @@
 <div id="comments-block" class="fr col-75 mobCol-18-20 mobColLast cmsSecondaryContent">
-    @if( ! $isMobile )    
+    @if( ! $isMobile and $article['allowComments'])    
         <div id="disqus_thread"></div>
         <script type="text/javascript">
 

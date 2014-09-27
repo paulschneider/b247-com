@@ -38,6 +38,9 @@ Class ChannelController extends BaseController {
 			# send a title to be used as the browser title
 			$viewData['pageTitle'] = $data['channel']['name'];
 
+			# set the pages meta description value
+			$viewData['metaDescription'] = trim($data['channel']['description']);
+
 			return View::make('home.index', $viewData);
 		}
 		else {
@@ -84,7 +87,10 @@ Class ChannelController extends BaseController {
 
 		# send a title to be used as the browser title
 		$this->data['pageTitle'] = getPageTitle($this->data);
-		
+
+		# set the pages meta description value
+		$this->data['metaDescription'] = trim($this->data['channel']['description']);	
+
 		# we don't know what type of data we've had returned by the API so just throw it all at the view and let it decide what to use
 		return View::make("channels.subChannel{$channelType}", $this->data);
 	}

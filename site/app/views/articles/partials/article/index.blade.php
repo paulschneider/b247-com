@@ -11,6 +11,12 @@
         <div class="column col-12-20 colFirst tabCol-18-20 tabColFirst mobCol-20-20">
             @include('articles.partials._global.gallery-top')        
 
+            <aside class="column col-25 mobCol-18-20 mobColFirst"> 
+                @if (! $isMobile) <!-- only show for the web version -->
+                    @include('articles.partials._global.share')
+                @endif
+            </aside>
+            
         <!-- Header -->
         <div class="fr col-75 mobCol-18-20 mobColLast">
             <div>

@@ -13,7 +13,7 @@
 
 <!-- SEO/Social -->
     <!-- Meta -->
-    <meta name="description" content="">
+    <meta name="description" content="{{ isset($metaDescription) ? $metaDescription : '' }}">
     
     <!-- Open Graph -->
     @if(isset($article['body']))

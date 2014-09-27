@@ -111,7 +111,7 @@
                 <div class="formAction cf">
                   <input type="submit" class="primaryButton" value="Sign in">
                 </div>
-                <p><a href="{{ baseUrl() }}/forgotten-password">Ive forgotten my password</a></p>
+                <p><a href="{{ baseUrl() }}/forgotten-password">I have forgotten my password</a></p>
               </div>
             </div>
           </fieldset>

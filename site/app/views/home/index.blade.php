@@ -202,7 +202,7 @@
 					<div class="carouselArticleList">
 						<div class="articleList">
 
-							<?php $i = 0; $s = 1; ?>				
+							<?php $i = 0; $s = 1; $counter = 1; ?>				
 
 							@foreach($feed['articles'] AS $article)
 								<?php $i += displayStyle($article) ?>
@@ -269,11 +269,11 @@
 								</div> 
 
 								<?php $s++ ?>
-								@if($i == 3)
+								@if($i == 3 && $counter != count($feed['articles']))
 									</div><div class="articleList">
 									<?php $i = 0; $s = 1; ?>
 								@endif
-
+								<?php $counter++; ?>
 							@endforeach
 						</div>
 					</div>

@@ -123,7 +123,7 @@
 									<img alt="{{ $article['media']['alt'] }}" src="{{ $article['media']['filepath'] }}" />
 								@endif
 							</a>
-							<a href="{{ $category->path }}" class="articleListCategories">{{ $category->name }}</a>	
+							<a href="{{ $category->path }}?time={{ $epochToday }}" class="articleListCategories">{{ $category->name }}</a>	
 						</div>
 						<div class="articleListContent">
 							<a class="articleListTitle" href="{{ $article['path'] }}?time={{ $epochToday }}">{{ $article['title'] }}</a>
@@ -131,7 +131,7 @@
 								{{ isset($article['event']['details']['price']) && !empty($article['event']['details']['price']) ? ', from &pound;'. $article['event']['details']['price'] : '' }}
 							</p>
 							<p class="articleListSummary">{{ $article['subHeading'] }}</p>
-							<a href="{{ $category->path }}" class="articleListCategories">{{ $category->name }}</a>
+							<a href="{{ $category->path }}?time={{ $epochToday }}" class="articleListCategories">{{ $category->name }}</a>
 						</div>
 					</div>
 				</div>

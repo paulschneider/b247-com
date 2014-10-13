@@ -15,7 +15,7 @@ Class ChannelController extends BaseController {
 	 */
 	public function showChannel($channel)
 	{ 
-		$response = App::make("ApiClient")->get("channel/$channel");
+		$response = App::make("ApiClient")->get("channel/$channel", [], ['accessKey' => getAccessKey()]);
 
 		if(isset($response['success']))
 		{
@@ -59,7 +59,7 @@ Class ChannelController extends BaseController {
 		# if we don't already have some data to use then grab some from the API
 		if(is_null($this->data)) 
 		{
-			$response = App::make("ApiClient")->get("subchannel/$subChannel/articles", ['page' => $page]);
+			$response = App::make("ApiClient")->get("subchannel/$subChannel/articles", ['page' => $page], ['accessKey' => getAccessKey()]);
 
 			if(isset($response['success']))
 			{

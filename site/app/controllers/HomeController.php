@@ -10,7 +10,7 @@ class HomeController extends BaseController {
 	public function showHomePage()
 	{
 		# call the API
-		if(getAccessKey()) {
+		if($accessKey = getAccessKey()) {
 			$headers = ['accessKey' => $accessKey];
 		}
 		else {

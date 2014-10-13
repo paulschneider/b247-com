@@ -15,7 +15,7 @@ Class ChannelController extends BaseController {
 	 */
 	public function showChannel($channel)
 	{ 
-		if(getAccessKey()) {
+		if($accessKey = getAccessKey()) {
 			$headers = ['accessKey' => $accessKey];
 		}
 		else {
@@ -66,7 +66,7 @@ Class ChannelController extends BaseController {
 		# if we don't already have some data to use then grab some from the API
 		if(is_null($this->data)) 
 		{
-			if(getAccessKey()) {
+			if($accessKey = getAccessKey()) {
 				$headers = ['accessKey' => $accessKey];
 			}
 			else {

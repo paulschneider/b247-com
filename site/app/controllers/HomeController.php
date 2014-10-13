@@ -10,7 +10,14 @@ class HomeController extends BaseController {
 	public function showHomePage()
 	{
 		# call the API
-		$response = App::make("ApiClient")->get("home", [], ['accessKey' => getAccessKey()]);
+		if(getAccessKey()) {
+			$headers = ['accessKey' => $accessKey];
+		}
+		else {
+			$headers = [];
+		}
+
+		$response = App::make("ApiClient")->get("home", [], $headers);
 
 		# if we got some data back successfully then do something with it
 		if($response['success'])

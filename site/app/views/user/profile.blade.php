@@ -61,7 +61,7 @@
                         <div class="formRow cf"> <!-- If error add .formRowError to .formRow container -->
                             <label for="postcode {{ isError('postCode', $errors) ? 'formRowError' : ''  }}">Postcode (eg: BS4 3LG)</label>
                             <div class="formElement">
-                                <input id="postcode" name="postCode" type="text" value="{{ isset($user['profile']['postCode']) ? $user['profile']['postCode'] : '' }}" class="text" />
+                                <input id="postcode" name="postCode" type="text" value="{{ isset($user['profile']) && isset($user['profile']['postCode']) ? $user['profile']['postCode'] : '' }}" class="text" />
                                 @if(isError('postCode', $errors))
                                     <span class="formError">{{ $errors['postCode'] }}</span>
                                 @endif
@@ -72,28 +72,28 @@
                             <span class="fakeLabel">Age group</span>
                             <div class="formElement formRadioGroup">
 
-                                <input id="age0" type="radio" class="radio" value="1" name="ageGroup" />
+                                <input id="age0" type="radio" class="radio" value="1" name="ageGroup" {{ isAgeGroup($user, 1) }} />
                                 <label for="age0">0 - 9</label>
                         
-                                <input id="age10" type="radio" class="radio" value="2" name="ageGroup" />
+                                <input id="age10" type="radio" class="radio" value="2" name="ageGroup" {{ isAgeGroup($user, 2) }} />
                                 <label for="age10">10 - 19</label>
 
-                                <input id="age20" type="radio" class="radio" value="3" name="ageGroup" />
+                                <input id="age20" type="radio" class="radio" value="3" name="ageGroup" {{ isAgeGroup($user, 3) }} />
                                 <label for="age20">20 - 29</label>
 
-                                <input id="age30" type="radio" class="radio" value="4" name="ageGroup" checked="checked" />
+                                <input id="age30" type="radio" class="radio" value="4" name="ageGroup"  {{ isAgeGroup($user, 4, true) }} />
                                 <label for="age30"> 30 - 39</label>
 
-                                <input id="age40" type="radio" class="radio" value="5" name="ageGroup" />
+                                <input id="age40" type="radio" class="radio" value="5" name="ageGroup" {{ isAgeGroup($user, 5) }} />
                                 <label for="age40">40 - 49</label>
                         
-                                <input id="age50" type="radio" class="radio" value="6" name="ageGroup" />
+                                <input id="age50" type="radio" class="radio" value="6" name="ageGroup" {{ isAgeGroup($user, 6) }} />
                                 <label for="age50">50 - 59</label>
 
-                                <input id="age60" type="radio" class="radio" value="7" name="ageGroup" />
+                                <input id="age60" type="radio" class="radio" value="7" name="ageGroup" {{ isAgeGroup($user, 7) }} />
                                 <label for="age60">60 - 69</label>
 
-                                <input id="age70" type="radio" class="radio" value="8" name="ageGroup" />
+                                <input id="age70" type="radio" class="radio" value="8" name="ageGroup" {{ isAgeGroup($user, 8) }} />
                                 <label for="age70"> 70 - 79</label>
 
                             </div>

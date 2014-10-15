@@ -1,6 +1,28 @@
 <?php
 use Carbon\Carbon;
 
+# function to set the radio button of the user profile form, just saves a bit if typing really....
+function isAgeGroup($user, $ageGroup, $isDefault = false)
+{
+	# if there is a profile, the age group has been set by the user and the ageGroup ID is the one passed through
+	if(isset($user['profile']) && isset($user['profile']['ageGroup']) and $user['profile']['ageGroup'] == $ageGroup)
+	{
+		# set the radio button to checked
+		return 'checked="checked"';
+	}
+	# if there is a profile but the age group hasn't been set by the user AND this is the default option
+	else if(isset($user['profile']) && ! isset($user['profile']['ageGroup']) && $isDefault())
+	{
+		# set the radio button to checked
+		return 'checked="checked"';
+	}
+	# anything else, return an empty string
+	else
+	{
+		return '';
+	}
+}
+
 function getPublishedDate($date)
 {
 	$date = getEventDate(strtotime($date));

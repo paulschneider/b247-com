@@ -20,14 +20,14 @@ Class UserController extends BaseController {
 			return Redirect::to('login');
 		}
 
-		# the enquiry submission went well
+		# profile save success
 		if(Session::has('success')) {
 			# set some success vars
 			$message = Session::get('success')['public'];
 			$messageClass = "success";			
 		}
 
-		# there was an issue submitting the enquiry
+		# profile save failure
 		if(Session::has('error')) {
 			# set some error vars
 			$errors = reformatErrors(Session::get('error')['errors']);
@@ -44,8 +44,9 @@ Class UserController extends BaseController {
 		# which sub-nav option do we want to make active
 		$activeNav = "profile";
 
+		# whether to show the active state in the nav bar
 		$showAccountNav = true;
-
+		
 		# send the data to the view and render!
 		return View::make('user.profile', compact('message', 'messageClass', 'activeNav', 'showAccountNav'));
 	}

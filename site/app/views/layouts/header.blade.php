@@ -20,7 +20,7 @@
             @if( Session::has('user') )
                 <?php $user = Session::get('user') ?>
                 <a class="profileLink" href="{{ baseUrl() }}/profile">{{ $user['firstName'] .' '. $user['lastName'] }} <span class="icoProfile"></span></a>
-            @elseif ($page != 'register' and $page != 'login')
+            @elseif (isset($page) and $page != 'register' and $page != 'login')
                 <a class="launchWindow profileLink" data-content="modalWindowContent" href="{{ baseUrl() }}/login">
                     Sign in/register 
                     <span class="icoProfile"></span>

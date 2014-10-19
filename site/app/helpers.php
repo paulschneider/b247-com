@@ -275,15 +275,15 @@ function getPageTitle($data)
 	}
 
 	# maybe a subchannel
-	if(isset($data['subChannels'][0]))
+	if(isset($data['channel']['subChannels'][0]))
 	{
-		$str .= ' | '. $data['subChannels'][0]['name'];	
+		$str .= ' | '. $data['channel']['subChannels'][0]['name'];	
 	}
 
 	# or a category
-	if(isset($data['subChannels'][0]['categories']))
+	if(isset($data['channel']['subChannels'][0]['categories']))
 	{
-		$str .= ' | '. $data['subChannels'][0]['categories'][0]['name'];	
+		$str .= ' | '. $data['channel']['subChannels'][0]['categories'][0]['name'];	
 	}
 
 	# and finally an article

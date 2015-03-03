@@ -154,10 +154,11 @@
 						</div>
 					@endif
 
-					<?php 
-						$j++;
+					<?php 						
 						if( $j == 6 )
 							$j = 1;
+
+						$j++;
 					?>
 
 				@endforeach

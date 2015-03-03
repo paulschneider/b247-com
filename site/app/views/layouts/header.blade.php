@@ -1,5 +1,60 @@
 @section('header')
 
+<section class="header">
+    <header>      
+        <div id="logo"><img src="{{ assetPath() }}a/i/layout/bristol-24-7.png"/>
+        </div>
+
+        <a onclick="showmenu('menu')">
+            <div id="show-mob-menu"><img src="{{ assetPath() }}a/i/layout/menu.png"/></div>
+        </a>
+
+        <a onclick="hidemenu('menu')">
+        <div id="hide-mob-menu"><img src="{{ assetPath() }}a/i/layout/menu.png"/></div>
+        </a>
+
+        <nav id="nav">
+            <ul>
+                @foreach( $nav AS $item )
+                    <li>
+                        <a class="{{ themeClass($item['sefName']) }}" href="{{ $item['path'] }}">{{ $item['name'] }}</a>
+                    </li>
+                @endforeach
+            </ul>
+        </nav>
+
+        <mobnav id="mob-nav">
+            <ul>
+                @foreach( $nav AS $item )
+                    <li>
+                        <a class="{{ themeClass($item['sefName']) }}" href="{{ $item['path'] }}">{{ $item['name'] }}</a>
+                    </li>
+                @endforeach
+            </ul>
+        </mobnav>
+
+        <div class="toolsNav" >
+            <a class="searchLink" onclick="showsearch('menu')" id="showsearch"><img src="{{ assetPath() }}a/i/icons/search-icon.png"/></a>
+            <a class="searchLink" onclick="hidesearch('menu')" id="hidesearch">
+                <img src="{{ assetPath() }}a/i/icons/close-search.png"/>
+            </a>
+        </div>
+
+        <div class="newsletter" id="newsletter">
+            <img src="{{ assetPath() }}a/i/icons/nl-icon.png"/> 
+            <div class="nav-item-nl">Newsletter</div>
+        </div>
+
+        <div class="toolssearch" id="search">
+            <form action="" method="post" class="searchContainer">
+                <input type="text" class="text" value="" placeholder="Search" name="search">
+                <input type="submit" class="primaryButton" value="Go">
+            </form>
+        </div>      
+    </header>
+</section>
+
+<?php /*
 <header role="banner" id="top">      
   <div class="headerBar">
     <a class="visuallyHidden skipNavigation" href="#main">Skip to content</a>        
@@ -45,6 +100,8 @@
 
     </div>      
 </header>    
+
+*/ ?>
 
 @if(isset($activeChannel) and !isset($showSubChannel) and !isset($showCategory))
     @include('layouts.partials.sub-nav')

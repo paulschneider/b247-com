@@ -1,6 +1,11 @@
 <?php
 use Carbon\Carbon;
 
+function hasEventArticles($channelFeed)
+{
+	return isset($channelFeed[0]) and $channelFeed[0]['sefName'] == 'whats-on' ? true : false;
+}
+
 # function to set the radio button of the user profile form, just saves a bit if typing really....
 function isAgeGroup($user, $ageGroup, $isDefault = false)
 {
@@ -381,6 +386,11 @@ function getFeatureCategories($features)
 	}
 
 	return array_values($response);
+}
+
+function getChannelTheme($channel)
+{
+	return isset($channel['sefName']) ? themeClass($channel['sefName']) : '' ;
 }
 
 function getTheme($article)

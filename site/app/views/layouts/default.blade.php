@@ -1,10 +1,10 @@
 <!DOCTYPE html>
-<!--[if lt IE 7]><html class="lt-ie10 lt-ie9 lt-ie8 lt-ie7 noJS"><![endif]-->
-<!--[if IE 7]><html class="ie7 lt-ie10 lt-ie9 lt-ie8 noJS"><![endif]-->
-<!--[if IE 8]><html class="ie8 lt-ie10 lt-ie9 noJS"><![endif]-->
-<!--[if IE 9]><html class="ie9 lt-ie10 noJS"><![endif]-->
-<!--[if gt IE 9]><!--> <html lang="en" class="noJS"><!--<![endif]-->
-  <head>
+<!--[if lt IE 7]> <html class="ie6 oldie"> <![endif]-->
+<!--[if IE 7]>    <html class="ie7 oldie"> <![endif]-->
+<!--[if IE 8]>    <html class="ie8 oldie"> <![endif]-->
+<!--[if gt IE 8]><!--> <html class="">
+<!--<![endif]-->
+<head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
     <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -17,7 +17,6 @@
     
     <!-- Open Graph -->
     @if(isset($article['body']))
-
         <meta property="og:image" content="{{ $article['media']['filepath'] }}" />
         <meta property="og:url" content="{{ baseUrl().$article['path'] }}" />        
         <meta property="og:site_name" content="Bristol 24/7" />
@@ -67,18 +66,47 @@
     
     <!-- Files -->
     <link href="//netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap.min.css" rel="stylesheet">
-    <link rel="stylesheet" href="{{ assetPath() }}a/c/live.min.css">
-    <link rel="stylesheet" href="{{ assetPath() }}a/c/additional.css">
-    <link rel="stylesheet" href="{{ assetPath() }}a/c/datepicker.css">
+    <link rel="stylesheet" href="{{ assetPath() }}a/c/boilerplate.css">
+    <link rel="stylesheet" href="{{ assetPath() }}a/c/final.css">
+    <link href='http://fonts.googleapis.com/css?family=Alegreya' rel='stylesheet' type='text/css'>
+    <link rel="stylesheet" href="{{ assetPath() }}a/c/owl.carousel.css">
+    <!-- <link rel="stylesheet" href="{{ assetPath() }}a/c/additional.css"> -->
+    <!-- <link rel="stylesheet" href="{{ assetPath() }}a/c/datepicker.css"> -->
+
+    <script src="{{ assetPath() }}a/j/vendor/respond.min.js"></script>
+
     <!--[if lt IE 9]><script src="{{ assetPath() }}j/vendor/html5shiv-printshiv.js"></script><![endif]-->
+
+    <script>
+    function showsearch(id) {
+    document.getElementById("search").style.display = 'block';
+    document.getElementById("showsearch").style.display = 'none';
+    document.getElementById("newsletter").style.display = 'none'; 
+    document.getElementById("hidesearch").style.display = 'block';
+    }
+    function hidesearch(id) {
+    document.getElementById("search").style.display = 'none';
+    document.getElementById("hidesearch").style.display = 'none'; 
+    document.getElementById("newsletter").style.display = 'block';
+    document.getElementById("showsearch").style.display = 'block'; 
+    }
+    function showmenu(id) {
+    document.getElementById("mob-nav").style.display = 'block';
+    document.getElementById("show-mob-menu").style.display = 'none'; 
+    document.getElementById("hide-mob-menu").style.display = 'block'; 
+    }
+    function hidemenu(id) {
+    document.getElementById("mob-nav").style.display = 'none';
+    document.getElementById("show-mob-menu").style.display = 'block'; 
+    document.getElementById("hide-mob-menu").style.display = 'none'; 
+    }
+    </script>
 
   </head>
   <body class="{{ isset($activeChannel) ? themeClass($activeChannel) : 'homePage' }}">
 
-    <div id="pageWrapper">
-        <div id="outerContainer"> 
+    <div class="gridContainer clearfix">
             @yield('header')
-            <main id="main" role="main">
 
                 @if(isset($message) and !is_null($message))
                     <div class="alert alert-{{ $messageClass }} alert-dismissible" role="alert">
@@ -88,13 +116,13 @@
                 @endif
 
                 @yield('content')
-            </main>
+
             @yield('footer')
 
         </div>
     </div>
         
-        <a class="backToTop" href="#top"><span>Back to top</span></a>
+        <!--<a class="backToTop" href="#top"><span>Back to top</span></a>-->
     
         <script src="//ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
         <script src="//netdna.bootstrapcdn.com/bootstrap/3.1.1/js/bootstrap.min.js"></script>        
@@ -105,13 +133,31 @@
         <script src="{{ assetPath() }}a/j/preferences.js"></script>
         <script src="{{ assetPath() }}a/j/listings.js"></script>
         <script src="{{ assetPath() }}a/j/cookie.js"></script>
+        <script src="{{ assetPath() }}a/j/vendor/owl.carousel.js"></script>
 
-        <div id="getTheApp" style="display: none; opacity: 0">
+        <script>
+            $(document).ready(function() {
+                $(".owl-carousel").owlCarousel({
+                    autoPlay: false,
+                    items : 1,
+                    itemsDesktop : [1199,1],
+                    itemsDesktopSmall : [979,1],
+                    itemsTablet : [480,1],
+                    itemsMobile : [479,1],
+                    pagination : false,
+                    navigation : true,
+                    slideSpeed : [200],
+                    navigationText  : ['','']
+                });
+            });
+            </script>
+
+        <!--<div id="getTheApp" style="display: none; opacity: 0">
             <a href="{{ baseUrl() }}/download-the-app">
                 <span class="phoneIcon"></span>
                 Download the Bristol 24-7 App
             </a>
             <a href="#" class="phoneClose"></a>
-        </div>
+        </div>-->
     </body>
 </html>

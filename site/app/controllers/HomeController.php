@@ -35,7 +35,7 @@ class HomeController extends BaseController {
 
 			# set the pages meta description value
 			$data['metaDescription'] = "Bristol news, comprehensive what's on listings, reviews and special offers online, on mobile, in print - check out our FREE app and monthly magazine";
-
+//sd($data);
 			# make the view
 			return View::make('home.index', $data);
 		}

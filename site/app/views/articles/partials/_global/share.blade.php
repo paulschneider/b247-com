@@ -1,7 +1,9 @@
 <input type="button" value="Share" class="activateShare primaryButton">
 <ul class="shareOptions">
     <li>
-        <a href="https://twitter.com/share?url={{ baseUrl().$article['path'] }}" class="icoTwitter" target="_blank">Twitter<span></span></a>
+        <?php // https://dev.twitter.com/web/tweet-button ?>
+        <a href="https://twitter.com/share" data-text="{{ $article['title'] }}" data-url="{{ baseUrl().$article['path'] }}" class="twitter-share-button icoTwitter" target="_blank">Twitter<span></span></a>
+        <!--<a href="https://twitter.com/share?text={{ $article['title'] }}&amp;url={{ baseUrl().$article['path'] }}" class="icoTwitter" target="_blank">Twitter<span></span></a>-->
     </li>
     <li>
         <div class="fb-like" data-href="{{ baseUrl().$article['path'] }}" data-layout="button" data-action="like" data-show-faces="false" data-share="false"></div>

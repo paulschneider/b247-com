@@ -3,74 +3,98 @@
     @include("adverts.partials.letterbox")
 @endif
 
-<article class="pageSection cmsContent">
-    <!-- Header -->
-    @include("articles.partials._global.header")
+<section>
+    <div class="article <?php echo getTheme($article) ?>">
+        <div id="define-col-1">
+            <img src="{{ $article['gallery']['top']['0']['filepath'] }}" width="100%" alt="{{ $article['gallery']['top']['0']['alt'] }}" />
 
-    <div class="grid">
-        <!-- Top Carousel -->
-        <div class="column col-12-20 colFirst tabCol-18-20 tabColFirst mobCol-20-20">
-            @include('articles.partials._global.gallery-top') 
-        
-        <aside class="column col-25 mobCol-18-20 mobColFirst">
-                          
-            @if( isset($article['event']['summary']['isMovie']) )
-                @include("articles.partials.listing.side-movie")
-            @else
-                @include("articles.partials.listing.side-performance")
-            @endif
+            <div class="spacer"></div>
 
-            @if (! $isMobile) <!-- only show for the web version -->
-                @include('articles.partials._global.share')
-            @endif
-        </aside>
+            <div class="art-col-1">
+                @if (! $isMobile) <!-- only show for the web version -->
+                    @include('articles.partials._global.share')
+                @endif
+            </div>
 
-        <div class="fr col-75 mobCol-18-20 mobColLast">
-            <div>
-                {{ $article['body'] }}
+            <div class="art-col-2">
+                <div class="art-upper" style="padding-bottom:26px;">
+                    <h1>
+                        <span class="alt-color">{{ $article['assignment']['category']['name'] }}:</span> 
+                        {{ $article['title'] }}
+                    </h1>
+                </div> 
+
+                <div class="art-upper"> 
+                    <h2>
+                        {{ $article['author'] }}, {{ getPublishedDate($article['published']) }}
+                        <div class="art-nav">
+                            @if ( ! $isMobile ) 
+                            <a href="{{ isset($navigation['previous']['article']['path']) ? $navigation['previous']['article']['path'] : '/no-where' }}">< previous article</a>
+                            |   
+                            <a href="{{ isset($navigation['next']['article']['path']) ? $navigation['next']['article']['path'] : '/no-where' }}">next article ></a>
+                            @endif
+                        </div>
+                    </h2>
+                </div>
+                  
+                <span class="body">
+                    {{ $article['body'] }}
+                    {{ $article['bodyContinued'] }}
+                </span>
             </div>
         </div>
 
-        <!-- Advert --> 
-        @if (isset($adverts[1]))
-            <?php $advert = $adverts[1] ?>
-            @include("adverts.partials.letterbox")
-        @endif
+        <div id="define-col-2">
 
-        <div class="fr col-75 mobCol-18-20 mobColLast cmsSecondaryContent">
-            @if ( isset($article['video']) )
-                <div class="videoContainer">
-                    {{ $article['video']['embed'] }}
-                </div>
-            @endif
-            {{ $article['bodyContinued'] }}
+            @if(Input::get('time'))
+                <?php $date = getEventDate(Input::get('time')) ?>
+                <h2>{{ $date->dayOfWeek['short'] }} {{ $date->day }} {{ $date->month['short'] }}</h2>
+            @endif           
 
-            @if(isset($article['categoryAssignment']))
-                <ul class="categoryList">
-                    @foreach($article['categoryAssignment'] AS $assignment)
-                        <li><a href="{{ baseUrl().$assignment['path'] }}">{{ $assignment['name'] }}</a></li>
-                    @endforeach
-                </ul>
-                <br />
-            @endif
+            <attributes>
+                <h7>
+                    @if( isset($article['event']['details']['performances']) )
+                        <?php $event = $article['event']['details']['performances']['summary'] ?>
+                        @if( ! $event['isMultiDate'] )
+                            <?php $date = getEventDate($article['event']['details']['epoch']) ?>
+                            {{ $date->dayOfWeek['short'] }} {{ $date->day }} {{ $date->month['short'] }}
+                        @else 
+                            <?php $date = getEventDate($event['firstPerformance']['start']['epoch']) ?>
+                            {{ $date->dayOfWeek['short'] }} {{ $date->day }} {{ $date->month['short'] }}
+                            -
+                            <?php $date = getEventDate($event['lastPerformance']['start']['epoch']) ?>
+                            {{ $date->dayOfWeek['short'] }} {{ $date->day }} {{ $date->month['short'] }}
+                        @endif
+                    @endif        
+                </h7>
+                <div class="spacer-row"></div>
+                <h8>Showing at</h8>                
+                @if( isset($article['event']['venues']) )
+                    <?php $performances = $article['event']['venues']; ?>
 
-            @if($isMobile and $article['allowComments'])
-                <div class="comment-btn">
-                    <a href="{{ $commentRoute }}" class="primaryButton">Article Comments</a>
-                </div>
-            @endif
+                    @foreach($performances AS $performance)                    
+                    <h9>
+                        @if(!empty($performance['venue']['website']))
+                            <a href="{{ $performance['venue']['website'] }}">{{ $performance['venue']['name'] }}</a>
+                        @else
+                            {{ $performance['venue']['name'] }}
+                        @endif
+                    </h9>
+                @endforeach
+                @else
+                    <h9>{{ $article['event']['venue']['name'] }}</h9>
+                @endif               
+                
+                <div class="spacer-row"></div>        
+   
+            </attributes>
+
+            @include('articles.partials._global.related')
         </div>
-
-        <!-- Lower Carousel -->   
-
-        @include("articles.partials._global.gallery-bottom")
-
     </div>
 
-    <!-- Related Articles --> 
+    @include("articles.partials._global.comments")
 
-    @include("articles.partials._global.related")
-
-</article>
+</section>
 
 @include("articles.partials._global.comments")

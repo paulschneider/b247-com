@@ -1,13 +1,13 @@
 /* STYLING */
 body{font-family:'Alegreya'; }
 .sub-header-bk{background-color:#F6F6F6;padding:10px 0;}
-#footer{background-color:#F6F6F6;min-height:150px; margin:30px 0 0 0; border-top:1px solid #EAEAEA; padding-bottom:50px;}
+#footer{background-color:#F6F6F6;min-height:150px; margin:0 0 0 0; border-top:1px solid #EAEAEA; padding-bottom:50px;}
 section{float:left;width:100%;}
 input {-webkit-appearance: none;border-radius: 0;}
 h1,h2,h3,h4{font-weight:normal; margin:0;}
 .art-upper h2{color:#CCC; font-size:16px;width:100%;}
 .alt-color{font-size:13px;}
-h2,.themeCulture .art-nav A:link,.art-nav A:visited{color:#858585; text-decoration:none !important;}
+h2,.themeCulture .art-nav A:link,.art-nav A:visited, .sub-header-by-day ul a:link, .sub-header-by-day ul a:visited{color:#858585; text-decoration:none !important;}
 .main-feature-row h1,.main-feature-row h2,.main-feature-row h3{color:#FFF;}
 .header{background-color:#444444;}
 header{width:100%;}
@@ -45,7 +45,7 @@ A.themeLife:link, A.themeLife:visited{color:#31CCC3; text-decoration:none;}
 A.themeWhats:link, A.themeWhats:visited,.themeWhats attributes h9{color:#55CD6C; text-decoration:none;}
 .sub-chan-wo A:link,.sub-chan-wo A:visited{color:#858585; text-decoration:none;}
 .sub-chan-wo A:hover{color:#55CD6C; text-decoration:none;}
-.themeWhats .art-nav A:hover{color:#295E4E; text-decoration:underline;}
+.themeWhats .art-nav A:hover,.sub-header-by-day ul a:hover{color:#295E4E; text-decoration:underline;}
 /* CULTURE */
 .themeCulture .section-header-box,.themeCulture .es-navigation a, .themeCulture .share-it, .themeCulture .owl-prev, .themeCulture .owl-next,.themeCulture .featured-row,.themeCulture .main-featured-row{background-color:#F36E4F;}
 .themeCulture .slider-col img,.themeCulture .es-slides img,.highlights .themeCulture img{border-top:4px solid #F36E4F;}
@@ -81,6 +81,13 @@ A.themeFood:link, A.themeFood:visited,.themeFood attributes h9{color:#D8AC29; te
 .sub-header{margin:0 auto; margin-top:0px;width:96%; min-height:20px; padding:5px 0 0 0; box-sizing:border-box;}
 .sub-header ul{float:left;width:100%;padding:0px; margin:0px;}
 .sub-header ul li{list-style:none; padding:0px; margin:0px;float:left;margin-right:20px; font-size:14px; color:#959595; }
+
+
+.sub-header-by-day{margin:0 auto; margin-top:0px;width:96%; min-height:20px; padding:5px 0 0 0; box-sizing:border-box;}
+.sub-header-by-day ul{float:left;width:100%;padding:0px; margin:0px;}
+.sub-header-by-day ul li{list-style:none; padding:0px; margin:0px;float:left;margin-right:20px; font-size:14px; color:#959595; }
+.sub-header-by-day ul  .by-day-left{float:left; margin-right:30px;}
+.sub-header-by-day ul  .by-day-right{float:left; margin-top:10px;}
 
 .features{margin:0 auto; margin-top:0px;width:100%; min-height:96px;}
 .highlights,.whatson,.carousels{margin:0 auto; margin-top:30px;width:100%; min-height:96px;}
@@ -217,6 +224,12 @@ asset{float:left; width:100%; margin:0 0 26px 0;}
 .sub-header ul{float:left;width:100%;padding:0px; margin:0px;}
 .sub-header ul li{list-style:none; padding:0px; margin:0px;float:left;margin-right:20px; font-size:16px; color:#959595; }
 
+.sub-header-by-day{margin:0 auto; margin-top:0px;width:96%; min-height:20px; padding:5px 0 0 0; box-sizing:border-box;}
+.sub-header-by-day ul{float:left;width:100%;padding:0px; margin:0px;}
+.sub-header-by-day ul li{list-style:none; padding:0px; margin:0px;float:left;margin-right:20px; font-size:16px; color:#959595; }
+.sub-header-by-day ul  .by-day-left{float:left; width:96%; margin-bottom:10px; }
+.sub-header-by-day ul  .by-day-right{float:left; margin-top:10px; width:96%; }
+
 .features{margin:0 auto; margin-top:0px;width:100%; min-height:96px;}
 .highlights,.whatson,.carousels{margin:0 auto; margin-top:30px;width:100%; min-height:96px;}
 
@@ -350,6 +363,10 @@ asset{float:left; width:100%; margin:0 0 26px 0;}
 .sub-header{margin:0 auto; margin-top:0px;width:96%; min-height:20px; padding:5px 0 0 0; box-sizing:border-box;}
 .sub-header ul{float:left;width:100%;padding:0px; margin:0px;}
 .sub-header ul li{list-style:none; padding:0px; margin:0px;float:left;margin-right:20px; font-size:16px; color:#959595; }
+
+.sub-header-by-day{margin:0 auto; margin-top:0px;width:96%; min-height:20px; padding:5px 0 0 0; box-sizing:border-box;}
+.sub-header-by-day ul{float:left;width:100%;padding:0px; margin:0px;}
+.sub-header-by-day ul li{list-style:none; padding:0px; margin:0px;float:left;margin-right:20px; font-size:16px; color:#959595; }
 
 .features{margin:0 auto; margin-top:0px;width:100%; min-height:96px;}
 .highlights,.whatson,.carousels{margin:0 auto; margin-top:30px;width:100%; min-height:96px;}
@@ -489,6 +506,10 @@ asset{float:left; width:100%; margin:0 0 26px 0;}
 .sub-header ul{float:left;width:100%;padding:0px; margin:0px;}
 .sub-header ul li{list-style:none; padding:0px; margin:0px;float:left;margin-right:20px; font-size:16px; color:#959595; }
 
+.sub-header-by-day{margin:0 auto; margin-top:0px;width:96%; min-height:20px; padding:5px 0 0 0; box-sizing:border-box;}
+.sub-header-by-day ul{float:left;width:100%;padding:0px; margin:0px;}
+.sub-header-by-day ul li{list-style:none; padding:0px; margin:0px;float:left;margin-right:20px; font-size:16px; color:#959595; }
+
 .features{margin:0 auto; margin-top:0px;width:100%; min-height:96px;}
 .highlights,.whatson,.carousels{margin:0 auto; margin-top:30px;width:96%; min-height:96px;}
 .featured-wrap,footer{margin:0 auto; margin-top:0px;width:96%; min-height:96px;}
@@ -618,6 +639,12 @@ asset{float:left; width:100%; margin:0 0 26px 0;}
 .sub-header{margin:0 auto; margin-top:0px;width:96%; min-height:20px; padding:5px 0 0 0; box-sizing:border-box;}
 .sub-header ul{float:left;width:100%;padding:0px; margin:0px;}
 .sub-header ul li{list-style:none; padding:0px; margin:0px;float:left;margin-right:20px; font-size:16px; color:#959595; }
+
+.sub-header-by-day{margin:0 auto; margin-top:0px;width:96%; min-height:20px; padding:5px 0 0 0; box-sizing:border-box;}
+.sub-header-by-day ul{float:left;width:100%;padding:0px; margin:0px;}
+.sub-header-by-day ul li{float:left;list-style:none; padding:0px; margin:0px;margin-right:10px; font-size:16px; color:#959595; }
+.sub-header-by-day ul  .by-day-left{float:left; margin-right:30px;}
+.sub-header-by-day ul  .by-day-right{float:left; margin-top:10px;}
 
 .features,.article,footer{margin:0 auto; margin-top:26px;width:96%; min-height:96px;}
 .highlights,.whatson,.carousels{margin:0 auto; margin-top:30px;width:96%; min-height:96px;}
@@ -751,6 +778,9 @@ asset{float:left; width:100%; margin:0 0 26px 0;}
 
 .hide_desktop{display:none;}
 }
+@media only screen and (min-width: 1020px) {
+	.sub-header-by-day ul  .by-day-right{float:right; margin:0 0 0 0;}
+}
 
 @media only screen and (min-width: 1060px) {
 .content-row,.slider-row,.featured-row{height:160px; }
@@ -763,6 +793,12 @@ asset{float:left; width:100%; margin:0 0 26px 0;}
 .sub-header{margin:0 auto; margin-top:0px;width:1130px; min-height:20px; padding:5px 0 0 0; box-sizing:border-box;}
 .sub-header ul{float:left;width:100%;padding:0px; margin:0px;}
 .sub-header ul li{list-style:none; padding:0px; margin:0px;float:left;margin-right:20px; font-size:16px; color:#959595; }
+
+.sub-header-by-day{margin:0 auto; margin-top:20px;width:1130px; min-height:20px; padding:5px 0 0 0; box-sizing:border-box;}
+.sub-header-by-day ul{float:left;width:100%;padding:0px; margin:0px;}
+.sub-header-by-day ul li{float:left;list-style:none; padding:0px; margin:0px;margin-right:10px; font-size:16px; color:#959595; }
+.sub-header-by-day ul  .by-day-left{float:left; margin-right:30px;}
+.sub-header-by-day ul  .by-day-right{float:right; margin:0 0 0 0;}
 
 .features,.article,footer{margin:0 auto; margin-top:26px;width:1130px; min-height:96px;}
 .highlights,.whatson,.carousels{margin:0 auto; margin-top:39px;width:1130px; max-height:542px; }
@@ -806,7 +842,7 @@ nav ul li{float:left; margin:0 20px 0 0; font-size:18px; width:auto}
 
 .define-slider-row{float:left; width:100%;  margin:5px 0px 0 0;  padding:0px;  }
 .section-header{float:left; width:100%; height:5px; background-color:#444444; margin: 0 0 10px 0;}
-.section-header-box{float:none;margin:0 auto; padding:0px 8px 1px 8px; background-color:#EE1C29; width:200px; color:#fff; text-align:center; font-family:'Alegreya';font-size:24px; margin-top:-14px; font-style:italic;}
+.section-header-box{float:none;margin:0 auto; padding:0px 8px 1px 8px; background-color:#EE1C29; width:250px; color:#fff; text-align:center; font-family:'Alegreya';font-size:24px; margin-top:-14px; font-style:italic;}
 .define-slider-row{float:left; width:1160px;}
 .slider-page{float:left; min-width:1160px; display:block; margin:0px 0px 0 0;  padding:0px; }
 
@@ -885,5 +921,35 @@ asset{float:left; width:100%; margin:0 0 26px 0;}
 
 .hide_desktop{display:none;}
 }
+
+
+
+
+/* 04 03 2015 AMENDS */
+.features a:link, .features a:visited {color:#fff;text-decoration:none;}
+.whatson h1 a:link, .whatson a:visited h1 {color:#295E4E;text-decoration:none;}
+.content-row a:link h1 , .content-row a:visited h1,.carousels h1 a:link, .carousels h1 a:visited {color:#222;text-decoration:none;}
+.features a:hover,.whatson h1 a:hover, .content-row A:hover h1  {text-decoration:underline;}
+.sub-header ul li a:link,.sub-header ul li a:visited{color:#959595;text-decoration:none;}
+.sub-header ul li a:hover {text-decoration:underline;}
+.sh-ft-adj {margin-top:30px;}
+#comments-block{margin:0 auto; width:96%; max-width:1130px; margin-top:50px; margin-bottom:30px;}
+.listings-by-day {float:left;}
+.page-footer {margin:0 auto; margin-top:20px;width:1130px; min-height:20px; padding:5px 0 0 0; box-sizing:border-box; }
+.page-footer ul {float:left;list-style:none; margin:0; padding:0; width:100%;}
+.page-footer ul li { padding:10px 20px;font-size:18px; text-align:center; box-sizing:border-box; }
+.page-footer .previous:hover,.page-footer .next:hover {background-color:#97BDE0;}
+.previous{float:left;width:15%;background-color:#CACACA;color:#fff;}
+.page-number{float:left; width:70%; background-color:transparent; color:#CACACA;}
+.next{float:left; width:15%;background-color:#CACACA;color:#fff;}
+.page-footer ul .page-number a:link,.page-footer ul .page-number a:visited{text-decoration:none;color:#CACACA;}
+.page-footer ul .previous a:link,.page-footer ul .previous a:visited,.page-footer ul .next a:link,.page-footer ul .next a:visited{ text-decoration:none; color:#fff; } 
+
+
+
+
+
+
+
 
 

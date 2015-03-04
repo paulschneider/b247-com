@@ -124,6 +124,8 @@
 		}
 	?>
 
+	<!-- WHATS ON -->
+
 	@if( isset($hasEvents) )
 		<section>
 			<div class="whatson themeWhats">		
@@ -142,14 +144,16 @@
 						?> 
 
 						<div class="whatson-col <?php echo $j == 5 ? 'last-in-row' : '' ?>">
-							<div class="semi-circle hide_mobile">{{ $subChannel->name }}</div>		
-							<img alt="{{ $article['media']['alt'] }}" src="{{ $article['media']['filepath'] }}" />
+							<div class="semi-circle hide_mobile">{{ $subChannel->name }}</div>	
+								
+							<a href="{{ $article['path'] }}">
+								<img alt="{{ $article['media']['alt'] }}" src="{{ $article['media']['filepath'] }}" />
+							</a>
 				
 							<div class="whatson-row">
-								<h1>{{ $article['title'] }}</h1>
+								<h1><a href="{{ $article['path'] }}">{{ $article['title'] }}</a></h1>
 								<h2 class="hide_mobile">{{ $article['subHeading'] }}</h2>
-								<h3>{{ $article['assignment']['channel']['name'] }} - {{ $subChannel->name }}</h3>
-								<h4>{{ $category->name }}</h4>
+								<h3>{{ $subChannel->name }} - {{ $category->name }}</h3>
 							</div>
 						</div>
 					@endif
@@ -165,7 +169,8 @@
 			</div>
 		</section>
 @endif
-
+	
+	<!-- CHANNEL FEED -->
 	@foreach($channelFeed AS $feed)
 
 		<?php $totalArticles = count($feed['articles']) ?>
@@ -191,12 +196,20 @@
 											$subChannel = getArticleSubChannel($article); 
 										?> 
 										
-											<div class="slider-col <?php echo $j == 4 ? 'last-in-row' : '' ?>">					
-												<img alt="{{ $article['media']['alt'] }}" src="{{ $article['media']['filepath'] }}" />
+											<div class="slider-col <?php echo $j == 4 ? 'last-in-row' : '' ?>">	
+												
+												<a href="{{ $article['path'] }}">				
+													<img alt="{{ $article['media']['alt'] }}" src="{{ $article['media']['filepath'] }}" />
+												</a>
+												
 												<div class="slider-row">
-													<h1>{{ $article['title'] }}</h1>
+													<h1>
+														<a href="{{ $article['path'] }}">
+															{{ $article['title'] }}
+														</a>
+													</h1>
 													<h2 class="hide_mobile">{{ $article['subHeading'] }}</h2>
-													<h3>{{ $article['assignment']['channel']['name'] }} - {{ $subChannel->name }}</h3>
+													<h3>{{ $subChannel->name }} - {{ $category->name }}</h3>
 												</div>
 											</div>
 										
@@ -219,113 +232,6 @@
 		@endif
 	@endforeach
 @endif
-<?php /*
-
-<!-- CHANNEL FEED -->
-@if( isset($channelFeed) )
-	<?php $totalFeeds = count($channelFeed); $counter = 1; ?>
-	@foreach($channelFeed AS $feed)
-		@if(count($feed['articles']) > 0)
-			<section class="pageSection grid">
-
-				<header class="artCol-3-3 artColFirst artColLast">
-					<h1 class="secondaryHeader">{{ $feed['name'] }}</h1>
-				</header>
-
-				<div class="carouselContainer">
-					<div class="carouselArticleList">
-						<div class="articleList">
-
-							<?php $i = 0; $s = 1; $counter = 1; ?>				
-
-							@foreach($feed['articles'] AS $article)
-								<?php $i += displayStyle($article) ?>
-								<div class="articleListItem column {{ getTheme($article) }} {{ $s == 1 ? 'artColFirst' : '' }} {{ $i == 3 ? 'artColLast' : '' }} {{ displayStyle($article) == 2 ? 'artCol-2-3' : 'artCol-1-3' }} ">
-									@if( $article['isAdvert'] )
-										<div class="articleListBlockAdvert advert">
-											<figure>
-												<a href="{{ $article['url'] }}">
-													<img alt="{{ $article['media']['alt'] }}" src="{{ $article['media']['filepath'] }}" />
-												</a>
-												<figcaption>
-													Advertising
-												</figcaption>
-											</figure>
-										</div>
-									@else
-										<?php 
-											$category = getArticleCategory($article);
-											$subChannel = getArticleSubChannel($article); 
-										?>
-
-										<a href="{{ $subChannel->path }}" class="articleListSubChannel">{{ $subChannel->name }}</a>
-										@if( displayStyle($article) == 2)
-			                                <div class="articleListStandOut">
-			                                    <div class="articleListImage">
-			                                        <div class="articleListStandOutContent">
-			                                        	@if(isset($article['event']['details']['id']))
-															<p class="articleListDetails">{{ $article['event']['venue']['name'] }}{{ isset($article['event']['details']['price']) ? ', from &pound;'. $article['event']['details']['price'] : '' }}</p>
-														@endif
-			                                            <a href="{{ baseUrl().$article['path'] }}" class="articleListTitle">{{ $article['title'] }}</a>
-			                                            <p class="articleListSummary">{{ $article['subHeading'] }}</p>
-			                                        </div>
-			                                        <div class="articleListStandOutImage">
-			                                            <a href="{{ baseUrl().$article['path'] }}">
-			                                                @if( isset($article['media']) and !empty($article['media']) )
-			                                                    <img alt="{{ $article['media']['alt'] }}" src="{{ $article['media']['filepath'] }}" />
-			                                                @endif
-			                                            </a>
-			                                            <a href="{{ $category->path }}" class="articleListCategories">{{ $category->name }}</a>
-			                                        </div>
-			                                    </div>
-			                                </div>
-			                            @else
-			                                <div class="articleListSynopsis">
-			                                    <div class="articleListImage">
-			                                        <a href="{{ baseUrl().$article['path'] }}">
-			                                            @if( isset($article['media']) and !empty($article['media']) )
-			                                                <img alt="{{ $article['media']['alt'] }}" src="{{ $article['media']['filepath'] }}" />
-			                                            @endif
-			                                        </a>
-			                                        <a href="{{ $category->path }}" class="articleListCategories">{{ $category->name }}</a>
-			                                    </div>
-			                                    <div class="articleListContent">
-			                                        <a class="articleListTitle" href="{{ baseUrl().$article['path'] }}">{{ $article['title'] }}</a>
-			                                        @if(isset($article['event']['details']['id']))
-														<p class="articleListDetails">{{ $article['event']['venue']['name'] }}{{ isset($article['event']['details']['price']) ? ', from &pound;'. $article['event']['details']['price'] : '' }}</p>
-													@endif
-			                                        <p class="articleListSummary">{{ $article['subHeading'] }}</p>
-			                                        <a href="{{ $category->path }}" class="articleListCategories">{{ $category->name }}</a>
-			                                    </div>
-			                                </div>
-			                            @endif
-									@endif														
-								</div> 
-
-								<?php $s++ ?>
-								@if($i == 3 && $counter != count($feed['articles']))
-									</div><div class="articleList">
-									<?php $i = 0; $s = 1; ?>
-								@endif
-								<?php $counter++; ?>
-							@endforeach
-						</div>
-					</div>
-					<a class="carouselViewAll col-3-12" href="{{ $feed['path'] }}">See full listings</a>
-				</div>
-			</section>
-
-			<?php $counter++; ?>
-			
-			@if($counter <= $totalFeeds)
-				<hr class="spacer">
-			@endif
-		@endif
-
-	@endforeach
-@endif
-
-*/ ?>
           
 @endsection
 @include('layouts.footer')

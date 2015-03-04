@@ -1,13 +1,15 @@
 @if(isset($subChannels))
-	<nav class="subHeader">
-		<ul>
-		@foreach($subChannels AS $subChannel)
-		        <li>
-		            <a href="{{ baseUrl().$subChannel['path'] }}">{{ $subChannel['name'] }}</a>
-		        </li>
-		    @endforeach
-		</ul>
-	</nav>
+	<section class="sub-header-bk">
+		<div class="sub-header">
+			<ul>
+				@foreach($subChannels AS $subChannel)
+			        <li>
+			            <a href="{{ baseUrl().$subChannel['path'] }}">{{ $subChannel['name'] }}</a>
+			        </li>
+			    @endforeach
+			</ul>
+		</div>
+	</section>
 @elseif($activeNav == "profile" || $activeNav == "prefs" || $activeNav == "password")
 	@include("user.partials.sub-nav") 
 @endif

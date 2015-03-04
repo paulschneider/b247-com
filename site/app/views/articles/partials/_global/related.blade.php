@@ -1,54 +1,28 @@
 @if( isset($related) and count($related) > 0) 
-    <aside class="column col-4-20 tabCol-20-20 leftColumnLine">
-        <p class="secondaryHeader tabColSpacing1">Like this? You might be interested in...</p>
 
-        <div class="carouselContainer">
-            <div>
-                <div class="articleList">
+    <h6 class="more">Like this? You might be interested in...</h6>
+    
+    @foreach( $related AS $r )
 
-                    <?php $counter = 1; ?>
-                    @foreach( $related AS $r )
+        <?php 
+            $subChannel = getArticleSubChannel($r);
+            $category = getArticleCategory($r);
+        ?>
 
-                        <?php 
-                            $subChannel = getArticleSubChannel($r);
-                            $category = getArticleCategory($r);
-                        ?>
+        <div class="related-col">
+            <a href="{{ $r['path'] }}">
+                @if(isset( $r['media']['filepath'] ))
+                    <img src="{{ $r['media']['filepath'] }}" alt="$r['media']['filepath']" />
+                @endif
+            </a>
 
-                        <div class="articleListItem column artCol-1-3 <?php echo $counter == 1 ? 'artColFirst' : '' ?><?php echo $counter == 3 || $counter == 6 ? 'artColLast' : '' ?>">
-                            <a href="{{ $subChannel->path }}" class="articleListSubChannel">{{ $subChannel->name }}</a>
-                            <div class="articleListSynopsis">
-                                @if(isset($r['media']))
-                                    <div class="articleListImage">
-                                        <a href="{{ $r['path'] }}">                                        
-                                            <img alt="{{ $r['media']['alt'] }}" src="{{ $r['media']['filepath'] }}" />                                        
-                                        </a>
-                                        <a href="{{ $category->path }}" class="articleListCategories">{{ $category->name }}</a>
-                                    </div>
-                                @endif
-                                <div class="articleListContent">
-                                    <a href="{{ $subChannel->path }}" class="articleListSubChannel">
-                                        {{ $subChannel->name }}
-                                    </a> 
-                                    <a class="articleListTitle" href="{{ $r['path'] }}">
-                                        {{ $r['title'] }}
-                                    </a>
-                                    <?php /* 
-                                        PURPOSEFULLY REMOVED UNTIL LAYOUT ISSUES CAN BE RESOLVED 
-                                        <p class="articleListSummary">{{ str_limit($r['subHeading'], $limit = 30, $end = '...') }}</p> */ 
-                                    ?>
-                                    <a href="{{ $category->path }}" class="articleListCategories">{{ $category->name }}</a>
-                                </div>
-                            </div>
-                        </div>
-
-                        <?php $counter++ ?>
-
-                        @if($counter == 4 )
-                            <?php $counter = 1 ?>
-                        @endif                        
-                    @endforeach
-                </div>
+            <div class="content-row">
+                <h1>
+                    <a href="{{ $r['path'] }}">{{ $r['title'] }}</a>
+                </h1>
+                <h2 class="hide_mobile">{{ $r['subHeading'] }}</h2>
+                <h3>{{ $subChannel->name }} - {{ $category->name }}</h3>
             </div>
-        </div> <!-- /.carouselContainer -->                
-    </aside>
+        </div> 
+    @endforeach
 @endif

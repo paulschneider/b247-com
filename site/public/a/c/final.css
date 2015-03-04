@@ -4,7 +4,7 @@ body{font-family:'Alegreya'; }
 #footer{background-color:#F6F6F6;min-height:150px; margin:30px 0 0 0; border-top:1px solid #EAEAEA; padding-bottom:50px;}
 section{float:left;width:100%;}
 input {-webkit-appearance: none;border-radius: 0;}
-h1,h2,h3,h4{font-weight:normal;}
+h1,h2,h3,h4{font-weight:normal; margin:0;}
 .art-upper h2{color:#CCC; font-size:16px;width:100%;}
 .alt-color{font-size:13px;}
 h2,.themeCulture .art-nav A:link,.art-nav A:visited{color:#858585; text-decoration:none !important;}

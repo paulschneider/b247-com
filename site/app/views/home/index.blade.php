@@ -89,9 +89,15 @@
 		@foreach($picks AS $article)
 			@if( ! $article['isAdvert'])
 				<div class="content-col <?php echo getTheme($article) ?> <?php echo $j == 4 ? 'last-in-row' : '' ?>">
-					<img src="{{ $article['media']['filepath'] }}" />
+					
+					<a href="{{ $article['path'] }}">
+						<img src="{{ $article['media']['filepath'] }}" />
+					</a>
+
 					<div class="content-row">
-						<h1>{{ $article['title'] }}</h1>
+						<h1>
+							<a href="{{ $article['path'] }}">{{ $article['title'] }}</a>
+						</h1>
 						<h2 class="hide_mobile">{{ $article['subHeading'] }}</h2>
 						<h3>{{ $article['assignment']['channel']['name'] }} - {{ $article['assignment']['subChannel']['name'] }}</h3>
 					</div>
@@ -100,7 +106,15 @@
 				<?php $j++ ?>
 
 				<?php if($j == 5) $j = 1 ?>
-
+			@else
+				<div class="ad-mpu-r">
+					<div class="mpu">
+						<a href="{{ $article['url'] }}" target="_blank">
+							<img src="{{ $article['media']['filepath'] }}" width="100%" />
+						</a>
+					</div>
+				</div>
+				<?php $j = 1 ?> <!-- RESET THE ARTICLE COUNTER -->
 			@endif 
 
 		@endforeach
@@ -156,14 +170,16 @@
 								<h3>{{ $subChannel->name }} - {{ $category->name }}</h3>
 							</div>
 						</div>
+
+						<?php 			
+							if( $j == 5 ) {
+								$j = 0;	
+							}							
+
+							$j++;					
+						?>
+
 					@endif
-
-					<?php 						
-						if( $j == 5 )
-							$j = 0;
-
-						$j++;
-					?>
 
 				@endforeach
 			</div>

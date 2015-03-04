@@ -2,7 +2,10 @@
 
 <section class="header">
     <header>      
-        <div id="logo"><img src="{{ assetPath() }}a/i/layout/bristol-24-7.png"/>
+        <div id="logo">
+            <a href="{{ baseUrl() }}">
+                <img src="{{ assetPath() }}a/i/layout/bristol-24-7.png" />
+            </a>
         </div>
 
         <a onclick="showmenu('menu')">

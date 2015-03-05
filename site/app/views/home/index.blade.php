@@ -76,7 +76,6 @@
 		</div>
 	</section>
 @endif
-<!-- END ADVERT -->
 
 <section>
 	<div class="highlights">
@@ -168,6 +167,7 @@
 								<h1><a href="{{ $article['path'] }}">{{ $article['title'] }}</a></h1>
 								<h2 class="hide_mobile">{{ $article['subHeading'] }}</h2>
 								<h3>{{ $subChannel->name }} - {{ $category->name }}</h3>
+								<h4>{{ $article['event']['venue']['name'] }}</h4>
 							</div>
 						</div>
 

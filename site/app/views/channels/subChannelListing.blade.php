@@ -11,6 +11,26 @@
     @include("adverts.partials.letterbox")
 @endif
 
+<?php 
+	$start = getListingInWeek($days, 0);
+	$end = getListingInWeek($days, 6);
+?>
+
+<section>
+	<div class="sub-header-by-day">
+		<ul>
+			<li class="by-day-left">
+				<a href="{{ getSubChannelPath($channel) }}">Back</a>
+			</li>
+			<li class="by-day-right">
+				<?php $less = getNewTimestamp($start, '-', '7 days'); ?>
+				<a href="{{ baseUrl().$route }}/week/{{ $less }}">< previous 7 days</a>  
+				|   
+				<?php $more = getNewTimestamp($start, '+', '7 days'); ?>
+				<a href="{{ baseUrl().$route }}/week/{{ $more }}">next 7 days ></a></li>
+		</ul>
+	</div>
+</section>  
 
 @foreach($days AS $day)
 	<section>
@@ -80,7 +100,7 @@
 					@for($i=0; $i < count($categories); $i++)
 						<?php $category = $categories[$i]; ?>
 						<li>
-							<a href="{{ baseUrl().$category['path'] }}?time={{ $date->timeStamp }}" class="themeWhats">{{ $category['name'] }} ({{ $category['numberOfArticles'] }})</a>
+							<a href="{{ baseUrl().$category['path'] }}?time={{ $date->timeStamp }}" class="themeWhats">{{ $category['name'] }}</a>
 						</li>						
 					@endfor
 				</ul>

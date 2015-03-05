@@ -11,71 +11,50 @@
     @include("adverts.partials.letterbox")
 @endif
 
-<section class="pageSection grid">
-    <header class="artCol-3-3 artColFirst">
-        <h1 class="primaryHeader">{{ getSubChannelName($channel) }}</h1>
-    </header>
+<section>
+    <div class="highlights <?php echo themeClass($activeChannel) ?>">
 
-    <ul class="linkList">
-        <?php $counter = 0 ?>
-        <li class="artCol-1-3 <?php echo $counter == 0 ? 'artColFirst' : '' ?>">    
+        <div class="section-header">
+            <div class="section-header-box">{{ $channel['name'] }}</div>
+        </div>
+
+        <div class="sub-chan-dir">
             <ul>
-                <?php $perColumn = ceil(count($categories)/3) ?>
-
                 @foreach( $categories AS $category )
-                    <li><a href="{{ $category['path'] }}">{{ $category['name'] }} <span>({{ $category['numberOfArticles'] }})</span></a></li>
-                    <?php $counter++ ?>
-
-                    @if( $counter == $perColumn )
-                            </ul>
-                        </li>
-                        <li class="artCol-1-3">   
-                            <ul>
-                        <?php $counter = 1; ?>
-                    @endif
+                    <li><a href="{{ $category['path'] }}">{{ $category['name'] }} ({{ $category['numberOfArticles'] }})</a></li>
                 @endforeach
             </ul>
-        </li>
-    </ul>
-</section>
-
-<hr class="spacer">
-
-<section class="pageSection grid">
-
-    <header class="artCol-3-3 artColFirst artColLast">
-        <h1 class="secondaryHeader">Featured</h1>
-    </header>
-
-    <div class="carouselContainer">
-        <div class="carouselArticleList">
-            <div class="articleList">
-
-                <?php $counter = 0; $s = 0; ?>
-
-                @foreach ( $articles AS $article )
-                    
-                    @if ( $article['isAdvert'] )
-                        <?php $ad = $article; ?>
-                        @include( 'partials.advert' )
-                    @else
-                        @include( 'partials.sm-sc-article' )                        
-                    @endif                  
-
-                    <?php $counter++; $s++ ?>
-
-                    @if( $counter == 3 and $s < count($articles))
-                        </div><div class="articleList">
-                        <?php $counter = 0 ?>
-                    @endif
-
-                  @endforeach
-            </div>     
         </div>
+
+        <?php $j = 1; ?>
+        
+        @foreach ( $articles AS $article )
+            <?php 
+                $category = getArticleCategory($article);
+                $subChannel = getArticleSubChannel($article); 
+            ?> 
+
+            <div class="content-col <?php echo themeClass($activeChannel) ?> <?php echo $j == 5 ? 'last-in-row' : '' ?>">
+                <a href="{{ $article['path'] }}">
+                    <img src="{{ $article['media']['filepath'] }}"/>
+                </a>
+                <div class="content-row">
+                    <h1><a href="{{ $article['path'] }}">{{ $article['title'] }}</a></h1>
+                    <h2 class="hide_mobile">{{ $article['subHeading'] }}</h2>
+                    <h3>{{ $subChannel->name }} - {{ $category->name }}</h3>
+                </div>
+            </div>
+
+            <?php           
+                if( $j == 5 ) {
+                    $j = 0; 
+                }                           
+
+                $j++;                   
+            ?>  
+        @endforeach 
     </div>
 </section>
-
-<hr>
 
 @if (isset($adverts[1]))
     <?php $advert = $adverts[1] ?>

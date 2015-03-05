@@ -55,7 +55,7 @@
 
 			marker.setMap(map);
 
-			map.setCenter(calviumPos);
+			map.setCenter(centre);
 		}		
 	}
 
@@ -69,74 +69,53 @@
 	@include("adverts.partials.letterbox")
 @endif
 
-<section class="pageSection">
-	<div class="grid">
-		<header class="artCol-3-3 artColFirst">
-			<h1 class="primaryHeader"><span class="subPrimaryHeader">{{ getSubChannelName($channel) }}:</span> {{ getCategoryName($channel) }}</h1>
-		</header>
-
-		<p class="backTo column col-5-20 colFirst tabCol-9-20 tabColFirst mobCol-18-20 mobColFirst">Back to: <a href="{{ getSubChannelPath($channel) }}">{{ getSubChannelName($channel) }}</a></p>
-		<p class="backTo column col-6-20 tabCol-9-20 totalResults mobCol-18-20 mobColFirst">Your search returned <span class="highlight">{{ $totalArticles }} results</span></p>
+<section>
+	<div class="sub-header-by-day">
+		<ul>
+			<li class="by-day-left"><a href="{{ getSubChannelPath($channel) }}">Back</a></li>
+			<li class="by-day-right">Your search returned {{ $totalArticles }} results</li>
+		</ul>
 	</div>
-
-	<hr>
-
-	<div class="grid">
-		<div class="col-16-20 colFirst tabCol-20-20">
-			<div class="mapContainer">
-				<div class="mapBox" id="map"></div>
-				<a class="hideMap" href="#">Back</a>
-			</div>
+</section>  
+      
+<section>
+	<div class="highlights themeFood">
+		<div class="section-header">
+			<div class="section-header-box">{{ getCategoryName($channel) }}</div>
 		</div>
-	</div>
 
-	<div class="grid">
-		<div class="carouselDoubleContainer">
-			<div class="carouselDoubleList">
-				<div class="articleList">
-					<div class="artColRow">
+		<div id="map" class="map-container"></div>
 
-					<?php $counter = 0; ?>
-						@foreach( $articles AS $article )
+		<?php $j = 1; ?>
 
-							<div class="articleListItem themeCulture column <?php echo $counter == 0 || $counter == 3 ? 'artColFirst' : ''?> artCol-1-3">
-								<div class="articleListSynopsis">
-									<div class="articleListImage">
-										<a href="{{ $article['path'] }}">
-											@if(isset($article['media']['filepath']))
-												<img alt="{{ $article['media']['alt'] }}" src="{{ $article['media']['filepath'] }}">
-											@endif
-										</a>
-										<a href="{{ $article['assignment']['category']['path'] }}" class="articleListCategories">{{ $article['assignment']['category']['name'] }}</a>
-									</div>
+		@foreach( $articles AS $article )
+			<?php 
+                $category = getArticleCategory($article);
+                $subChannel = getArticleSubChannel($article); 
+            ?> 
 
-									<div class="articleListContent">
-										<a class="articleListTitle" href="{{ $article['path'] }}">{{ $article['title'] }}</a>
-										<p class="articleListSummary">{{ $article['subHeading'] }}</p>
-										<a href="{{ $article['assignment']['category']['path'] }}" class="articleListCategories">{{ $article['assignment']['category']['name'] }}</a>
-									</div>
-								</div>
-							</div>
-							<?php $counter = $counter + $article['displayStyle'] ?>
+			<div class="content-col <?php echo themeClass($activeChannel) ?> <?php echo $j == 4 ? 'last-in-row' : '' ?>">
+                <a href="{{ $article['path'] }}">
+                    <img src="{{ $article['media']['filepath'] }}"/>
+                </a>
+                <div class="content-row">
+                    <h1><a href="{{ $article['path'] }}">{{ $article['title'] }}</a></h1>
+                    <h2 class="hide_mobile">{{ $article['subHeading'] }}</h2>
+                    <h3>{{ $subChannel->name }} - {{ $category->name }}</h3>
+                </div>
+            </div>
 
-							@if ( $counter == 3 )
-								</div><div class="artColRow">
-							@endif
-							@if ( $counter == 6 )
-								</div></div><div class="articleList"><div class="artColRow">
-								<?php $counter = 0; ?>
-							@endif
-						@endforeach
+            <?php           
+                if( $j == 4 ) {
+                    $j = 0; 
+                }                           
 
-					</div>
-				</div>
-			</div>
-		</div>
-	</div>
+                $j++;                   
+            ?>
 
-</section>
-
-<hr>        
+		@endforeach
+	</div> 
+</section>      
 
 <!-- Letterbox advert - top -->
 @if( isset($adverts[1]) )

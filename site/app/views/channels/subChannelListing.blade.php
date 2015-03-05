@@ -80,7 +80,7 @@
 					@for($i=0; $i < count($categories); $i++)
 						<?php $category = $categories[$i]; ?>
 						<li>
-							<a href="{{ baseUrl().$category['path'] }}" class="themeWhats">{{ $category['name'] }} ({{ $category['numberOfArticles'] }})</a>
+							<a href="{{ baseUrl().$category['path'] }}?time={{ $date->timeStamp }}" class="themeWhats">{{ $category['name'] }} ({{ $category['numberOfArticles'] }})</a>
 						</li>						
 					@endfor
 				</ul>

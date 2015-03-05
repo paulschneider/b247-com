@@ -231,7 +231,7 @@
 										
 										@if($j == 5) 										
 											<?php $j = 1; ?>											
-											@if($articles <= $totalArticles)
+											@if($articles != $totalArticles)
 												<!-- START A NEW CAROUSEL PAGE -->
 												</div>
 												<div class="slider-page">

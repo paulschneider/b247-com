@@ -49,7 +49,7 @@
         </div>
 
         <div class="toolssearch" id="search">
-            <form action="" method="post" class="searchContainer">
+            <form action="/search" method="post" class="searchContainer">
                 <input type="text" class="text" value="" placeholder="Search" name="search">
                 <input type="submit" class="primaryButton" value="Go">
             </form>

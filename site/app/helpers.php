@@ -390,7 +390,7 @@ function getFeatureCategories($features)
 
 function getChannelTheme($channel)
 {
-	return isset($channel['sefName']) ? themeClass($channel['sefName']) : '' ;
+	return isset($channel['articles'][0]['assignment']['channel']['sefName']) ? themeClass($channel['articles'][0]['assignment']['channel']['sefName']) : '' ;
 }
 
 function getTheme($article)

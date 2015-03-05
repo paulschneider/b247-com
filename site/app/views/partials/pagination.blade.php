@@ -1,22 +1,23 @@
-@if(isset($pagination))
-    <nav class="pagination">
-        <hr class="spacer">
-        <div class="grid">
-            <div class="col-16-20 colFirst tabCol-18-20 tabColFirst mobColFirst">
+@if(isset($pagination))    
+    <div class="page-footer">
+        <ul>
+            <li class="previous">
                 @if(is_null($pagination['prevPage']))
-                    <span class="primaryButton disabledButton fl">< Previous</span>
+                    <span class="disabled">Previous</span>
                 @else
-                    <a class="primaryButton fl" href="{{ baseUrl().'/'.$route }}/page/{{ $pagination['prevPage'] }}">< Previous</a>
+                    <a href="{{ baseUrl().'/'.$route }}/page/{{ $pagination['prevPage'] }}">< Previous</a>
                 @endif
-                
-                Page {{ $pagination['currentPage'] }}
-                
+            </li>
+            <li class="page-number">
+                <a href="">Page {{ $pagination['currentPage'] }}</a>
+            </li>
+            <li class="next">
                 @if( $pagination['currentPage'] == $pagination['totalPages'] )
-                    <span class="primaryButton disabledButton fr">Next ></span>
+                    <span class="disabled">Next</span>
                 @else
-                    <a class="primaryButton fr" href="{{ baseUrl().'/'.$route }}/page/{{ $pagination['nextPage'] }}">Next ></a>
-                @endif            
-            </div>
-        </div>
-    </nav>
+                    <a href="{{ baseUrl().'/'.$route }}/page/{{ $pagination['nextPage'] }}">Next ></a>
+                @endif                
+            </li>
+        </ul>
+    </div>
 @endif

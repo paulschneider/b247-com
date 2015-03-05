@@ -84,10 +84,10 @@
 			<div class="section-header-box">Highlights</div>
 		</div>
 
-		<?php $j = 1 ?>
+		<?php $j = 1; $articleCount = 1; ?>
 
 		@foreach($picks AS $article)
-			@if( ! $article['isAdvert'])
+			@if( ! $article['isAdvert'] and $articleCount <= 8)
 				<div class="content-col <?php echo getTheme($article) ?> <?php echo $j == 4 ? 'last-in-row' : '' ?>">
 					
 					<a href="{{ $article['path'] }}">
@@ -103,10 +103,10 @@
 					</div>
 				</div>
 
-				<?php $j++ ?>
+				<?php $j++; $articleCount++ ?>
 
 				<?php if($j == 5) $j = 1 ?>
-			@else
+			@elseif ( $article['isAdvert'] )
 				<div class="ad-mpu-r">
 					<div class="mpu">
 						<a href="{{ $article['url'] }}" target="_blank">
@@ -114,7 +114,7 @@
 						</a>
 					</div>
 				</div>
-				<?php $j = 1 ?> <!-- RESET THE ARTICLE COUNTER -->
+				<?php $j = 1 ?> <!-- RESET THE ITEM COUNTER -->
 			@endif 
 
 		@endforeach
@@ -177,10 +177,8 @@
 							}							
 
 							$j++;					
-						?>
-
+						?>					
 					@endif
-
 				@endforeach
 			</div>
 		</section>
@@ -194,12 +192,12 @@
 		@if($totalArticles > 0)
 
 			<section>
-				<div class="carousels  <?php echo getChannelTheme($feed) ?>">
+				<div class="carousels <?php echo getChannelTheme($feed) ?>">
 					<div class="section-header">
 						<div class="section-header-box">{{ $feed['name'] }}</div>
 					</div>
 
-					<?php $j = 1; $s = 1; ?>
+					<?php $j = 1; $articles = 1; ?>
 
 					<div class="define-slider-row">
 						<div class="owl-carousel owl-theme">	
@@ -229,14 +227,25 @@
 												</div>
 											</div>
 										
-										<?php $j++; ?>
+										<?php $j++; $articles++; ?>
 										
 										@if($j == 5) 										
-											<?php $j = 1; ?>
-											</div>
-											<div class="slider-page">
+											<?php $j = 1; ?>											
+											@if($articles <= $totalArticles)
+												<!-- START A NEW CAROUSEL PAGE -->
+												</div>
+												<div class="slider-page">
+											@endif
 										@endif
-
+									@else
+										<div class="ad-mpu-l">
+											<div class="mpu">
+												<a href="{{ $article['url'] }}" target="_blank">
+													<img src="{{ $article['media']['filepath'] }}" width="100%" />
+												</a>
+											</div>
+										</div>
+										<?php $j = $j+2; ?>
 									@endif
 
 								@endforeach

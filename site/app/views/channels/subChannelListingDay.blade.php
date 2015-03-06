@@ -43,35 +43,72 @@
 			<div class="section-header-box">{{ $date->dayOfWeek['short'] .' '. $date->day .' '. $date->month['full'] }}</div>
 		</div>
 
-	<?php $j = 1; ?>
-	
-	@foreach($day['articles'] AS $article)
-		<?php 
-			$category = getArticleCategory($article);
-			$subChannel = getArticleSubChannel($article); 
-		?>
-		<div class="content-col themeWhats <?php echo $j == 4 ? 'last-in-row' : '' ?>">
-			<a href="{{ $article['path'] }}">
-				<img src="{{ $article['media']['filepath'] }}"/>
-			</a>
-			<div class="content-row">			
-				<h1>
-					<a href="{{ $article['path'] }}">{{ $article['title'] }}</a>
-				</h1>			
-				<h2 class="hide_mobile">{{ $article['subHeading'] }}</h2>
-				<h3>{{ $subChannel->name }} - {{ $category->name }}</h3>
-			</div>
+		<div class="section-highlights">
+			<div class="section-highlights-title">Highlights</div>	 
+			@if( isset($day['picks']) and count($day['picks']) > 0 )
+				@foreach($day['picks'] AS $pick)
+
+					<?php 
+						$category = getArticleCategory($pick);
+						$subChannel = getArticleSubChannel($pick); 
+					?>
+
+					<div class="featured-col themeWhats">
+
+						<a href="{{ $pick['path'] }}">
+							<img src="{{ $pick['media']['filepath'] }}" />
+						</a>
+
+						<div class="featured-row">
+							<h1><a href="{{ $pick['path'] }}">{{ $pick['title'] }}</a></h1>
+							<h2>{{ $pick['subHeading'] }}</h2>
+							<h3>
+								<a href="{{ $subChannel->path }}">{{ $subChannel->name }}</a>
+								 - 
+								<a href="{{ $category->path }}">{{ $category->name }}</a>
+							</h3>
+						</div>
+					</div>
+				@endforeach
+			@endif
 		</div>
 
-		<?php 
-            if( $j == 4 )
-            {
-                $j = 0; 
-            }
-            $j++;
-        ?>
+	<?php $j = 1; ?>
 
-	@endforeach
+	<div class="list-row">
+		@foreach($day['articles'] AS $article)
+			<?php 
+				$category = getArticleCategory($article);
+				$subChannel = getArticleSubChannel($article); 
+			?>
+			<div class="content-col themeWhats <?php echo $j == 4 ? 'last-in-row' : '' ?>">
+
+				<a href="{{ $article['path'] }}">
+					<img src="{{ $article['media']['filepath'] }}"/>
+				</a>
+				
+				<div class="content-row">			
+					<h1>
+						<a href="{{ $article['path'] }}">{{ $article['title'] }}</a>
+					</h1>			
+					<h2 class="hide_mobile">{{ $article['subHeading'] }}</h2>
+					<h3>
+	                    <a href="{{ $subChannel->path }}">{{ $subChannel->name }}</a>
+	                     - 
+	                    <a href="{{ $category->path }}">{{ $category->name }}</a>
+	                </h3>
+				</div>
+			</div>
+
+			@if( $j == 4 )
+                <?php $j = 0; ?>
+                </div><div class="list-row">
+            @endif
+            
+            <?php $j++; ?>    
+
+		@endforeach
+	</div>
 </section>     
 
 @if (isset($adverts[2]))
@@ -79,7 +116,7 @@
     @include("adverts.partials.letterbox")
 @endif
 
-@include('channels.partials.sub-nav')
+@include('channels.partials.sub-nav-lower')
 
 @endsection
 

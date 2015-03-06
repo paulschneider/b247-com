@@ -1,4 +1,4 @@
-@if(isset($subChannels))
+@if( isset($subChannels) and count($subChannels) > 0 )
 	<section class="sub-header-bk sh-ft-adj">
 		<div class="sub-header">
 			<ul>
@@ -10,6 +10,4 @@
 			</ul>
 		</div>
 	</section>
-@elseif($activeNav == "profile" || $activeNav == "prefs" || $activeNav == "password")
-	@include("user.partials.sub-nav") 
 @endif

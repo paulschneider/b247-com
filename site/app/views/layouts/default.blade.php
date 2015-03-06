@@ -61,7 +61,20 @@
     document.getElementById("show-mob-menu").style.display = 'block'; 
     document.getElementById("hide-mob-menu").style.display = 'none'; 
     }
+    function shownl(id) {
+    document.getElementById("nl-popup").style.display = 'block';
+    }
+    function hidenl(id) {
+    document.getElementById("nl-popup").style.display = 'none';
+    }
     </script>
+
+    <style>
+        .list-row {
+            float:left;
+            clear:both;
+        }
+    </style>
 
   </head>
 

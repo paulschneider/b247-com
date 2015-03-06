@@ -21,7 +21,11 @@
                     <a href="{{ $r['path'] }}">{{ $r['title'] }}</a>
                 </h1>
                 <h2 class="hide_mobile">{{ $r['subHeading'] }}</h2>
-                <h3>{{ $subChannel->name }} - {{ $category->name }}</h3>
+                <h3>
+                    <a href="{{ $subChannel->path }}">{{ $subChannel->name }}</a>
+                     - 
+                    <a href="{{ $category->path }}">{{ $category->name }}</a>
+                </h3>
             </div>
         </div> 
     @endforeach

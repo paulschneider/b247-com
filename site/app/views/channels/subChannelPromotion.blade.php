@@ -102,7 +102,7 @@
 
 @include("partials.pagination")
 
-@include('channels.partials.sub-nav')
+@include('channels.partials.sub-nav-lower')
     
 @endsection
 

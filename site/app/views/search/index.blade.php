@@ -9,72 +9,85 @@
     @include("adverts.partials.letterbox")
 @endif
 
-<section class="pageSection">
-	<div class="grid">
-		<header class="artCol-3-3 artColFirst sectionHeader searchHeader">
-			<h1 class="primaryHeader">Search</h1>
+<section>
+	<div class="sub-header-by-day">
+		<ul>
 			@if(isset($searchTerm))
-				<p class="backTo">Your search for <strong>{{ $searchTerm }}</strong> returned <a href="#">{{ $resultCount }} result(s)</a></p>
+				<li class="by-day-left">
+					Your search for <span class="red">{{ $searchTerm }}</span> 
+					returned <span class="red">{{ $resultCount }} results</span>
+				</li>
 			@endif
-
-			<form action="/search" method="post" class="searchContainer">
-				<input type="text" class="text" value="{{ isset($searchTerm) ? $searchTerm : '' }}" placeholder="Search" name="search" />
-				<input type="submit" class="primaryButton" value="Go" />
-				<a class="searchClose icoSearchHide" href="#">Hide</a>
-			</form>
-		</header>
-	</div>
-
-	<hr>
-
-	<div class="grid">
-		<div class="articleList">
-			<div class="artColRow">
-
-				@if(isset($searchResults))
-					<?php $i = 0; $s = 1; ?>
-					@foreach($searchResults AS $result) 
-						@foreach($result['articles'] AS $article)
-
-							<?php 
-								$category = getArticleCategory($article); 
-								$subChannel = getArticleSubChannel($article); 
-							?>
-
-							<div class="articleListItem <?php echo getTheme($article) ?> column <?php echo $i == 0 ? 'artColFirst' : '' ?> <?php echo $i == 3 || $i == $pagination['perPage'] ? 'artColLast' : '' ?> artCol-1-3 ">
-								<a href="{{ $subChannel->path }}" class="articleListSubChannel">{{  $subChannel->name }}</a>
-								<div class="articleListSynopsis">
-									<div class="articleListImage">								
-										<a href="{{ $article['path'] }}">
-				  							 @if( isset($article['media']) and !empty($article['media']) )
-	                                            <img alt="{{ $article['media']['alt'] }}" src="{{ $article['media']['filepath'] }}" />
-	                                        @endif
-										</a>
-										<a href="{{ $category->path }}" class="articleListCategories">{{ $category->name }}</a>
-									</div>
-									<div class="articleListContent">
-										<a href="{{ $article['path'] }}" class="articleListSubChannel">{{  $subChannel->name }}</a> 
-										<a class="articleListTitle" href="{{ $article['path'] }}">{{ $article['title'] }}</a>
-										<p class="articleListSummary">{{ $article['subHeading'] }}</p>
-										<a href="{{ $category->path }}" class="articleListCategories">{{ $category->name }}</a>
-									</div>
-								</div>
-							</div>
-
-							<?php $s++; $i++; ?>
-
-		                    @if($i == 3)
-		                        </div><div class="artColRow">
-		                        <?php $i = 0; ?>
-		                    @endif
-	                    @endforeach
-					@endforeach
-
-				@endif
-			</div>
-		</div>
+			<li class="by-day-right">
+				<form action="/search" method="post" class="searchContainer">
+					<input type="text" class="text" value="{{ isset($searchTerm) ? $searchTerm : '' }}" placeholder="Search" name="search">
+					<input type="submit" class="primaryButton" value="Go">
+				</form>
+			</li>
+		</ul>
 	</div>
 </section>  
+      
+<section>
+	<div class="highlights themeNews">
+		<div class="section-header">
+			<div class="section-header-box">Search</div>
+		</div>
+
+		@if(isset($searchResults))
+			<div class="list-row">
+
+				<?php $j = 1 ?>
+
+				@foreach($searchResults AS $result)
+
+				<?php 
+					# we do this horrible-ness because the original design called for results to be sectioned into their parent
+					# channel. This was changed right at the end to be a single grid list of articles. There was no
+					# time allocated to update the API accordingly.
+					# (paulschneider)
+				?>		
+
+					@foreach($result['articles'] AS $article)
+		                @if( ! $article['isAdvert'] )
+
+		                    <?php 
+		                        $category = getArticleCategory($article);
+		                        $subChannel = getArticleSubChannel($article); 
+		                    ?>
+
+		                    <div class="content-col <?php echo getTheme($article) ?> <?php echo $j == 4 ? 'last-in-row' : '' ?>">                
+		                        <a href="{{ $article['path'] }}">
+		                            <img src="{{ $article['media']['filepath'] }}"/>
+		                        </a>
+
+		                        <div class="content-row">
+		                            <h1>
+		                                <a href="{{ $article['path'] }}">{{ $article['title'] }}</a>
+		                            </h1>
+		                            <h2 class="hide_mobile">{{ $article['subHeading'] }}</h2>
+		                            <h3>
+		                                <a href="{{ $subChannel->path }}">{{ $subChannel->name }}</a>
+		                                 - 
+		                                <a href="{{ $category->path }}">{{ $category->name }}</a>
+		                            </h3>
+		                        </div>
+		                    </div>     
+		                     
+		                    @if( $j == 4 )
+		                        <?php $j = 0; ?>
+		                        </div><div class="list-row">
+		                    @endif
+
+		                    <?php $j++; ?>                    
+
+		                @endif
+	                @endforeach
+	            @endforeach
+			</div>
+		@endif
+	</div> 
+</section>
 
 @include('partials.pagination')
 

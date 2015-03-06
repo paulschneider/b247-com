@@ -1,15 +1,15 @@
 @extends('layouts.default')
 
-@include('layouts.header')
+	@include('layouts.header')
 
-@section('content')
+	@section('content')
 
-@include('channels.partials.sub-nav')
+		@include('channels.partials.sub-nav')
 
-@include("articles.partials.{$channelType}.index")
+			@include("articles.partials.{$channelType}.index")
 
-@include('channels.partials.sub-nav')
+		@include('channels.partials.sub-nav-lower')
 
-@endsection
+	@endsection
 
 @include('layouts.footer')

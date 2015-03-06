@@ -123,7 +123,7 @@
 	@include("adverts.partials.letterbox")
 @endif
 
-@include('channels.partials.sub-nav')
+@include('channels.partials.sub-nav-lower')
 
 @endsection
 

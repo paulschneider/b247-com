@@ -15,7 +15,7 @@
     <div class="highlights <?php echo themeClass($activeChannel) ?>">
 
         <div class="section-header">
-            <div class="section-header-box">{{ $channel['name'] }}</div>
+            <div class="section-header-box">{{ getSubChannelName($channel) }}</div>
         </div>
 
         <div class="sub-chan-dir">
@@ -28,31 +28,37 @@
 
         <?php $j = 1; ?>
         
-        @foreach ( $articles AS $article )
-            <?php 
-                $category = getArticleCategory($article);
-                $subChannel = getArticleSubChannel($article); 
-            ?> 
+        <div class="list-row">
+            @foreach ( $articles AS $article )
+                <?php 
+                    $category = getArticleCategory($article);
+                    $subChannel = getArticleSubChannel($article); 
+                ?> 
 
-            <div class="content-col <?php echo themeClass($activeChannel) ?> <?php echo $j == 5 ? 'last-in-row' : '' ?>">
-                <a href="{{ $article['path'] }}">
-                    <img src="{{ $article['media']['filepath'] }}"/>
-                </a>
-                <div class="content-row">
-                    <h1><a href="{{ $article['path'] }}">{{ $article['title'] }}</a></h1>
-                    <h2 class="hide_mobile">{{ $article['subHeading'] }}</h2>
-                    <h3>{{ $subChannel->name }} - {{ $category->name }}</h3>
+                <div class="content-col <?php echo themeClass($activeChannel) ?> <?php echo $j == 5 ? 'last-in-row' : '' ?>">
+                    <a href="{{ $article['path'] }}">
+                        <img src="{{ $article['media']['filepath'] }}"/>
+                    </a>
+                    <div class="content-row">
+                        <h1><a href="{{ $article['path'] }}">{{ $article['title'] }}</a></h1>
+                        <h2 class="hide_mobile">{{ $article['subHeading'] }}</h2>
+                        <h3>
+                            <a href="{{ $subChannel->path }}">{{ $subChannel->name }}</a>
+                             - 
+                            <a href="{{ $category->path }}">{{ $category->name }}</a>
+                        </h3>
+                    </div>
                 </div>
-            </div>
 
-            <?php           
-                if( $j == 5 ) {
-                    $j = 0; 
-                }                           
-
-                $j++;                   
-            ?>  
-        @endforeach 
+                @if( $j == 5 )
+                    <?php $j = 0; ?>
+                    </div><div class="list-row">
+                @endif
+                
+                <?php $j++; ?>  
+                
+            @endforeach 
+        </div>
     </div>
 </section>
 
@@ -61,7 +67,7 @@
     @include("adverts.partials.letterbox")
 @endif
 
-@include('channels.partials.sub-nav')
+@include('channels.partials.sub-nav-lower')
 
 @endsection
 

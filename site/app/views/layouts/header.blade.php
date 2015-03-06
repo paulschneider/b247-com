@@ -44,8 +44,42 @@
         </div>
 
         <div class="newsletter" id="newsletter">
-            <img src="{{ assetPath() }}a/i/icons/nl-icon.png"/> 
-            <div class="nav-item-nl">Newsletter</div>
+            <a class="opennl" onclick="shownl('nl')" >
+                <img src="{{ assetPath() }}a/i/icons/nl-icon.png"/>
+            </a>
+            <div class="nav-item-nl">
+                <a class="opennl" onclick="shownl('nl')" >Newsletter</a>
+            </div>
+            
+            <div id="nl-popup">
+                <link href="//cdn-images.mailchimp.com/embedcode/classic-081711.css" rel="stylesheet" type="text/css">
+                <style type="text/css">
+                    #mc_embed_signup{background:#fff; clear:left; font:14px Helvetica,Arial,sans-serif; }
+                </style>
+                <div id="mc_embed_signup">
+                    <form action="//bristol-culture.us7.list-manage.com/subscribe/post?u=7b935cfb4a332a0d1c952d2d9&amp;id=67a9a4e1bd" method="post" id="mc-embedded-subscribe-form" name="mc-embedded-subscribe-form" class="validate" novalidate>
+                        <div id="mc_embed_signup_scroll">
+                            <h2>Subscribe</h2>
+                            <div class="mc-field-group">
+                                <label for="mce-EMAIL">Email Address </label>
+                                <input type="email" value="" name="EMAIL" class="required email" id="mce-EMAIL">
+                            </div>
+                            <div id="mce-responses" class="clear">
+                                <div class="response" id="mce-error-response" style="display:none"></div>
+                                <div class="response" id="mce-success-response" style="display:none"></div>
+                            </div>
+                            <div style="position: absolute; left: -5000px;"><input type="text" name="b_7b935cfb4a332a0d1c952d2d9_67a9a4e1bd" tabindex="-1" value=""></div>
+                            <div class="clear">
+                                <input type="submit" value="Subscribe" name="subscribe" id="mc-embedded-subscribe" class="button">
+                            </div>
+                        </div>
+                    </form>
+                </div>
+                <script type='text/javascript' src='//s3.amazonaws.com/downloads.mailchimp.com/js/mc-validate.js'></script>
+                <script type='text/javascript'>(function($) {window.fnames = new Array(); window.ftypes = new Array();fnames[0]='EMAIL';ftypes[0]='email';fnames[1]='FNAME';ftypes[1]='text';fnames[2]='LNAME';ftypes[2]='text';}(jQuery));var $mcj = jQuery.noConflict(true);</script>
+                
+                <a onclick="hidenl('nl')" class="close">Close x</a>
+            </div>
         </div>
 
         <div class="toolssearch" id="search">
@@ -57,57 +91,8 @@
     </header>
 </section>
 
-<?php /*
-<header role="banner" id="top">      
-  <div class="headerBar">
-    <a class="visuallyHidden skipNavigation" href="#main">Skip to content</a>        
-    <a id="logo" href="/"><img alt="Bristol 24/7" src="{{ assetPath() }}a/i/layout/bristol-24-7.png"></a>      
-    <a class="toggleMenuOn" href="#">Show menu<span class="icoMenu"></span></a>        
-    <nav class="primaryNav" role="navigation">
-        <ul>
-        @foreach( $nav AS $item )
-		    <li class="{{ themeClass($item['sefName']) }}">
-		      <a href="{{ $item['path'] }}">{{ $item['name'] }}</a>
-		    </li>
-        @endforeach
-        </ul>
-    </nav>
-    
-    <ul class="toolsNav">
-        <li>
-            @if( Session::has('user') )
-                <?php $user = Session::get('user') ?>
-                <a class="profileLink" href="{{ baseUrl() }}/profile">{{ $user['firstName'] .' '. $user['lastName'] }} <span class="icoProfile"></span></a>
-            @elseif (isset($page) and $page != 'register' and $page != 'login')
-                <a class="launchWindow profileLink" data-content="modalWindowContent" href="{{ baseUrl() }}/login">
-                    Sign in/register 
-                    <span class="icoProfile"></span>
-                </a>
-            @endif        
-        </li>
-        @if( Session::has('user') )
-            <li>
-                <a href="{{ baseUrl() }}/logout">Sign Out</a>
-            </li>
-        @endif
-        <li>
-            <a class="searchLink" href="#">Search <span class="icoSearch"></span></a>
-        </li>
-    </ul>
-    
-    <form action="/search" method="post" class="searchContainer">
-        <input type="text" class="text" value="" placeholder="Search" name="search">
-        <input type="submit" class="primaryButton" value="Go">
-        <a class="searchClose icoSearchHide" href="#">Hide</a>
-    </form>
-
-    </div>      
-</header>    
-
-*/ ?>
-
 @if(isset($activeChannel) and !isset($showSubChannel) and !isset($showCategory))
-    @include('layouts.partials.sub-nav')
+    @include('channels.partials.sub-nav')
 @endif
 
 @if(isset($showAccountNav))

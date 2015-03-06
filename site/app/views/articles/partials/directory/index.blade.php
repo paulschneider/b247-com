@@ -83,6 +83,8 @@
                     {{ $article['body'] }}
                     {{ $article['bodyContinued'] }}
                 </span>
+
+                @include('articles.partials._global.category-list')
             </div>
         </div>
 

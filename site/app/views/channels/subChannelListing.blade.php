@@ -76,7 +76,11 @@
 											</a>
 										</h1>
 										<h2 class="hide_mobile">{{ $article['subHeading'] }}</h2>
-										<h3>{{ $subChannel->name }} - {{ $category->name }}</h3>
+										<h3>
+			                                <a href="{{ $subChannel->path }}">{{ $subChannel->name }}</a>
+			                                 - 
+			                                <a href="{{ $category->path }}?time={{ $date->timeStamp }}">{{ $category->name }}</a>
+			                            </h3>
 									</div>
 								</div>
 
@@ -109,7 +113,7 @@
 	</section>
 @endforeach
 
-@include('channels.partials.sub-nav')
+@include('channels.partials.sub-nav-lower')
 
 @endsection
 

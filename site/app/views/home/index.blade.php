@@ -24,7 +24,11 @@
 						</a>
 					</h1>
 					<h2>{{ $features[0]['subHeading'] }}</h2>
-					<h3>{{ $features[0]['assignment']['channel']['name'] }} - {{ $features[0]['assignment']['subChannel']['name'] }}</h3>
+					<h3>
+						<a href="{{ $features[0]['assignment']['channel']['path'] }}">{{ $features[0]['assignment']['channel']['name'] }}</a>
+						 - 
+						<a href="{{ $features[0]['assignment']['subChannel']['path'] }}">{{ $features[0]['assignment']['subChannel']['name'] }}</a>
+					</h3>
 				</div>
 			</div>
 		</a>
@@ -36,19 +40,26 @@
 			@for( $i = 1; $i != 5; $i++ )
 
 				@if( $counter != 5 )
-						<div class="featured-col <?php echo getTheme($features[$i]) ?> <?php echo $j == 4 ? 'last-in-row' : '' ?>">
-							<a href="{{ $features[$i]['path'] }}">
-								<img src="{{ $features[$i]['media']['filepath'] }}" alt="{{ $features[$i]['media']['alt'] }}" title="{{ $features[$i]['media']['title'] }}" />
+
+						<?php $feature = $features[$i]; ?>
+
+						<div class="featured-col <?php echo getTheme($feature) ?> <?php echo $j == 4 ? 'last-in-row' : '' ?>">
+							<a href="{{ $feature['path'] }}">
+								<img src="{{ $feature['media']['filepath'] }}" alt="{{ $feature['media']['alt'] }}" title="{{ $feature['media']['title'] }}" />
 							</a>
 
 							<div class="featured-row">
 								<h1>
-									<a href="{{ $features[$i]['path'] }}">
-										{{ $features[$i]['title'] }}
+									<a href="{{ $feature['path'] }}">
+										{{ $feature['title'] }}
 									</a>
 								</h1>
-								<h2>{{ $features[$i]['subHeading'] }}</h2>
-								<h3>{{ $features[$i]['assignment']['channel']['name'] }} - {{ $features[$i]['assignment']['subChannel']['name'] }}</h3>
+								<h2>{{ $feature['subHeading'] }}</h2>
+								<h3>
+									<a href="{{ $feature['assignment']['channel']['path'] }}">{{ $feature['assignment']['channel']['name'] }}
+								 - 
+									<a href="{{ $feature['assignment']['channel']['path'] }}">{{ $feature['assignment']['subChannel']['name'] }}
+								</h3>
 							</div>
 						</div>
 					</a>
@@ -77,6 +88,8 @@
 	</section>
 @endif
 
+<!-- HIGHLIGHTS / PICKS -->
+
 <section>
 	<div class="highlights">
 		<div class="section-header">
@@ -98,7 +111,11 @@
 							<a href="{{ $article['path'] }}">{{ $article['title'] }}</a>
 						</h1>
 						<h2 class="hide_mobile">{{ $article['subHeading'] }}</h2>
-						<h3>{{ $article['assignment']['channel']['name'] }} - {{ $article['assignment']['subChannel']['name'] }}</h3>
+						<h3>
+							<a href="{{ $article['assignment']['channel']['path'] }}">{{ $article['assignment']['channel']['name'] }}</a>
+							 - 
+							<a href="{{ $article['assignment']['subChannel']['path'] }}">{{ $article['assignment']['subChannel']['name'] }}</a>
+						</h3>
 					</div>
 				</div>
 
@@ -166,7 +183,10 @@
 							<div class="whatson-row">
 								<h1><a href="{{ $article['path'] }}">{{ $article['title'] }}</a></h1>
 								<h2 class="hide_mobile">{{ $article['subHeading'] }}</h2>
-								<h3>{{ $subChannel->name }} - {{ $category->name }}</h3>
+								<h3>
+									<a href="{{ $subChannel->path }}">{{ $subChannel->name }}</a>
+									 -  
+									<a href="{{ $category->path }}">{{ $category->name }}</a></h3>
 								<h4>{{ $article['event']['venue']['name'] }}</h4>
 							</div>
 						</div>
@@ -223,7 +243,11 @@
 														</a>
 													</h1>
 													<h2 class="hide_mobile">{{ $article['subHeading'] }}</h2>
-													<h3>{{ $subChannel->name }} - {{ $category->name }}</h3>
+													<h3>
+														<a href="{{ $subChannel->path }}">{{ $subChannel->name }}</a>
+														 - 
+														<a href="{{ $category->path }}">{{ $category->name }}</a>
+													</h3>
 												</div>
 											</div>
 										
@@ -231,10 +255,12 @@
 										
 										@if($j == 5) 										
 											<?php $j = 1; ?>											
-											@if($articles != $totalArticles)
+											@if($articles < $totalArticles)
 												<!-- START A NEW CAROUSEL PAGE -->
 												</div>
 												<div class="slider-page">
+											@else 
+												</div>
 											@endif
 										@endif
 									@else
@@ -259,4 +285,5 @@
 @endif
           
 @endsection
+
 @include('layouts.footer')

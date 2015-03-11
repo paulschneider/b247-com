@@ -176,12 +176,12 @@
 						<div class="whatson-col <?php echo $j == 5 ? 'last-in-row' : '' ?>">
 							<div class="semi-circle hide_mobile">{{ $subChannel->name }}</div>	
 								
-							<a href="{{ $article['path'] }}">
+							<a href="{{ $article['path'] }}?time={{ $article['event']['details']['epoch'] }}">
 								<img alt="{{ $article['media']['alt'] }}" src="{{ $article['media']['filepath'] }}" />
 							</a>
 				
 							<div class="whatson-row">
-								<h1><a href="{{ $article['path'] }}">{{ $article['title'] }}</a></h1>
+								<h1><a href="{{ $article['path'] }}?time={{ $article['event']['details']['epoch'] }}">{{ $article['title'] }}</a></h1>
 								<h2 class="hide_mobile">{{ $article['subHeading'] }}</h2>
 								<h3>
 									<a href="{{ $subChannel->path }}">{{ $subChannel->name }}</a>

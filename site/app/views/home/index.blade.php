@@ -188,7 +188,10 @@
 									 -  
 									<a href="{{ $category->path }}">{{ $category->name }}</a></h3>
 								<h4>{{ $article['event']['venue']['name'] }}</h4>
-								<h5>{{ $article['created'] }}</h5>
+								
+								<h5>Created : {{ $article['created'] }}</h5>
+								<h6>Event Date : {{ $article['event']['details']['showDate'] }}</h6>
+								
 							</div>
 						</div>
 

@@ -184,9 +184,9 @@
 								<h1><a href="{{ $article['path'] }}?time={{ $article['event']['details']['epoch'] }}">{{ $article['title'] }}</a></h1>
 								<h2 class="hide_mobile">{{ $article['subHeading'] }}</h2>
 								<h3>
-									<a href="{{ $subChannel->path }}">{{ $subChannel->name }}</a>
+									<a href="{{ $subChannel->path }}?time={{ $article['event']['details']['epoch'] }}">{{ $subChannel->name }}</a>
 									 -  
-									<a href="{{ $category->path }}">{{ $category->name }}</a></h3>
+									<a href="{{ $category->path }}?time={{ $article['event']['details']['epoch'] }}">{{ $category->name }}</a></h3>
 								<h4>{{ $article['event']['venue']['name'] }}</h4>
 								
 								<h5>Created : {{ $article['created'] }}</h5>

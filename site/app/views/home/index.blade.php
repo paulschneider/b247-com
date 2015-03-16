@@ -187,11 +187,7 @@
 									<a href="{{ $subChannel->path }}?time={{ $article['event']['details']['epoch'] }}">{{ $subChannel->name }}</a>
 									 -  
 									<a href="{{ $category->path }}?time={{ $article['event']['details']['epoch'] }}">{{ $category->name }}</a></h3>
-								<h4>{{ $article['event']['venue']['name'] }}</h4>
-								
-								<h5>Created : {{ $article['created'] }}</h5>
-								<h6>Event Date : {{ $article['event']['details']['showDate'] }}</h6>
-								
+								<h4>{{ $article['event']['venue']['name'] }}</h4>								
 							</div>
 						</div>
 

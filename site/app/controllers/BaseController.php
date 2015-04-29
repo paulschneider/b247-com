@@ -50,6 +50,8 @@ class BaseController extends Controller {
 				# resource not found
 				case 404 :
 					return Response::view('errors.missing', ['nav' => getApplicationNav()], 404);
+				case 424 :
+					return Response::view('errors.satisfactionFailure', ['nav' => getApplicationNav()], 424);
 				break;
 			}
 		}

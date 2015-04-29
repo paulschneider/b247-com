@@ -39,7 +39,7 @@
 
 			@for( $i = 1; $i != 5; $i++ )
 
-				@if( $counter != 5 )
+				@if( $counter != 5 and isset($features[$i]))
 
 						<?php $feature = $features[$i]; ?>
 
@@ -69,7 +69,7 @@
 					<?php $counter++ ?>
 				@endif
 
-				<?php $j++ ?>
+				<?php $j++; ?>
 
 			@endfor
 			
